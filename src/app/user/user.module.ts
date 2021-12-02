@@ -2,13 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { UserRoutingModule } from './user-routing.module';
-import { FriendCreateComponent } from './friend/friend-create/friend-create.component';
-import { FriendListComponent } from './friend/friend-list/friend-list.component';
-import {SharedModule} from "../shared/shared.module";
+import { SharedModule } from "../shared/shared.module";
+import { NewsFeedComponent } from './news-feed/news-feed.component';
+import { MyProfileComponent } from './my-profile/my-profile.component';
 
 
 @NgModule({
-  declarations: [FriendCreateComponent, FriendListComponent],
+  declarations: [
+    NewsFeedComponent,
+    MyProfileComponent
+  ],
   imports: [
     CommonModule,
     UserRoutingModule,

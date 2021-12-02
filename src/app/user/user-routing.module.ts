@@ -1,18 +1,17 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {FriendCreateComponent} from "./friend/friend-create/friend-create.component";
-import {FriendListComponent} from "./friend/friend-list/friend-list.component";
-
+import {NewsFeedComponent} from "./news-feed/news-feed.component";
+import {MyProfileComponent} from "./my-profile/my-profile.component";
 
 const routes: Routes = [
   {
-    path: 'friend/:id',
-    component: FriendCreateComponent
+    path: 'my-profile',
+    component: MyProfileComponent
   },
   {
-    path: 'friend',
-    component: FriendListComponent
-  }
+    path: 'news-feed',
+    component: NewsFeedComponent
+  },
 ];
 
 @NgModule({

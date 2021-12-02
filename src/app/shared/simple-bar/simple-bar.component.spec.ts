@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FriendCreateComponent } from './friend-create.component';
+import { SimpleBarComponent } from './simple-bar.component';
 
-describe('FriendCreateComponent', () => {
-  let component: FriendCreateComponent;
-  let fixture: ComponentFixture<FriendCreateComponent>;
+describe('SimpleBarComponent', () => {
+  let component: SimpleBarComponent;
+  let fixture: ComponentFixture<SimpleBarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FriendCreateComponent ]
+      declarations: [ SimpleBarComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FriendCreateComponent);
+    fixture = TestBed.createComponent(SimpleBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
