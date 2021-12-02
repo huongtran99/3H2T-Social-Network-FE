@@ -5,12 +5,12 @@ import {LoginComponent} from "./auth/login/login.component";
 
 const routes: Routes = [
   {
-    path: '',
-    loadChildren: () => import('./user/user.module').then(module => module.UserModule)
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(module => module.AuthModule)
   },
   {
-    path: 'login',
-    component: LoginComponent
+    path: '',
+    loadChildren: () => import('./user/user.module').then(module => module.UserModule)
   },
   {
     path: '**',
