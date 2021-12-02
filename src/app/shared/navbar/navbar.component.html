@@ -20,7 +20,7 @@
           <span class="bottom-bar"></span>
         </div>
         <div class="search-box m-auto">
-          <form formGroup="search-box-form">
+          <form [formGroup]="formSearch">
             <input type="text" class="input-search" placeholder="Search...">
             <button type="submit"><i class="ri-search-line"></i></button>
           </form>
@@ -234,7 +234,7 @@
                   <i class="flaticon-menu"></i>
                 </div>
                 <div class="messages-search-box">
-                  <form formGroup="messages-search-box-form">
+                  <form [formGroup]="formSearch">
                     <input type="text" class="input-search" placeholder="Search Message...">
                     <button type="submit"><i class="ri-search-line"></i></button>
                   </form>
@@ -610,7 +610,7 @@
                     <i class="flaticon-menu"></i>
                   </div>
                   <div class="messages-search-box">
-                    <form formGroup="messages-search-box-form">
+                    <form [formGroup]="formSearch">
                       <input type="text" class="input-search" placeholder="Search Message...">
                       <button type="submit"><i class="ri-search-line"></i></button>
                     </form>
@@ -774,7 +774,7 @@
             </div>
             <div class="option-item">
               <div class="search-box">
-                <form formGroup="search-box-form">
+                <form [formGroup]="formSearch">
                   <input type="text" class="input-search" placeholder="Search...">
                   <button type="submit"><i class="ri-search-line"></i></button>
                 </form>
