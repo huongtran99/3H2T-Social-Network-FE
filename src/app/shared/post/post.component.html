@@ -2,20 +2,24 @@
   <h3 class="news-feed-title">Create New Post</h3>
   <form [formGroup]="postForm" (ngSubmit)="submitSave()">
     <div class="form-group">
-      <textarea name="message" class="form-control" placeholder="Write something here..."></textarea>
+      <textarea name="message" class="form-control" placeholder="Write something here..."
+                formControlName="content"></textarea>
     </div>
     <ul class="button-group d-flex justify-content-between align-items-center">
       <li class="photo-btn">
-        <button type="submit"><i class="flaticon-gallery"></i> Photo</button>
+        <label for="file-upload" class="custom-file-upload">
+          <i class="flaticon-gallery"></i>Photo
+        </label>
+        <input id="file-upload" type="file"/>
       </li>
       <li class="video-btn">
-        <button type="submit"><i class="flaticon-video"></i> Video</button>
+        <button><i class="flaticon-video"></i> Video</button>
       </li>
       <li class="tag-btn">
-        <button type="submit"><i class="flaticon-tag"></i> Tag Friends</button>
+        <button><i class="flaticon-tag"></i> Tag Friends</button>
       </li>
       <li class="post-btn">
-        <button type="submit">Post</button>
+        <button>Post</button>
       </li>
     </ul>
   </form>
