@@ -5,6 +5,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { FooterComponent } from './footer/footer.component';
 import { PostComponent } from './post/post.component';
 import { SimpleBarComponent } from './simple-bar/simple-bar.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -18,7 +19,8 @@ import { SimpleBarComponent } from './simple-bar/simple-bar.component';
         SimpleBarComponent
     ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule,
   ]
 })
 export class SharedModule { }

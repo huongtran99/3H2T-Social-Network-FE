@@ -1,6 +1,6 @@
 <div class="news-feed news-feed-form">
   <h3 class="news-feed-title">Create New Post</h3>
-  <form>
+  <form [formGroup]="postForm" (ngSubmit)="submitSave()">
     <div class="form-group">
       <textarea name="message" class="form-control" placeholder="Write something here..."></textarea>
     </div>
