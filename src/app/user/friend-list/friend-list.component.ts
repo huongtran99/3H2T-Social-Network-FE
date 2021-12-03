@@ -14,8 +14,6 @@ export class FriendListComponent implements OnInit {
   user: User = {
     id: 1
   };
-
-
   constructor(private friendService: FriendService) { }
 
   ngOnInit() {
@@ -37,5 +35,4 @@ export class FriendListComponent implements OnInit {
       }
     }
   }
-
 }
