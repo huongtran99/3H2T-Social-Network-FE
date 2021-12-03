@@ -15,7 +15,7 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
   imports: [
     CommonModule,
     UserRoutingModule,
-    SharedModule,
+    SharedModule
   ]
 })
 export class UserModule { }
