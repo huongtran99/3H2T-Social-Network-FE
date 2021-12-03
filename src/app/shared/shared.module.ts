@@ -5,6 +5,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { FooterComponent } from './footer/footer.component';
 import { PostComponent } from './post/post.component';
 import { SimpleBarComponent } from './simple-bar/simple-bar.component';
+import {RouterModule} from "@angular/router";
 
 
 
@@ -17,8 +18,9 @@ import { SimpleBarComponent } from './simple-bar/simple-bar.component';
         PostComponent,
         SimpleBarComponent
     ],
-  imports: [
-    CommonModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule
+    ]
 })
 export class SharedModule { }
