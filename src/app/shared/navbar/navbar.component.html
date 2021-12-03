@@ -444,7 +444,7 @@
                  aria-haspopup="true" aria-expanded="false">
                 <div class="menu-profile">
                   <img src="assets/images/user/user-1.jpg" class="rounded-circle" alt="image">
-                  <span class="name">Matthew</span>
+                  <span class="name">{{user.username}}</span>
                   <span class="status-online"></span>
                 </div>
               </a>
@@ -456,12 +456,11 @@
                     data-cfemail="cda0acb9b9a5a8baf8fdfa8daaa0aca4a1e3aea2a0">[email&#160;protected]</span></a>
                 </div>
                 <ul class="profile-body">
-                  <li><i class="flaticon-user"></i> <a href="my-profile.html">My Profile</a></li>
-                  <li><i class="flaticon-settings"></i> <a href="setting.html">Setting</a></li>
-                  <li><i class="flaticon-privacy"></i> <a href="privacy.html">Privacy</a></li>
-                  <li><i class="flaticon-information"></i> <a href="help-and-support.html">Help &
-                    Support</a></li>
-                  <li><i class="flaticon-logout"></i> <a href="index.html">Logout</a></li>
+                  <li><i class="flaticon-user"></i> <a routerLink="/my-profile">My Profile</a></li>
+                  <li><i class="flaticon-settings"></i> <a href="#">Setting</a></li>
+                  <li><i class="flaticon-privacy"></i> <a href="#">Privacy</a></li>
+                  <li><i class="flaticon-information"></i> <a href="#">Help & Support</a></li>
+                  <li><i class="flaticon-logout"></i> <a routerLink="/auth/login" (click)="logout()">Logout</a></li>
                 </ul>
               </div>
             </div>

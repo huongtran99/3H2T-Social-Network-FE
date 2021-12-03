@@ -8,7 +8,6 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
 import {FriendListComponent} from "./friend-list/friend-list.component";
 import { MessagesComponent } from './messages/messages.component';
 import { MessagesDetailComponent } from './messages/messages-detail/messages-detail.component';
-import {InfiniteScrollModule} from "ngx-infinite-scroll";
 
 
 @NgModule({
@@ -23,7 +22,7 @@ import {InfiniteScrollModule} from "ngx-infinite-scroll";
         CommonModule,
         UserRoutingModule,
         SharedModule,
-        InfiniteScrollModule,
+
     ]
 })
 export class UserModule { }

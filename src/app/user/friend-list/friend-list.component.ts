@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FriendService} from "../../service/friend.service";
 import {User} from "../../model/user";
 import {Friend} from "../../model/friend";
+import {UserToken} from "../../model/user-token";
 
 @Component({
   selector: 'app-friend-list',
@@ -11,15 +12,14 @@ import {Friend} from "../../model/friend";
 export class FriendListComponent implements OnInit {
   users: User[] = [];
   friends: Friend[] = [];
-  user: User = {
-    id: 1
-  };
+  user: User;
   constructor(private friendService: FriendService) { }
 
   ngOnInit() {
     this.getAllFriend();
   }
   getAllFriend() {
+    this.user = JSON.parse(localStorage.getItem('user'));
     this.friendService.getAllFriend(this.user.id).subscribe(data => {
       this.friends = data;
     });

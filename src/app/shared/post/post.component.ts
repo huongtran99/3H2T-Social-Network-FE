@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {PostService} from "../../service/post.service";
 import {FormControl, FormGroup} from "@angular/forms";
+import {PostService} from "../../service/post.service";
 
 @Component({
   selector: 'app-post',
@@ -9,11 +9,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 })
 export class PostComponent implements OnInit {
   postForm: FormGroup = new FormGroup({
-    id: new FormControl(),
-    user: new FormControl(),
     content: new FormControl(),
-    dateTime: new FormControl(),
-    status: new FormControl()
   })
 
   constructor(private postService: PostService) {
@@ -23,6 +19,12 @@ export class PostComponent implements OnInit {
   }
 
   submitSave() {
-
+    const post = this.postForm.value;
+    this.postService.createNew(post).subscribe(() => {
+      this.postForm.reset();
+      alert('Successful!');
+    }, error => {
+      alert('Error!')
+    })
   }
 }
