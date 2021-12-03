@@ -12,22 +12,22 @@ export class PostService {
   }
 
   findAll(page: number): Observable<Post[]> {
-    return this.http.get<Post[]>(`localhost:8080/posts/`)
+    return this.http.get<Post[]>(`http://localhost:8080/posts/`)
   }
 
   findById(id: number): Observable<Post> {
-    return this.http.get<Post>(`localhost:8080/posts/${id}`)
+    return this.http.get<Post>(`http://localhost:8080/posts/${id}`)
   }
 
   createNew(post: Post): Observable<Post> {
-    return this.http.post<Post>(`localhost:8080/posts`, post)
+    return this.http.post<Post>(`http://localhost:8080/posts`, post)
   }
 
   editById(id: number, post: Post): Observable<Post> {
-    return this.http.put<Post>(`localhost:8080/posts/${id}`, post)
+    return this.http.put<Post>(`http://localhost:8080/posts/${id}`, post)
   }
 
   deleteById(id: number): Observable<Post> {
-    return this.http.delete<Post>(`localhost:8080/posts/${id}`)
+    return this.http.delete<Post>(`http://localhost:8080/posts/${id}`)
   }
 }

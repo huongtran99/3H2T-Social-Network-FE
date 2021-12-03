@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from "../../model/user";
+import {Friend} from "../../model/friend";
+import {FriendService} from "../../service/friend.service";
 
 @Component({
   selector: 'app-my-profile',
@@ -7,9 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyProfileComponent implements OnInit {
 
+
   constructor() { }
 
   ngOnInit() {
-  }
 
+  }
 }
