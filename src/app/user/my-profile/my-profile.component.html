@@ -26,7 +26,9 @@
           </div>
           <div class="info-text ms-3">
             <h3><a href="#">Matthew Turner</a></h3>
-            <span><a href="https://templates.envytheme.com/cdn-cgi/l/email-protection#dbb6baafafb3beac9bbcb6bab2b7f5b8b4b6"><span class="__cf_email__" data-cfemail="cea3afbabaa6abb98ea9a3afa7a2e0ada1a3">[email&#160;protected]</span></a></span>
+            <span><a
+              href="https://templates.envytheme.com/cdn-cgi/l/email-protection#dbb6baafafb3beac9bbcb6bab2b7f5b8b4b6"><span
+              class="__cf_email__" data-cfemail="cea3afbabaa6abb98ea9a3afa7a2e0ada1a3">[email&#160;protected]</span></a></span>
           </div>
           <ul class="statistics">
             <li>
@@ -294,7 +296,8 @@
               <div class="news-feed news-feed-post" *ngFor="let post of posts; index as i">
                 <div class="post-header d-flex justify-content-between align-items-center">
                   <div class="image">
-                    <a href="my-profile.html"><img src="http://localhost:8080/{{post.user.avatar}}" class="rounded-circle" alt="image"></a>
+                    <a href="my-profile.html"><img src="http://localhost:8080/{{post.user.avatar}}"
+                                                   class="rounded-circle" alt="image"></a>
                   </div>
                   <div class="info ms-3">
                     <span class="name"><a href="my-profile.html">{{post.user.username}}</a></span>
@@ -309,15 +312,20 @@
                     <ul class="dropdown-menu">
                       <li>
                         <a class="dropdown-item d-flex align-items-center" data-bs-toggle="modal"
-                           data-bs-target="#editPost" href="#" (click)="getPostId(post.id)">
+                           data-bs-target="#editPost" (click)="getPostId(post.id)">
                           <i class="flaticon-edit"></i>
-                          Edit Post
+                          Edit
                         </a>
                       </li>
-                      <!--    <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i> Hide-->
-                      <!--      Post</a></li>-->
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i> Delete
-                        Post</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-view"></i>
+                        Privacy</a></li>
+                      <li>
+                        <a class="dropdown-item d-flex align-items-center" data-bs-toggle="modal"
+                           data-bs-target="#deletePost" (click)="getPostId(post.id)">
+                          <i class="flaticon-trash"></i>
+                          Delete
+                        </a>
+                      </li>
                     </ul>
                   </div>
 
@@ -365,14 +373,18 @@
                   <div class="post-comment-list">
                     <div class="comment-list">
                       <div class="comment-image">
-                        <a href="my-profile.html"><img src="assets/images/user/user-33.jpg" class="rounded-circle" alt="image"></a>
+                        <a href="my-profile.html"><img src="assets/images/user/user-33.jpg" class="rounded-circle"
+                                                       alt="image"></a>
                       </div>
                       <div class="comment-info">
                         <h3>
                           <a href="my-profile.html">David Moore</a>
                         </h3>
                         <span>5 Mins Ago</span>
-                        <p>Donec rutrum congue leo eget malesuada nulla quis lorem ut libero malesuada feugiat donec rutrum congue leo eget malesuada donec rutrum congue leo eget malesuada. Praesent sapien massa convallis a pellentesque non nisi curabitur non nulla sit amet nisl tempus convallis lectus.</p>
+                        <p>Donec rutrum congue leo eget malesuada nulla quis lorem ut libero malesuada feugiat donec
+                          rutrum congue leo eget malesuada donec rutrum congue leo eget malesuada. Praesent sapien massa
+                          convallis a pellentesque non nisi curabitur non nulla sit amet nisl tempus convallis
+                          lectus.</p>
                         <ul class="comment-react">
                           <li><a href="#" class="like">Like(2)</a></li>
                           <li><a href="#">Reply</a></li>
@@ -381,14 +393,16 @@
                     </div>
                     <div class="comment-list">
                       <div class="comment-image">
-                        <a href="my-profile.html"><img src="assets/images/user/user-34.jpg" class="rounded-circle" alt="image"></a>
+                        <a href="my-profile.html"><img src="assets/images/user/user-34.jpg" class="rounded-circle"
+                                                       alt="image"></a>
                       </div>
                       <div class="comment-info">
                         <h3>
                           <a href="my-profile.html">Claire P. Toy</a>
                         </h3>
                         <span>45 Mins Ago</span>
-                        <p>Donec rutrum congue leo eget malesuada praesent sapien massa convallis a pellentesque nec egestas non nisi curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
+                        <p>Donec rutrum congue leo eget malesuada praesent sapien massa convallis a pellentesque nec
+                          egestas non nisi curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
                         <ul class="comment-react">
                           <li><a href="#" class="like">Like(12)</a></li>
                           <li><a href="#">Reply</a></li>
@@ -397,14 +411,16 @@
                     </div>
                     <div class="comment-list">
                       <div class="comment-image">
-                        <a href="my-profile.html"><img src="assets/images/user/user-8.jpg" class="rounded-circle" alt="image"></a>
+                        <a href="my-profile.html"><img src="assets/images/user/user-8.jpg" class="rounded-circle"
+                                                       alt="image"></a>
                       </div>
                       <div class="comment-info">
                         <h3>
                           <a href="my-profile.html">Karen Williams</a>
                         </h3>
                         <span>5 Mins Ago</span>
-                        <p>Donec rutrum congue leo eget malesuada nulla quis lorem ut libero malesuada feugiat donec rutrum congue leo eget.</p>
+                        <p>Donec rutrum congue leo eget malesuada nulla quis lorem ut libero malesuada feugiat donec
+                          rutrum congue leo eget.</p>
                         <ul class="comment-react">
                           <li><a href="#" class="like">Like(2)</a></li>
                           <li><a href="#">Reply</a></li>
@@ -572,17 +588,23 @@
               <div class="about-header d-flex justify-content-between align-items-center">
                 <div class="title">Personal Information</div>
                 <div class="dropdown">
-                  <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flaticon-menu"></i></button>
+                  <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                          aria-expanded="false"><i class="flaticon-menu"></i></button>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit Information</a></li>
-                    <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i> Hide Information</a></li>
-                    <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i> Delete Information</a></li>
+                    <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit
+                      Information</a></li>
+                    <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i>
+                      Hide Information</a></li>
+                    <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i>
+                      Delete Information</a></li>
                   </ul>
                 </div>
               </div>
               <ul class="information-list">
                 <li>
-                  <span>Email:</span> <a href="https://templates.envytheme.com/cdn-cgi/l/email-protection#20494e464f605a5553540e434f4d"><span class="__cf_email__" data-cfemail="b7ded9d1d8f7cdc2c4c399d4d8da">[email&#160;protected]</span></a>
+                  <span>Email:</span> <a
+                  href="https://templates.envytheme.com/cdn-cgi/l/email-protection#20494e464f605a5553540e434f4d"><span
+                  class="__cf_email__" data-cfemail="b7ded9d1d8f7cdc2c4c399d4d8da">[email&#160;protected]</span></a>
                 </li>
                 <li>
                   <span>Birthday:</span> May 07, 1984
@@ -623,75 +645,113 @@
                 <div class="information-header d-flex justify-content-between align-items-center">
                   <div class="title">About Me!</div>
                   <div class="dropdown">
-                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flaticon-menu"></i></button>
+                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"><i class="flaticon-menu"></i></button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit Information</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i> Hide Information</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i> Delete Information</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit
+                        Information</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i>
+                        Hide Information</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i>
+                        Delete Information</a></li>
                     </ul>
                   </div>
                 </div>
                 <div class="content">
-                  <p>Curabitur aliquet quam id dui posuere blandit. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque auctor sit amet aliquam vel ullamcorper sit amet ligula. Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed porttitor lectus nibh.</p>
-                  <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia eget consectetur sed convallis at tellus.</p>
+                  <p>Curabitur aliquet quam id dui posuere blandit. Curabitur non nulla sit amet nisl tempus convallis
+                    quis ac lectus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum
+                    ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque
+                    auctor sit amet aliquam vel ullamcorper sit amet ligula. Lorem ipsum dolor sit amet consectetur
+                    adipiscing elit. Sed porttitor lectus nibh.</p>
+                  <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan
+                    tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget
+                    malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia
+                    eget consectetur sed convallis at tellus.</p>
                 </div>
               </div>
               <div class="information-box-content">
                 <div class="information-header d-flex justify-content-between align-items-center">
                   <div class="title">Education & Work</div>
                   <div class="dropdown">
-                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flaticon-menu"></i></button>
+                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"><i class="flaticon-menu"></i></button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit Information</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i> Hide Information</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i> Delete Information</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit
+                        Information</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i>
+                        Hide Information</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i>
+                        Delete Information</a></li>
                     </ul>
                   </div>
                 </div>
                 <div class="box-content">
                   <p class="designation">Master of Computer Science <span>(2018 - 2020)</span></p>
                   <span class="title">University of Stanford</span>
-                  <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia eget consectetur sed convallis at tellus.</p>
+                  <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan
+                    tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget
+                    malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia
+                    eget consectetur sed convallis at tellus.</p>
                 </div>
                 <div class="box-content">
                   <p class="designation">Bachelor of Computer Science <span>(2014 - 2018)</span></p>
                   <span class="title">Massachusetts Institute of Technology</span>
-                  <p>Donec rutrum congue leo eget malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia eget consectetur sed convallis at tellus.</p>
+                  <p>Donec rutrum congue leo eget malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim.
+                    Vivamus magna justo lacinia eget consectetur sed convallis at tellus.</p>
                 </div>
                 <div class="box-content">
                   <p class="designation">Senior UX/UI Designer <span>(Jun 2020 - Present)</span></p>
                   <span class="title">Themeforest</span>
-                  <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia eget consectetur sed convallis at tellus.</p>
+                  <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan
+                    tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget
+                    malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia
+                    eget consectetur sed convallis at tellus.</p>
                 </div>
                 <div class="box-content">
                   <p class="designation">Product Designer <span>(Jan 2018 - May 2019)</span></p>
                   <span class="title">Themeforest</span>
-                  <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia eget consectetur sed convallis at tellus.</p>
+                  <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan
+                    tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget
+                    malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia
+                    eget consectetur sed convallis at tellus.</p>
                 </div>
               </div>
               <div class="information-box-content">
                 <div class="information-header d-flex justify-content-between align-items-center">
                   <div class="title">Interests</div>
                   <div class="dropdown">
-                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flaticon-menu"></i></button>
+                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"><i class="flaticon-menu"></i></button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit Information</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i> Hide Information</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i> Delete Information</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit
+                        Information</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i>
+                        Hide Information</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i>
+                        Delete Information</a></li>
                     </ul>
                   </div>
                 </div>
                 <div class="box-content">
                   <p class="designation">Hobbies:</p>
-                  <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia eget consectetur sed convallis at tellus.</p>
+                  <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan
+                    tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget
+                    malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia
+                    eget consectetur sed convallis at tellus.</p>
                 </div>
                 <div class="box-content">
                   <p class="designation">Favourite Books:</p>
-                  <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia eget consectetur sed convallis at tellus.</p>
+                  <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan
+                    tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget
+                    malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia
+                    eget consectetur sed convallis at tellus.</p>
                 </div>
                 <div class="box-content">
                   <p class="designation">Others Interests:</p>
-                  <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia eget consectetur sed convallis at tellus.</p>
+                  <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan
+                    tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget
+                    malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia
+                    eget consectetur sed convallis at tellus.</p>
                 </div>
               </div>
             </div>
@@ -706,10 +766,12 @@
           </div>
           <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active" data-bs-toggle="tab" href="#all-friends" role="tab" aria-controls="all-friends">All Friends</a>
+              <a class="nav-link active" data-bs-toggle="tab" href="#all-friends" role="tab"
+                 aria-controls="all-friends">All Friends</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="tab" href="#recently-added" role="tab" aria-controls="recently-added">Recently Added</a>
+              <a class="nav-link" data-bs-toggle="tab" href="#recently-added" role="tab" aria-controls="recently-added">Recently
+                Added</a>
             </li>
           </ul>
           <div class="friends-search-box">
@@ -719,7 +781,7 @@
             </form>
           </div>
         </div>
-        <div class="tab-content" >
+        <div class="tab-content">
           <div class="tab-pane fade show active" role="tabpanel">
             <div class="row justify-content-center">
               <div class="col-lg-3 col-sm-6">
@@ -2376,10 +2438,12 @@
           </div>
           <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active" data-bs-toggle="tab" href="#all-photos" role="tab" aria-controls="all-photos">All Photos</a>
+              <a class="nav-link active" data-bs-toggle="tab" href="#all-photos" role="tab" aria-controls="all-photos">All
+                Photos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="tab" href="#photos-albums" role="tab" aria-controls="photos-albums">Photos Albums</a>
+              <a class="nav-link" data-bs-toggle="tab" href="#photos-albums" role="tab" aria-controls="photos-albums">Photos
+                Albums</a>
             </li>
           </ul>
           <div class="photos-search-box">
@@ -2712,7 +2776,7 @@
     <div class="modal-content">
       <div class="news-feed-area">
         <div class="news-feed news-feed-form">
-          <h3 class="news-feed-title">Edit My Post</h3>
+          <h3 class="news-feed-title">Edit This Post</h3>
           <form [formGroup]="postEditForm" (ngSubmit)="submitEdit()">
             <br>
             <div class="form-group">
@@ -2743,3 +2807,24 @@
 </div>
 
 
+<!-- DeletePostModal -->
+<div class="modal fade" id="deletePost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="news-feed-area">
+        <div class="news-feed news-feed-form">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Delete This Post</h5>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to delete this post?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="submitDelete()">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

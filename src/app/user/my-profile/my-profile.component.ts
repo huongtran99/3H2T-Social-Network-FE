@@ -67,7 +67,14 @@ export class MyProfileComponent implements OnInit {
     const post = this.postEditForm.value;
     this.postService.editById(this.id, post).subscribe(() => {
       alert('Successful!');
+    }, error => {
+      alert('Error!');
+    });
+  }
 
+  submitDelete() {
+    this.postService.deleteById(this.id).subscribe(() => {
+      alert('Successful!');
     }, error => {
       alert('Error!');
     });
