@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-simple-bar',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./simple-bar.component.css']
 })
 export class SimpleBarComponent implements OnInit {
-
+  formSearch: FormGroup = new FormGroup({});
   constructor() { }
 
   ngOnInit() {
