@@ -1,0 +1,66 @@
+<div class="tab-pane fade show active" id="profile-information" role="tabpanel">
+  <form class="account-setting-form">
+    <h3>Profile Information</h3>
+    <form [formGroup]="userForm" (ngSubmit)="submitEdit()" novalidate>
+      <div class="row">
+        <div class="col-lg-6 col-md-6">
+          <div class="form-group">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" name="email" class="form-control" formControlName="email" placeholder="Enter your email">
+            <div *ngIf="!email.valid && (email.dirty ||email.touched)">
+              <div [hidden]="!email.errors.pattern">
+                Only characters are allowed
+              </div>
+              <div [hidden]="!email.errors.required">
+                Email is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+          <div class="form-group">
+            <label for="phone" class="form-label">Phone:</label>
+            <input type="text" id="phone" class="form-control" formControlName="phone" placeholder="Enter your phone">
+            <div *ngIf="!phone.valid && (phone.dirty ||phone.touched)">
+              <div [hidden]="!phone.errors.pattern">
+                Only characters are allowed
+              </div>
+              <div [hidden]="!phone.errors.required">
+                Phone is required
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6">
+          <div class="form-group">
+            <label for="birthday" class="form-label">Birthday:</label>
+            <input type="text" id="birthday" class="form-control" formControlName="birthday" placeholder="Enter your birthday">
+            <div *ngIf="!birthday.valid && (birthday.dirty ||birthday.touched)">
+              <div [hidden]="!birthday.errors.pattern">
+                Only characters are allowed
+              </div>
+              <div [hidden]="!birthday.errors.required">
+                Birthday is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+          <div class="form-group">
+            <label>Gender</label>
+            <input type="text" class="form-control" formControlName="gender" placeholder="Enter your gender">
+            <!--                  <select class="form-select" formControlName="gender">-->
+            <!--                    <option value="male">Male</option>-->
+            <!--                    <option value="female">Female</option>-->
+            <!--                  </select>-->
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12 col-md-12">
+        <button type="submit" [disabled]="!userForm.valid" class="default-btn">Save</button>
+      </div>
+    </form>
+  </form>
+</div>

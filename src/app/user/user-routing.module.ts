@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {NewsFeedComponent} from './news-feed/news-feed.component';
 import {MyProfileComponent} from './my-profile/my-profile.component';
-import {MyProfileEditInformationComponent} from "./my-profile-edit/my-profile-edit-information/my-profile-edit-information.component";
+import {SettingInformationComponent} from "./setting-information/setting-information.component";
 
 const routes: Routes = [
   {
@@ -14,8 +14,8 @@ const routes: Routes = [
     component: NewsFeedComponent
   },
   {
-    path: 'my-profile-edit-information/:id',
-    component: MyProfileEditInformationComponent
+    path: 'setting',
+    component: SettingInformationComponent
   }
 ];
 

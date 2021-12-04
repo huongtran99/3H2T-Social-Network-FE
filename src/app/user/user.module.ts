@@ -5,15 +5,19 @@ import { UserRoutingModule } from './user-routing.module';
 import { SharedModule } from "../shared/shared.module";
 import { NewsFeedComponent } from './news-feed/news-feed.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
-import { MyProfileEditInformationComponent } from './my-profile-edit/my-profile-edit-information/my-profile-edit-information.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { SettingInformationComponent } from './setting-information/setting-information.component';
+import { ProfileComponent } from './setting-information/profile/profile.component';
+import { PasswordComponent } from './setting-information/password/password.component';
 
 
 @NgModule({
   declarations: [
     NewsFeedComponent,
     MyProfileComponent,
-    MyProfileEditInformationComponent
+    SettingInformationComponent,
+    ProfileComponent,
+    PasswordComponent
   ],
     imports: [
         CommonModule,
