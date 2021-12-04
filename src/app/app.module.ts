@@ -16,7 +16,7 @@ import {ErrorInterceptor} from "./helper/ErrorInterceptor";
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    AuthModule
+    AuthModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

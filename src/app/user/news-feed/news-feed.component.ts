@@ -3,6 +3,7 @@ import {PostService} from "../../service/post.service";
 import {Post} from "../../model/post";
 import {FileService} from "../../service/file.service";
 import {File} from "../../model/file";
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-news-feed',
@@ -20,6 +21,7 @@ export class NewsFeedComponent implements OnInit {
 
   ngOnInit() {
     this.getAllPosts();
+    this.getFileByPostId();
   }
 
   getAllPosts() {

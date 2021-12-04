@@ -267,7 +267,9 @@
                 <span class="name"><a href="my-profile.html">{{post.user.username}}</a></span>
                 <span class="small-text"><a href="#">{{post.dateTime | date:'medium'}}</a></span>
               </div>
-              <app-post-setting></app-post-setting>
+
+              <!--              <app-post-setting></app-post-setting>-->
+
             </div>
             <div class="post-body">
               <p>{{post.content}}</p>
@@ -368,7 +370,7 @@
                   <a href="#">More Comments+</a>
                 </div>
               </div>
-              <form class="post-footer">
+              <div class="post-footer">
                 <div class="footer-image">
                   <a href="#"><img src="assets/images/user/user-1.jpg" class="rounded-circle" alt="image"></a>
                 </div>
@@ -376,7 +378,7 @@
                   <textarea name="message" class="form-control" placeholder="Write a comment..."></textarea>
                   <label><a href="#"><i class="flaticon-photo-camera"></i></a></label>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
           <div class="load-more-posts-btn">
@@ -532,6 +534,5 @@
 
 
 </div>
-
 
 

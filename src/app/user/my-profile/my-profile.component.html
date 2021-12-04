@@ -300,7 +300,28 @@
                     <span class="name"><a href="my-profile.html">{{post.user.username}}</a></span>
                     <span class="small-text"><a href="#">{{post.dateTime | date:'medium'}}</a></span>
                   </div>
-                  <app-post-setting></app-post-setting>
+
+
+                  <!--              <app-post-setting></app-post-setting>-->
+                  <div class="dropdown">
+                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"><i class="flaticon-menu"></i></button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a class="dropdown-item d-flex align-items-center" data-bs-toggle="modal"
+                           data-bs-target="#editPost" href="#" (click)="getPostId(post.id)">
+                          <i class="flaticon-edit"></i>
+                          Edit Post
+                        </a>
+                      </li>
+                      <!--    <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i> Hide-->
+                      <!--      Post</a></li>-->
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i> Delete
+                        Post</a></li>
+                    </ul>
+                  </div>
+
+
                 </div>
                 <div class="post-body">
                   <p>{{post.content}}</p>
@@ -394,7 +415,7 @@
                       <a href="#">More Comments+</a>
                     </div>
                   </div>
-                  <form class="post-footer">
+                  <div class="post-footer">
                     <div class="footer-image">
                       <a href="#"><img src="assets/images/user/user-1.jpg" class="rounded-circle" alt="image"></a>
                     </div>
@@ -402,7 +423,7 @@
                       <textarea name="message" class="form-control" placeholder="Write a comment..."></textarea>
                       <label><a href="#"><i class="flaticon-photo-camera"></i></a></label>
                     </div>
-                  </form>
+                  </div>
                 </div>
               </div>
               <div class="load-more-posts-btn">
@@ -692,7 +713,7 @@
             </li>
           </ul>
           <div class="friends-search-box">
-            <form>
+            <form [formGroup]="searchForm">
               <input type="text" class="input-search" placeholder="Search friends...">
               <button type="submit"><i class="ri-search-line"></i></button>
             </form>
@@ -2362,7 +2383,7 @@
             </li>
           </ul>
           <div class="photos-search-box">
-            <form>
+            <form [formGroup]="searchForm">
               <input type="text" class="input-search" placeholder="Search photos...">
               <button type="submit"><i class="ri-search-line"></i></button>
             </form>
@@ -2683,3 +2704,42 @@
 
 
 <app-footer></app-footer>
+
+
+<!-- EditPostModal -->
+<div class="modal fade" id="editPost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="news-feed-area">
+        <div class="news-feed news-feed-form">
+          <h3 class="news-feed-title">Edit My Post</h3>
+          <form [formGroup]="postEditForm" (ngSubmit)="submitEdit()">
+            <br>
+            <div class="form-group">
+              <textarea name="content" class="form-control" formControlName="content"></textarea>
+            </div>
+            <ul class="button-group d-flex justify-content-between align-items-center">
+              <li class="photo-btn">
+                <label for="file-upload" class="custom-file-upload">
+                  <i class="flaticon-gallery"></i>Photo
+                </label>
+                <input type="file" id="file-upload" name="fileName" multiple>
+              </li>
+              <li class="video-btn">
+                <button><i class="flaticon-video"></i> Video</button>
+              </li>
+              <li class="tag-btn">
+                <button><i class="flaticon-tag"></i> Tag Friends</button>
+              </li>
+              <li class="post-btn">
+                <button data-bs-dismiss="modal">Post</button>
+              </li>
+            </ul>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

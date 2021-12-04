@@ -7,17 +7,15 @@ import {SidebarComponent} from './sidebar/sidebar.component';
 import {SimpleBarComponent} from './simple-bar/simple-bar.component';
 import {FooterComponent} from './footer/footer.component';
 import {PostComponent} from './post/post.component';
-import {PostSettingComponent} from './post-setting/post-setting.component';
 
 @NgModule({
-  declarations: [NavbarComponent, SidebarComponent, FooterComponent, PostComponent, SimpleBarComponent, PostSettingComponent],
+  declarations: [NavbarComponent, SidebarComponent, FooterComponent, PostComponent, SimpleBarComponent],
   exports: [
     NavbarComponent,
     SidebarComponent,
     SimpleBarComponent,
     FooterComponent,
     PostComponent,
-    PostSettingComponent
   ],
   imports: [
     CommonModule,
