@@ -6,7 +6,7 @@
         <div class="col-lg-6 col-md-6">
           <div class="form-group">
             <label for="email" class="form-label">Email:</label>
-            <input type="email" name="email" class="form-control" formControlName="email" placeholder="Enter your email">
+            <input type="email" name="email" id="email" class="form-control" formControlName="email" placeholder="Enter your email">
             <div *ngIf="!email.valid && (email.dirty ||email.touched)">
               <div [hidden]="!email.errors.pattern">
                 Only characters are allowed
