@@ -1,14 +1,3 @@
-<div class="preloader-area">
-  <div class="spinner">
-    <div class="inner">
-      <div class="disc"></div>
-      <div class="disc"></div>
-      <div class="disc"></div>
-    </div>
-  </div>
-</div>
-
-
 <div class="main-content-wrapper d-flex flex-column">
 
   <app-navbar></app-navbar>
@@ -61,18 +50,18 @@
           </ul>
         </div>
         <div class="profile-list-tabs">
-          <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active" id="timeline-tab" data-bs-toggle="tab" href="#timeline" role="tab" aria-controls="timeline">Timeline</a>
+              <a class="nav-link active" data-bs-toggle="tab" href="#timeline" role="tab" aria-controls="timeline">Timeline</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="about-tab" data-bs-toggle="tab" href="#about" role="tab" aria-controls="about">About</a>
+              <a class="nav-link" data-bs-toggle="tab" href="#about" role="tab" aria-controls="about">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="friends-tab" data-bs-toggle="tab" href="#friends" role="tab" aria-controls="friends">Friends</a>
+              <a class="nav-link" data-bs-toggle="tab" href="#friends" role="tab" aria-controls="friends">Friends</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="photos-tab" data-bs-toggle="tab" href="#photos" role="tab" aria-controls="photos">Photos</a>
+              <a class="nav-link" data-bs-toggle="tab" href="#photos" role="tab" aria-controls="photos">Photos</a>
             </li>
           </ul>
         </div>
@@ -105,8 +94,8 @@
         </ul>
       </div>
     </div>
-    <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="timeline" role="tabpanel">
+    <div class="tab-content">
+      <div class="tab-pane fade show active" role="tabpanel">
         <div class="row">
           <div class="col-lg-3 col-md-12">
             <aside class="widget-area">
@@ -302,28 +291,21 @@
                   </div>
                 </div>
               </div>
-              <div class="news-feed news-feed-post">
+              <div class="news-feed news-feed-post" *ngFor="let post of posts; index as i">
                 <div class="post-header d-flex justify-content-between align-items-center">
                   <div class="image">
-                    <a href="my-profile.html"><img src="assets/images/user/user-32.jpg" class="rounded-circle" alt="image"></a>
+                    <a href="my-profile.html"><img src="http://localhost:8080/{{post.user.avatar}}" class="rounded-circle" alt="image"></a>
                   </div>
                   <div class="info ms-3">
-                    <span class="name"><a href="my-profile.html">Julie R. Morleyv</a></span>
-                    <span class="small-text"><a href="#">10 Mins Ago</a></span>
+                    <span class="name"><a href="my-profile.html">{{post.user.username}}</a></span>
+                    <span class="small-text"><a href="#">{{post.dateTime | date:'medium'}}</a></span>
                   </div>
-                  <div class="dropdown">
-                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flaticon-menu"></i></button>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit Post</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i> Hide Post</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i> Delete Post</a></li>
-                    </ul>
-                  </div>
+                  <app-post-setting></app-post-setting>
                 </div>
                 <div class="post-body">
-                  <p>Donec rutrum congue leo eget malesuada. Nulla quis lorem ut libero malesuada feugiat. Donec rutrum congue leo eget malesuada. Donec rutrum congue leo eget malesuada. Praesent sapien massa convallis a pellentesque nec egestas non nisi. Curabitur non nulla sit amet nisl tempus convallis quis.</p>
+                  <p>{{post.content}}</p>
                   <div class="post-image">
-                    <img src="assets/images/news-feed-post/post-1.jpg" alt="image">
+                    <img src="http://localhost:8080/{{files[i]?.fileName}}" alt="image">
                   </div>
                   <ul class="post-meta-wrap d-flex justify-content-between align-items-center">
                     <li class="post-react">
@@ -362,7 +344,7 @@
                   <div class="post-comment-list">
                     <div class="comment-list">
                       <div class="comment-image">
-                        <a href="my-profile.html"><img src="assets/images/user/user-14.jpg" class="rounded-circle" alt="image"></a>
+                        <a href="my-profile.html"><img src="assets/images/user/user-33.jpg" class="rounded-circle" alt="image"></a>
                       </div>
                       <div class="comment-info">
                         <h3>
@@ -378,7 +360,7 @@
                     </div>
                     <div class="comment-list">
                       <div class="comment-image">
-                        <a href="my-profile.html"><img src="assets/images/user/user-15.jpg" class="rounded-circle" alt="image"></a>
+                        <a href="my-profile.html"><img src="assets/images/user/user-34.jpg" class="rounded-circle" alt="image"></a>
                       </div>
                       <div class="comment-info">
                         <h3>
@@ -394,7 +376,7 @@
                     </div>
                     <div class="comment-list">
                       <div class="comment-image">
-                        <a href="my-profile.html"><img src="assets/images/user/user-16.jpg" class="rounded-circle" alt="image"></a>
+                        <a href="my-profile.html"><img src="assets/images/user/user-8.jpg" class="rounded-circle" alt="image"></a>
                       </div>
                       <div class="comment-info">
                         <h3>
@@ -415,331 +397,6 @@
                   <form class="post-footer">
                     <div class="footer-image">
                       <a href="#"><img src="assets/images/user/user-1.jpg" class="rounded-circle" alt="image"></a>
-                    </div>
-                    <div class="form-group">
-                      <textarea name="message" class="form-control" placeholder="Write a comment..."></textarea>
-                      <label><a href="#"><i class="flaticon-photo-camera"></i></a></label>
-                    </div>
-                  </form>
-                </div>
-              </div>
-              <div class="news-feed news-feed-post">
-                <div class="post-header d-flex justify-content-between align-items-center">
-                  <div class="image">
-                    <a href="my-profile.html"><img src="assets/images/user/user-35.jpg" class="rounded-circle" alt="image"></a>
-                  </div>
-                  <div class="info ms-3">
-                    <span class="name"><a href="my-profile.html">William Fenton</a></span>
-                    <span class="small-text"><a href="#">50 Mins Ago</a></span>
-                  </div>
-                  <div class="dropdown">
-                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flaticon-menu"></i></button>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit Post</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i> Hide Post</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i> Delete Post</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="post-body">
-                  <p>💗</p>
-                  <div class="post-image">
-                    <img src="assets/images/news-feed-post/post-2.jpg" alt="image">
-                  </div>
-                  <ul class="post-meta-wrap d-flex justify-content-between align-items-center">
-                    <li class="post-react">
-                      <a href="#"><i class="flaticon-like"></i><span>Like</span> <span class="number">3 </span></a>
-                      <ul class="react-list">
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-1.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-2.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-3.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-4.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-5.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-6.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-7.png" alt="Like"></a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="post-comment">
-                      <a href="#"><i class="flaticon-comment"></i><span>Comment</span> <span class="number">0 </span></a>
-                    </li>
-                    <li class="post-share">
-                      <a href="#"><i class="flaticon-share"></i><span>Share</span> <span class="number">0 </span></a>
-                    </li>
-                  </ul>
-                  <form class="post-footer">
-                    <div class="footer-image">
-                      <a href="#"><img src="assets/images/user/user-2.jpg" class="rounded-circle" alt="image"></a>
-                    </div>
-                    <div class="form-group">
-                      <textarea name="message" class="form-control" placeholder="Write a comment..."></textarea>
-                      <label><a href="#"><i class="flaticon-photo-camera"></i></a></label>
-                    </div>
-                  </form>
-                </div>
-              </div>
-              <div class="news-feed news-feed-post">
-                <div class="post-header d-flex justify-content-between align-items-center">
-                  <div class="image">
-                    <a href="my-profile.html"><img src="assets/images/user/user-36.jpg" class="rounded-circle" alt="image"></a>
-                  </div>
-                  <div class="info ms-3">
-                    <span class="name"><a href="my-profile.html">Maria Dodson</a></span>
-                    <span class="small-text"><a href="#">2 Hours Ago</a></span>
-                  </div>
-                  <div class="dropdown">
-                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flaticon-menu"></i></button>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit Post</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i> Hide Post</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i> Delete Post</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="post-body">
-                  <p>Keep Smiling 🧡</p>
-                  <div class="post-image">
-                    <img src="assets/images/news-feed-post/post-3.jpg" alt="image">
-                  </div>
-                  <ul class="post-meta-wrap d-flex justify-content-between align-items-center">
-                    <li class="post-react">
-                      <a href="#"><i class="flaticon-like"></i><span>Like</span> <span class="number">15 </span></a>
-                      <ul class="react-list">
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-1.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-2.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-3.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-4.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-5.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-6.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-7.png" alt="Like"></a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="post-comment">
-                      <a href="#"><i class="flaticon-comment"></i><span>Comment</span> <span class="number">0 </span></a>
-                    </li>
-                    <li class="post-share">
-                      <a href="#"><i class="flaticon-share"></i><span>Share</span> <span class="number">5 </span></a>
-                    </li>
-                  </ul>
-                  <form class="post-footer">
-                    <div class="footer-image">
-                      <a href="#"><img src="assets/images/user/user-15.jpg" class="rounded-circle" alt="image"></a>
-                    </div>
-                    <div class="form-group">
-                      <textarea name="message" class="form-control" placeholder="Write a comment..."></textarea>
-                      <label><a href="#"><i class="flaticon-photo-camera"></i></a></label>
-                    </div>
-                  </form>
-                </div>
-              </div>
-              <div class="news-feed news-feed-post">
-                <div class="post-header d-flex justify-content-between align-items-center">
-                  <div class="image">
-                    <a href="my-profile.html"><img src="assets/images/user/user-5.jpg" class="rounded-circle" alt="image"></a>
-                  </div>
-                  <div class="info ms-3">
-                    <span class="name"><a href="my-profile.html">Karen Williams</a></span>
-                    <span class="small-text"><a href="#">10 Mins Ago</a></span>
-                  </div>
-                  <div class="dropdown">
-                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flaticon-menu"></i></button>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit Post</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i> Hide Post</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i> Delete Post</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="post-body">
-                  <p>Donec rutrum congue leo eget malesuada. Nulla quis lorem ut libero malesuada feugiat. Donec rutrum congue leo eget malesuada.</p>
-                  <div class="post-image">
-                    <img src="assets/images/news-feed-post/post-4.jpg" alt="image">
-                  </div>
-                  <ul class="post-meta-wrap d-flex justify-content-between align-items-center">
-                    <li class="post-react">
-                      <a href="#"><i class="flaticon-like"></i><span>Like</span> <span class="number">1499 </span></a>
-                      <ul class="react-list">
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-1.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-2.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-3.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-4.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-5.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-6.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-7.png" alt="Like"></a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="post-comment">
-                      <a href="#"><i class="flaticon-comment"></i><span>Comment</span> <span class="number">599 </span></a>
-                    </li>
-                    <li class="post-share">
-                      <a href="#"><i class="flaticon-share"></i><span>Share</span> <span class="number">24 </span></a>
-                    </li>
-                  </ul>
-                  <div class="post-comment-list">
-                    <div class="comment-list">
-                      <div class="comment-image">
-                        <a href="my-profile.html"><img src="assets/images/user/user-21.jpg" class="rounded-circle" alt="image"></a>
-                      </div>
-                      <div class="comment-info">
-                        <h3>
-                          <a href="my-profile.html">David Moore</a>
-                        </h3>
-                        <span>5 Mins Ago</span>
-                        <p>Donec rutrum congue leo eget malesuada nulla quis lorem ut libero malesuada feugiat donec rutrum congue leo eget malesuada donec rutrum congue leo eget malesuada. Praesent sapien massa convallis a pellentesque non nisi curabitur non nulla sit amet nisl tempus convallis lectus.</p>
-                        <ul class="comment-react">
-                          <li><a href="#" class="like">Like(2)</a></li>
-                          <li><a href="#">Reply</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="comment-list">
-                      <div class="comment-image">
-                        <a href="my-profile.html"><img src="assets/images/user/user-22.jpg" class="rounded-circle" alt="image"></a>
-                      </div>
-                      <div class="comment-info">
-                        <h3>
-                          <a href="my-profile.html">Claire P. Toy</a>
-                        </h3>
-                        <span>45 Mins Ago</span>
-                        <p>Donec rutrum congue leo eget malesuada praesent sapien massa convallis a pellentesque nec egestas non nisi curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
-                        <ul class="comment-react">
-                          <li><a href="#" class="like">Like(12)</a></li>
-                          <li><a href="#">Reply</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="comment-list">
-                      <div class="comment-image">
-                        <a href="my-profile.html"><img src="assets/images/user/user-24.jpg" class="rounded-circle" alt="image"></a>
-                      </div>
-                      <div class="comment-info">
-                        <h3>
-                          <a href="my-profile.html">Karen Williams</a>
-                        </h3>
-                        <span>5 Mins Ago</span>
-                        <p>Donec rutrum congue leo eget malesuada nulla quis lorem ut libero malesuada feugiat donec rutrum congue leo eget.</p>
-                        <ul class="comment-react">
-                          <li><a href="#" class="like">Like(2)</a></li>
-                          <li><a href="#">Reply</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="more-comments">
-                      <a href="#">More Comments+</a>
-                    </div>
-                  </div>
-                  <form class="post-footer">
-                    <div class="footer-image">
-                      <a href="#"><img src="assets/images/user/user-19.jpg" class="rounded-circle" alt="image"></a>
-                    </div>
-                    <div class="form-group">
-                      <textarea name="message" class="form-control" placeholder="Write a comment..."></textarea>
-                      <label><a href="#"><i class="flaticon-photo-camera"></i></a></label>
-                    </div>
-                  </form>
-                </div>
-              </div>
-              <div class="news-feed news-feed-post">
-                <div class="post-header d-flex justify-content-between align-items-center">
-                  <div class="image">
-                    <a href="my-profile.html"><img src="assets/images/user/user-18.jpg" class="rounded-circle" alt="image"></a>
-                  </div>
-                  <div class="info ms-3">
-                    <span class="name"><a href="my-profile.html">Maria Dodson</a></span>
-                    <span class="small-text"><a href="#">2 Hours Ago</a></span>
-                  </div>
-                  <div class="dropdown">
-                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flaticon-menu"></i></button>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit Post</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i> Hide Post</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i> Delete Post</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="post-body">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                  <div class="post-image">
-                    <img src="assets/images/news-feed-post/post-5.jpg" alt="image">
-                  </div>
-                  <ul class="post-meta-wrap d-flex justify-content-between align-items-center">
-                    <li class="post-react">
-                      <a href="#"><i class="flaticon-like"></i><span>Like</span> <span class="number">15 </span></a>
-                      <ul class="react-list">
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-1.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-2.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-3.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-4.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-5.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-6.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-7.png" alt="Like"></a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="post-comment">
-                      <a href="#"><i class="flaticon-comment"></i><span>Comment</span> <span class="number">0 </span></a>
-                    </li>
-                    <li class="post-share">
-                      <a href="#"><i class="flaticon-share"></i><span>Share</span> <span class="number">5 </span></a>
-                    </li>
-                  </ul>
-                  <form class="post-footer">
-                    <div class="footer-image">
-                      <a href="#"><img src="assets/images/user/user-22.jpg" class="rounded-circle" alt="image"></a>
                     </div>
                     <div class="form-group">
                       <textarea name="message" class="form-control" placeholder="Write a comment..."></textarea>
@@ -887,7 +544,7 @@
           </div>
         </div>
       </div>
-      <div class="tab-pane fade" id="about" role="tabpanel">
+      <div class="tab-pane fade" role="tabpanel">
         <div class="row">
           <div class="col-lg-3 col-md-12">
             <div class="about-personal-information">
@@ -1020,18 +677,18 @@
           </div>
         </div>
       </div>
-      <div class="tab-pane fade" id="friends" role="tabpanel">
+      <div class="tab-pane fade" role="tabpanel">
         <div class="friends-inner-box-style d-flex justify-content-between align-items-center">
           <div class="title">
             <h3>Friends</h3>
             <span>199</span>
           </div>
-          <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active" id="all-friends-tab" data-bs-toggle="tab" href="#all-friends" role="tab" aria-controls="all-friends">All Friends</a>
+              <a class="nav-link active" data-bs-toggle="tab" href="#all-friends" role="tab" aria-controls="all-friends">All Friends</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="recently-added-tab" data-bs-toggle="tab" href="#recently-added" role="tab" aria-controls="recently-added">Recently Added</a>
+              <a class="nav-link" data-bs-toggle="tab" href="#recently-added" role="tab" aria-controls="recently-added">Recently Added</a>
             </li>
           </ul>
           <div class="friends-search-box">
@@ -1041,8 +698,8 @@
             </form>
           </div>
         </div>
-        <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show active" id="all-friends" role="tabpanel">
+        <div class="tab-content" >
+          <div class="tab-pane fade show active" role="tabpanel">
             <div class="row justify-content-center">
               <div class="col-lg-3 col-sm-6">
                 <div class="single-friends-card">
@@ -1865,7 +1522,7 @@
               <a href="#"><i class="flaticon-loading"></i> Load More</a>
             </div>
           </div>
-          <div class="tab-pane fade" id="recently-added" role="tabpanel">
+          <div class="tab-pane fade" role="tabpanel">
             <div class="row justify-content-center">
               <div class="col-lg-3 col-sm-6">
                 <div class="single-friends-card">
@@ -2690,18 +2347,18 @@
           </div>
         </div>
       </div>
-      <div class="tab-pane fade" id="photos" role="tabpanel">
+      <div class="tab-pane fade" role="tabpanel">
         <div class="photos-inner-box-style d-flex justify-content-between align-items-center">
           <div class="title">
             <h3>Photos</h3>
             <span>855</span>
           </div>
-          <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active" id="all-photos-tab" data-bs-toggle="tab" href="#all-photos" role="tab" aria-controls="all-photos">All Photos</a>
+              <a class="nav-link active" data-bs-toggle="tab" href="#all-photos" role="tab" aria-controls="all-photos">All Photos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="photos-albums-tab" data-bs-toggle="tab" href="#photos-albums" role="tab" aria-controls="photos-albums">Photos Albums</a>
+              <a class="nav-link" data-bs-toggle="tab" href="#photos-albums" role="tab" aria-controls="photos-albums">Photos Albums</a>
             </li>
           </ul>
           <div class="photos-search-box">
@@ -2711,8 +2368,8 @@
             </form>
           </div>
         </div>
-        <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show active" id="all-photos" role="tabpanel">
+        <div class="tab-content">
+          <div class="tab-pane fade show active" role="tabpanel">
             <div class="row justify-content-center">
               <div class="col-lg-3 col-sm-6">
                 <div class="single-photos-card">
@@ -2863,7 +2520,7 @@
               <a href="#"><i class="flaticon-loading"></i> Load More</a>
             </div>
           </div>
-          <div class="tab-pane fade" id="photos-albums" role="tabpanel">
+          <div class="tab-pane fade" role="tabpanel">
             <div class="row justify-content-center">
               <div class="col-lg-3 col-sm-6">
                 <div class="single-photos-card">

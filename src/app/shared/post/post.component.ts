@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
+import {User} from "../../model/user";
 import {PostService} from "../../service/post.service";
 import {FileService} from "../../service/file.service";
-import {User} from "../../model/user";
 
 @Component({
   selector: 'app-post',
@@ -10,11 +10,12 @@ import {User} from "../../model/user";
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-  postForm: FormGroup = new FormGroup({
+  postCreateForm: FormGroup = new FormGroup({
     content: new FormControl(),
   })
   fileData: File[] = [];
   user: User;
+  urlCreatePost: any;
 
   constructor(private postService: PostService,
               private fileService: FileService) {
@@ -23,14 +24,24 @@ export class PostComponent implements OnInit {
   ngOnInit() {
   }
 
+  addFileCreatePost(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      let reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.urlCreatePost = event.target.result;
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+
   fileProgress(fileInput: any) {
     for (let i = 0; i < fileInput.target.files.length; i++) {
       this.fileData.push(fileInput.target.files[i]);
     }
   }
 
-  submitSave() {
-    const post = this.postForm.value;
+  submitCreate() {
+    const post = this.postCreateForm.value;
     this.user = JSON.parse(localStorage.getItem('user'));
     post.user = {
       id: this.user.id
@@ -43,7 +54,8 @@ export class PostComponent implements OnInit {
       }
       formData.append('post.id', post.id);
       this.fileService.createFile(formData).subscribe();
-      this.postForm.reset();
+      this.postCreateForm.reset();
+      this.urlCreatePost = "";
       alert('Successful!');
     }, error => {
       alert('Error!')
