@@ -6,6 +6,17 @@ input[type="file"] {
   cursor: pointer;
 }
 
+.custom-select {
+  border: none;
+  color: #6B7C8F;
+  font: 15px 'Open Sans', sans-serif;
+  font-weight: 600;
+}
+
 .flaticon-gallery {
   color:#1ccd16;font-size:20px;position:absolute;left:0;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%);
+}
+
+.flaticon-view {
+  color:#ff3e3e;font-size:20px;position:absolute;left:0;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%)
 }

@@ -12,6 +12,7 @@ import {FileService} from "../../service/file.service";
 export class PostComponent implements OnInit {
   postCreateForm: FormGroup = new FormGroup({
     content: new FormControl(),
+    status: new FormControl("Public"),
   })
   fileData: File[] = [];
   user: User;
@@ -56,6 +57,9 @@ export class PostComponent implements OnInit {
       this.fileService.createFile(formData).subscribe();
       this.postCreateForm.reset();
       this.urlCreatePost = "";
+      this.postCreateForm = new FormGroup({
+        status: new FormControl("Public"),
+      })
       alert('Successful!');
     }, error => {
       alert('Error!')
