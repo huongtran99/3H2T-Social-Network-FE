@@ -12,8 +12,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class ProfileComponent implements OnInit {
 
   userForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email, Validators.pattern("^[_A-Za-z0-9-\\\\+]+(\\\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\\\.[A-Za-z0-9]+)*(\\\\.[A-Za-z]{2,})$")]),
-    phone: new FormControl('',[Validators.required, Validators.pattern("\"\\\\d{9,11}\"")]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    phone: new FormControl('',[Validators.required, Validators.pattern("[0-9]{10}")]),
     birthday: new FormControl('', [Validators.required, Validators.pattern("MM/dd/yyyy")]),
     gender: new FormControl('', [Validators.required])
   })

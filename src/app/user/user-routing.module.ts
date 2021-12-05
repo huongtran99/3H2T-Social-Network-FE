@@ -2,7 +2,8 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {NewsFeedComponent} from './news-feed/news-feed.component';
 import {MyProfileComponent} from './my-profile/my-profile.component';
-import {SettingInformationComponent} from "./setting-information/setting-information.component";
+import {ProfileComponent} from "./setting-information/profile/profile.component";
+import {PasswordComponent} from "./setting-information/password/password.component";
 
 const routes: Routes = [
   {
@@ -14,8 +15,12 @@ const routes: Routes = [
     component: NewsFeedComponent
   },
   {
-    path: 'setting',
-    component: SettingInformationComponent
+    path:'setting-profile',
+    component: ProfileComponent
+  },
+  {
+    path: 'change-password',
+    component: PasswordComponent
   }
 ];
 
