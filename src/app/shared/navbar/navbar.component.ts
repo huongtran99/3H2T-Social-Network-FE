@@ -3,6 +3,8 @@ import {User} from "../../model/user";
 import {AuthenticationService} from "../../service/authentication.service";
 import {UserService} from "../../service/user.service";
 import {FormGroup} from "@angular/forms";
+import {NotificationService} from "../../service/notification.service";
+import {Notification} from "../../model/Notification";
 
 @Component({
   selector: 'app-navbar',
@@ -12,14 +14,23 @@ import {FormGroup} from "@angular/forms";
 export class NavbarComponent implements OnInit {
   formSearch: FormGroup = new FormGroup({});
   user: User;
+  notifications: Notification[];
 
   constructor(private auth: AuthenticationService,
-              private userService: UserService) {
+              private userService: UserService,
+              private notificationService: NotificationService) {
   }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
     this.getUserDetail();
+    this.getNotificationByUserId();
+  }
+
+  getNotificationByUserId() {
+    this.notificationService.getNotificationByUserid(this.user.id).subscribe((data: any) => {
+      this.notifications = data;
+    })
   }
 
   logout() {
