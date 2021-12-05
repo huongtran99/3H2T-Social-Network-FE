@@ -17,7 +17,7 @@ export class FriendInfoComponent implements OnInit {
   user: User;
   sender: any;
   notification: Notification = {};
-  statusFriend: null;
+  statusFriend: any = null;
   status: any;
   statusAddFriend: boolean;
   friend: Friend;
@@ -40,6 +40,9 @@ export class FriendInfoComponent implements OnInit {
       if(friend == null) {
         this.statusAddFriend = true;
         console.log(this.statusFriend)
+        this.friendService.getFriendBySenderIdAndReceiverId(this.sender.id, this.id).subscribe(friend => {
+          this.statusFriend = friend.status;
+        })
       } else {
         this.statusFriend = friend.status;
       }

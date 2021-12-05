@@ -28,10 +28,9 @@
               <button *ngIf="statusFriend" class="default-btn" (click)="deleteFriend()">Delete Friend</button>
               <button *ngIf="!statusFriend && !status && !statusAddFriend" class="default-btn" (click)="deleteFriend()">Cancel Invitation</button>
             </div>
-            <div class="profile-btn" *ngIf="status">
-              <button *ngIf="statusFriend" class="default-btn" (click)="deleteFriend()">Delete Friend</button>
-              <button *ngIf="!statusFriend" class="default-btn" (click)="confirm()">Đồng ý</button>
-              <button *ngIf="!statusFriend" class="default-btn" (click)="deleteFriend()">không đồng ý</button>
+            <div class="profile-btn" *ngIf="status && !statusFriend">
+              <button class="default-btn" (click)="confirm()">Đồng ý</button>
+              <button class="default-btn" (click)="deleteFriend()">không đồng ý</button>
             </div>
           </div>
         </div>
