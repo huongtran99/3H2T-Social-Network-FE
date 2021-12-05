@@ -18,6 +18,22 @@ export class RegisterComponent implements OnInit {
   });
   userRegister: User;
 
+  get username(){
+    return this.formRegister.get('username');
+  }
+
+  get email(){
+    return this.formRegister.get('email');
+  }
+
+  get password(){
+    return this.formRegister.get('password');
+  }
+
+  get rePassword(){
+    return this.formRegister.get('rePassword');
+  }
+
   constructor(private auth: AuthenticationService,
               private router: Router) {
   }

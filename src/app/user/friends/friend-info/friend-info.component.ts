@@ -72,7 +72,8 @@ export class FriendInfoComponent implements OnInit {
       alert("đã gửi lời mời kết bạn");
       this.notification = {
         content: this.sender.username + " đã gửi cho bạn 1 lời mời kết bạn",
-        user: this.user
+        user: this.user,
+        sender: this.sender
       };
       this.notificationService.createNotification(this.notification).subscribe(() => {
         console.log("có thông báo rồi đấy.");
