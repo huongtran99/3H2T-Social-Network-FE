@@ -64,23 +64,4 @@ export class ProfileComponent implements OnInit {
   get gender() {
     return this.userForm.get('gender');
   }
-
-  /*genderList: gender[] = [
-    new gender("1", "Female"),
-    new gender('2', 'Male')
-  ];*/
-
-
 }
-
-/*
-export class gender {
-  id: string;
-  name: string;
-
-  constructor(id: string, name: string) {
-    this.id = id;
-    this.name = name;
-  }
-}
-*/

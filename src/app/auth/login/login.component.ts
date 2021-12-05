@@ -15,6 +15,14 @@ export class LoginComponent implements OnInit {
     password: new FormControl()
   })
 
+  get username(){
+    return this.loginForm.get('username');
+  }
+
+  get password(){
+    return this.loginForm.get('password');
+  }
+
   constructor(private auth: AuthenticationService,
               private router: Router) {
   }

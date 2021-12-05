@@ -12,9 +12,9 @@
         <aside class="widget-area">
           <div class="widget widget-view-profile">
             <div class="profile-box d-flex justify-content-between align-items-center">
-              <a href="my-profile.html"><img src="assets/images/user/user-1.jpg" alt="image"></a>
+              <a href="my-profile.html"><img src="http://localhost:8080/{{user.avatar}}" alt="image"></a>
               <div class="text ms-2">
-                <h3><a href="my-profile.html">Matthew Turner</a></h3>
+                <h3><a href="my-profile.html">{{user.username}}</a></h3>
                 <span>Washington</span>
               </div>
             </div>
@@ -257,28 +257,24 @@
               </div>
             </div>
           </div>
-          <div class="news-feed news-feed-post">
+          <div class="news-feed news-feed-post" *ngFor="let post of posts; index as i">
             <div class="post-header d-flex justify-content-between align-items-center">
               <div class="image">
-                <a href="my-profile.html"><img src="assets/images/user/user-32.jpg" class="rounded-circle" alt="image"></a>
+                <a href="my-profile.html"><img src="http://localhost:8080/{{post.user.avatar}}" class="rounded-circle"
+                                               alt="image"></a>
               </div>
               <div class="info ms-3">
-                <span class="name"><a href="my-profile.html"></a></span>
-                <span class="small-text"><a href="#">10 Mins Ago</a></span>
+                <span class="name"><a href="my-profile.html">{{post.user.username}}</a></span>
+                <span class="small-text"><a href="#">{{post.dateTime | date:'medium'}}</a></span>
               </div>
-              <div class="dropdown">
-                <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flaticon-menu"></i></button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit Post</a></li>
-                  <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i> Hide Post</a></li>
-                  <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i> Delete Post</a></li>
-                </ul>
-              </div>
+
+              <!--              <app-post-setting></app-post-setting>-->
+
             </div>
             <div class="post-body">
-              <p>Donec rutrum congue leo eget malesuada. Nulla quis lorem ut libero malesuada feugiat. Donec rutrum congue leo eget malesuada. Donec rutrum congue leo eget malesuada. Praesent sapien massa convallis a pellentesque nec egestas non nisi. Curabitur non nulla sit amet nisl tempus convallis quis.</p>
+              <p>{{post.content}}</p>
               <div class="post-image">
-                <img src="assets/images/news-feed-post/post-1.jpg" alt="image">
+                <img src="http://localhost:8080/{{files[i]?.fileName}}" alt="image">
               </div>
               <ul class="post-meta-wrap d-flex justify-content-between align-items-center">
                 <li class="post-react">
@@ -317,14 +313,17 @@
               <div class="post-comment-list">
                 <div class="comment-list">
                   <div class="comment-image">
-                    <a href="my-profile.html"><img src="assets/images/user/user-33.jpg" class="rounded-circle" alt="image"></a>
+                    <a href="my-profile.html"><img src="assets/images/user/user-33.jpg" class="rounded-circle"
+                                                   alt="image"></a>
                   </div>
                   <div class="comment-info">
                     <h3>
                       <a href="my-profile.html">David Moore</a>
                     </h3>
                     <span>5 Mins Ago</span>
-                    <p>Donec rutrum congue leo eget malesuada nulla quis lorem ut libero malesuada feugiat donec rutrum congue leo eget malesuada donec rutrum congue leo eget malesuada. Praesent sapien massa convallis a pellentesque non nisi curabitur non nulla sit amet nisl tempus convallis lectus.</p>
+                    <p>Donec rutrum congue leo eget malesuada nulla quis lorem ut libero malesuada feugiat donec rutrum
+                      congue leo eget malesuada donec rutrum congue leo eget malesuada. Praesent sapien massa convallis
+                      a pellentesque non nisi curabitur non nulla sit amet nisl tempus convallis lectus.</p>
                     <ul class="comment-react">
                       <li><a href="#" class="like">Like(2)</a></li>
                       <li><a href="#">Reply</a></li>
@@ -333,14 +332,16 @@
                 </div>
                 <div class="comment-list">
                   <div class="comment-image">
-                    <a href="my-profile.html"><img src="assets/images/user/user-34.jpg" class="rounded-circle" alt="image"></a>
+                    <a href="my-profile.html"><img src="assets/images/user/user-34.jpg" class="rounded-circle"
+                                                   alt="image"></a>
                   </div>
                   <div class="comment-info">
                     <h3>
                       <a href="my-profile.html">Claire P. Toy</a>
                     </h3>
                     <span>45 Mins Ago</span>
-                    <p>Donec rutrum congue leo eget malesuada praesent sapien massa convallis a pellentesque nec egestas non nisi curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
+                    <p>Donec rutrum congue leo eget malesuada praesent sapien massa convallis a pellentesque nec egestas
+                      non nisi curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
                     <ul class="comment-react">
                       <li><a href="#" class="like">Like(12)</a></li>
                       <li><a href="#">Reply</a></li>
@@ -349,14 +350,16 @@
                 </div>
                 <div class="comment-list">
                   <div class="comment-image">
-                    <a href="my-profile.html"><img src="assets/images/user/user-8.jpg" class="rounded-circle" alt="image"></a>
+                    <a href="my-profile.html"><img src="assets/images/user/user-8.jpg" class="rounded-circle"
+                                                   alt="image"></a>
                   </div>
                   <div class="comment-info">
                     <h3>
                       <a href="my-profile.html">Karen Williams</a>
                     </h3>
                     <span>5 Mins Ago</span>
-                    <p>Donec rutrum congue leo eget malesuada nulla quis lorem ut libero malesuada feugiat donec rutrum congue leo eget.</p>
+                    <p>Donec rutrum congue leo eget malesuada nulla quis lorem ut libero malesuada feugiat donec rutrum
+                      congue leo eget.</p>
                     <ul class="comment-react">
                       <li><a href="#" class="like">Like(2)</a></li>
                       <li><a href="#">Reply</a></li>
@@ -367,7 +370,7 @@
                   <a href="#">More Comments+</a>
                 </div>
               </div>
-              <form class="post-footer">
+              <div class="post-footer">
                 <div class="footer-image">
                   <a href="#"><img src="assets/images/user/user-1.jpg" class="rounded-circle" alt="image"></a>
                 </div>
@@ -375,7 +378,7 @@
                   <textarea name="message" class="form-control" placeholder="Write a comment..."></textarea>
                   <label><a href="#"><i class="flaticon-photo-camera"></i></a></label>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
           <div class="load-more-posts-btn">
@@ -526,7 +529,10 @@
 
   <app-simple-bar></app-simple-bar>
 
+
+  <app-footer></app-footer>
+
+
 </div>
 
 
-<app-footer></app-footer>
