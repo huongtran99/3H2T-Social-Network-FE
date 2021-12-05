@@ -18,7 +18,7 @@ import {FriendService} from "../../service/friend.service";
 })
 export class SimpleBarComponent implements OnInit {
   formSearch: FormGroup = new FormGroup({});
-  user: User;
+  user: User = {};
   @ViewChild('message', {static: false, read: ElementRef}) public message: ElementRef<any>;
   isOpened = false;
   content = '';

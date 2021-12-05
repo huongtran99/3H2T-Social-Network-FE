@@ -29,28 +29,14 @@
       </div>
       <div class="messages-chat-container">
         <div class="chat-content">
-          <div #message (scroll)="loadNewData(id)" *ngIf="currentUser">
+          <div #message (scroll)="loadNewData(id)" *ngIf="currentUser"
+               class="chat-history row" id="chat-message">
             <ul id="history">
                             <ng-container *ngFor="let message of listMessage">
                               <li [className]="currentUser.id == message.sender.id ? 'me' : 'you'">
                                 {{message.content}}
                               </li>
                             </ng-container>
-<!--              <ng-container>-->
-<!--                <li class="me">hihihihihihihi</li>-->
-<!--              </ng-container>-->
-<!--              <div>-->
-<!--                <li class="you">hihihihihihihđái</li>-->
-<!--              </div>-->
-<!--              <div>-->
-<!--                <li class="me">hihihihihidsadhihi</li>-->
-<!--              </div>-->
-<!--              <div>-->
-<!--                <li class="you">hihisadsadhihihihihi</li>-->
-<!--              </div>-->
-<!--              <div>-->
-<!--                <li class="me">hihisadsadhihihihihi</li>-->
-<!--              </div>-->
             </ul>
           </div>
         </div>

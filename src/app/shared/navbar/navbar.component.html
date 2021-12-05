@@ -242,8 +242,8 @@
                 <div class="messages-body" data-simplebar>
                   <div class="item d-flex justify-content-between align-items-center"
                        *ngFor="let user of listUser;index as i">
-                    <div (click)="openMessage(i)" [class.active]="currentIndex==i"
-                         [routerLink]="['/messages/', user.id]">
+                    <div (click)="openMessage(i)" [class.active_chat]="currentIndex==i"
+                         routerLink="/messages/{{user.id}}">
                       <div class="figure">
                         <a><img src="{{user.avatar}}" class="rounded-circle" alt="image"></a>
                       </div>

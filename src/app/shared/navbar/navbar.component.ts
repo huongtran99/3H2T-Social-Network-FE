@@ -17,7 +17,7 @@ import {Router} from "@angular/router";
 })
 export class NavbarComponent implements OnInit {
   formSearch: FormGroup = new FormGroup({});
-  user: User;
+  user: User = {};
   @ViewChild('message', {static: false, read: ElementRef}) public message: ElementRef<any>;
   isOpened = false;
   content = '';

@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {User} from "../../model/user";
 import {UserChat} from "../../model/user-chat";
 import {MessageService} from "../../service/message.service";
@@ -14,7 +14,7 @@ import {AuthenticationService} from "../../service/authentication.service";
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.css']
 })
-export class MessagesComponent implements OnInit {
+export class MessagesComponent implements OnInit, OnDestroy {
   @ViewChild('message', {static: false, read: ElementRef}) public message: ElementRef<any>;
   isOpened = false;
   content = '';
@@ -31,29 +31,16 @@ export class MessagesComponent implements OnInit {
               private userService: UserService,
               private dateService: DateService,
               private activateRoute: ActivatedRoute) {
-    this.activateRoute.paramMap.subscribe(paramMap => {
-      this.id = +paramMap.get("id");
-      this.getAllChatHistory(this.id, this.size);
-    });
+
   }
 
   ngOnInit() {
-    this.authenticationService.currenUser.subscribe(value => {
-      this.currentUser = value
+    this.activateRoute.paramMap.subscribe(paramMap => {
+      this.id = +paramMap.get("id");
     });
-    this.listMessage  = [
-      {
-        content: "hihihi",
-        sender: {
-          id:8
-        },
-        status: true,
-        receiver: {
-          id:1
-        }
-      }
-    ];
+    this.currentUser = JSON.parse(localStorage.getItem('user'));
 
+    this.getAllChatHistory(this.id, this.size);
     this.getAllUser();
   }
 
@@ -62,7 +49,8 @@ export class MessagesComponent implements OnInit {
   }
 
   getAllChatHistory(userId, size) {
-    this.messageService.getAllMessage(1, userId, size).subscribe(listMessage => {
+    console.log(this.currentUser.id)
+    this.messageService.getAllMessage(this.currentUser.id, userId, size).subscribe(listMessage => {
       this.listMessage = listMessage;
       this.listMessage.map(message => message.dateTime = new Date(message.dateTime));
       this.userService.getUserDetail(userId).subscribe(user => {
@@ -70,7 +58,6 @@ export class MessagesComponent implements OnInit {
         this.scrollBottom();
       });
     });
-
   }
 
   getAllUser() {
@@ -83,7 +70,7 @@ export class MessagesComponent implements OnInit {
   scrollBottom() {
     setTimeout(() => {
       this.message.nativeElement.scrollTop = this.message.nativeElement.scrollHeight;
-    },1);
+    }, 1);
   }
 
   async sentMessage(user) {
@@ -102,11 +89,12 @@ export class MessagesComponent implements OnInit {
     this.socketService.drawNewChatMessage(message, this.currentUser);
     this.scrollBottom();
   }
+
   loadNewData(id) {
     const element = this.message.nativeElement.scrollTop;
     if (element < 10) {
       this.size += 5;
-      this.messageService.getAllMessage(1, id, this.size).subscribe(listMessage => {
+      this.messageService.getAllMessage(this.currentUser.id, id, this.size).subscribe(listMessage => {
         this.listMessage = listMessage;
         this.listMessage.map(message => message.dateTime = new Date(message.dateTime));
       });
