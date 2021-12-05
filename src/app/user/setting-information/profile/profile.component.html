@@ -9,11 +9,12 @@
     <div class="account-setting-list-tabs">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" id="profile-information-tab" data-bs-toggle="tab" routerLink="/setting-profile"
+          <a class="nav-link active" id="profile-information-tab" data-bs-toggle="tab" routerLink="/setting-profile/{{user.id}}"
              role="tab" aria-controls="profile-information">Profile Information</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="account-tab" data-bs-toggle="tab" routerLink="/change-password" role="tab" aria-controls="account">Account</a>
+          <a class="nav-link" id="account-tab" data-bs-toggle="tab" routerLink="/change-password/{{user.id}}" role="tab"
+             aria-controls="account">Account</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="privacy-tab" data-bs-toggle="tab" href="#privacy" role="tab" aria-controls="privacy">Privacy</a>
@@ -40,10 +41,11 @@
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
                   <label for="email" class="form-label">Email:</label>
-                  <input type="email" name="email" id="email" class="form-control" formControlName="email" placeholder="Enter your email">
-                  <div *ngIf="!email.valid && (email.dirty ||email.touched)">
-                    <div [hidden]="!email.errors.pattern">
-                      Only characters are allowed
+                  <input type="text" name="email" id="email" class="form-control" formControlName="email"
+                         placeholder="Enter your email">
+                  <div *ngIf="!email.valid && (email.dirty ||email.touched)" class="alert alert-danger">
+                    <div [hidden]="!email.errors.pattern" email>
+                      Invalid email id
                     </div>
                     <div [hidden]="!email.errors.required">
                       Email is required
@@ -54,10 +56,11 @@
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
                   <label for="phone" class="form-label">Phone:</label>
-                  <input type="text" id="phone" class="form-control" formControlName="phone" placeholder="Enter your phone">
-                  <div *ngIf="!phone.valid && (phone.dirty ||phone.touched)">
+                  <input type="text" id="phone" class="form-control" formControlName="phone"
+                         placeholder="Enter your phone" required>
+                  <div *ngIf="!phone.valid && (phone.dirty ||phone.touched)" class="alert-danger">
                     <div [hidden]="!phone.errors.pattern">
-                      Only characters are allowed
+                      Phone have 10 number from 0-9
                     </div>
                     <div [hidden]="!phone.errors.required">
                       Phone is required
@@ -70,10 +73,11 @@
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
                   <label for="birthday" class="form-label">Birthday:</label>
-                  <input type="text" id="birthday" class="form-control" formControlName="birthday" placeholder="Enter your birthday">
-                  <div *ngIf="!birthday.valid && (birthday.dirty ||birthday.touched)">
+                  <input type="text" id="birthday" class="form-control" formControlName="birthday"
+                         placeholder="Enter your birthday">
+                  <div *ngIf="!birthday.valid && (birthday.dirty ||birthday.touched)" class="alert-danger">
                     <div [hidden]="!birthday.errors.pattern">
-                      Only characters are allowed
+                      Birthday is not valid
                     </div>
                     <div [hidden]="!birthday.errors.required">
                       Birthday is required
@@ -83,12 +87,15 @@
               </div>
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label>Gender</label>
-                  <input type="text" class="form-control" formControlName="gender" placeholder="Enter your gender">
-                  <!--                  <select class="form-select" formControlName="gender">-->
-                  <!--                    <option value="male">Male</option>-->
-                  <!--                    <option value="female">Female</option>-->
-                  <!--                  </select>-->
+                  <br>
+                  <label for="gender" class="form-label">Gender: </label>
+                  <input type="radio" value="male" id="gender" name="gender" formControlName="gender"> Male
+                  <input type="radio" value="female" id="gender" name="gender" formControlName="gender"> Female
+                  <div *ngIf="!gender.valid && (gender.dirty ||gender.touched)">
+                    <div [hidden]="!gender.errors.required">
+                      gender is required
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

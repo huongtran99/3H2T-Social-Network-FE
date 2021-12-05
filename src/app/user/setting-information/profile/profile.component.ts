@@ -12,7 +12,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class ProfileComponent implements OnInit {
 
   userForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
+    email: new FormControl('', [Validators.required, Validators.email, Validators.pattern("^[A-Za-z0-9]+[A-Za-z0-9]*@[A-Za-z0-9]+(\\\\.[A-Za-z0-9]+)$;")]),
     phone: new FormControl('',[Validators.required, Validators.pattern("[0-9]{10}")]),
     birthday: new FormControl('', [Validators.required, Validators.pattern("MM/dd/yyyy")]),
     gender: new FormControl('', [Validators.required])
@@ -65,4 +65,22 @@ export class ProfileComponent implements OnInit {
     return this.userForm.get('gender');
   }
 
+  /*genderList: gender[] = [
+    new gender("1", "Female"),
+    new gender('2', 'Male')
+  ];*/
+
+
 }
+
+/*
+export class gender {
+  id: string;
+  name: string;
+
+  constructor(id: string, name: string) {
+    this.id = id;
+    this.name = name;
+  }
+}
+*/

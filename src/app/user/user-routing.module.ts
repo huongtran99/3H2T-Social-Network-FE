@@ -15,11 +15,11 @@ const routes: Routes = [
     component: NewsFeedComponent
   },
   {
-    path:'setting-profile',
+    path:'setting-profile/:id',
     component: ProfileComponent
   },
   {
-    path: 'change-password',
+    path: 'change-password/:id',
     component: PasswordComponent
   }
 ];

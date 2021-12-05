@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from "../../model/user";
 
 @Component({
   selector: 'app-news-feed',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./news-feed.component.css']
 })
 export class NewsFeedComponent implements OnInit {
+  id: number;
+  user: User = {};
 
   constructor() { }
 
