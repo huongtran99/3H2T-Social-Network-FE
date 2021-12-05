@@ -5,6 +5,7 @@ import {PostService} from "../../service/post.service";
 import {FileService} from "../../service/file.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import { User } from 'src/app/model/user';
+import {UserService} from "../../service/user.service";
 
 @Component({
   selector: 'app-my-profile',
@@ -18,6 +19,7 @@ export class MyProfileComponent implements OnInit {
   postEditForm: FormGroup = new FormGroup({
     id: new FormControl(),
     content: new FormControl(),
+    status: new FormControl("Public"),
   });
   page: any = 0;
   files: File[] = [];
@@ -25,12 +27,22 @@ export class MyProfileComponent implements OnInit {
   user: User;
 
   constructor(private postService: PostService,
-              private fileService: FileService) {
+              private fileService: FileService,
+              private userService: UserService) {
     this.getAllPostsByUser();
     this.getFileByPostId();
   }
 
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    console.log(this.user);
+    this.getUserDetail();
+  }
+
+  getUserDetail() {
+    this.userService.getUserDetail(this.user.id).subscribe(user => {
+      this.user = user;
+    })
   }
 
   getAllPostsByUser() {
@@ -59,6 +71,7 @@ export class MyProfileComponent implements OnInit {
       this.postEditForm = new FormGroup({
         id: new FormControl(post.id),
         content: new FormControl(post.content),
+        status: new FormControl(post.status),
       })
     })
   }
