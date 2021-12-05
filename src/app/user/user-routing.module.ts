@@ -4,7 +4,6 @@ import {NewsFeedComponent} from "./news-feed/news-feed.component";
 import {MyProfileComponent} from "./my-profile/my-profile.component";
 import {FriendListComponent} from "./friend-list/friend-list.component";
 import {MessagesComponent} from "./messages/messages.component";
-import {MessagesDetailComponent} from "./messages/messages-detail/messages-detail.component";
 
 const routes: Routes = [
   {
@@ -20,12 +19,8 @@ const routes: Routes = [
     component: FriendListComponent
   },
   {
-    path: 'messages',
+    path: 'messages/:id',
     component: MessagesComponent
-  },
-  {
-    path: 'messages-detail',
-    component: MessagesDetailComponent
   }
 ];
 

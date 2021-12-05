@@ -7,7 +7,7 @@ import { NewsFeedComponent } from './news-feed/news-feed.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import {FriendListComponent} from "./friend-list/friend-list.component";
 import { MessagesComponent } from './messages/messages.component';
-import { MessagesDetailComponent } from './messages/messages-detail/messages-detail.component';
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -15,13 +15,13 @@ import { MessagesDetailComponent } from './messages/messages-detail/messages-det
     NewsFeedComponent,
     MyProfileComponent,
     FriendListComponent,
-    MessagesComponent,
-    MessagesDetailComponent
+    MessagesComponent
   ],
     imports: [
         CommonModule,
         UserRoutingModule,
         SharedModule,
+        FormsModule,
 
     ]
 })
