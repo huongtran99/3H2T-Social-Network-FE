@@ -18,5 +18,8 @@ export class UserService {
     return this.http.get<User>(`http://localhost:8080/users/${id}`);
   }
 
+  getAllUserByUserId(user: User): Observable<User[]> {
+    return this.http.post<User[]>(`http://localhost:8080/users/get`, user);
+  }
 
 }

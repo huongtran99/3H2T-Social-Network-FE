@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import {Post} from "../../model/post";
 import {File} from "../../model/file";
 import {PostService} from "../../service/post.service";
@@ -12,7 +12,7 @@ import {UserService} from "../../service/user.service";
   templateUrl: './my-profile.component.html',
   styleUrls: ['./my-profile.component.css']
 })
-export class MyProfileComponent implements OnInit {
+export class MyProfileComponent implements OnInit, OnChanges {
   id: number;
   post: Post = {};
   posts: Post[] = [];
@@ -29,6 +29,11 @@ export class MyProfileComponent implements OnInit {
   constructor(private postService: PostService,
               private fileService: FileService,
               private userService: UserService) {
+    this.getAllPostsByUser();
+    this.getFileByPostId();
+  }
+
+  ngOnChanges() {
     this.getAllPostsByUser();
     this.getFileByPostId();
   }

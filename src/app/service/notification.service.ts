@@ -13,4 +13,8 @@ export class NotificationService {
   createNotification(notification: Notification) : Observable<Notification> {
     return this.http.post<Notification>(`http://localhost:8080/notifications`, notification)
   }
+
+  getNotificationByUserid(id: number) : Observable<any[]> {
+    return this.http.get<any[]>(`http://localhost:8080/notifications/${id}`)
+  }
 }
