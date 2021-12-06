@@ -6,6 +6,7 @@ import {File} from "../../model/file";
 import {FormControl, FormGroup} from "@angular/forms";
 import {User} from "../../model/user";
 import {UserService} from "../../service/user.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-news-feed',
@@ -27,7 +28,6 @@ export class NewsFeedComponent implements OnInit {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
-    console.log(this.user);
     this.getUserDetail();
   }
 
@@ -41,7 +41,6 @@ export class NewsFeedComponent implements OnInit {
     this.postService.findAll(this.page).subscribe((post: any) => {
       this.posts = post.content;
       this.getFileByPostId();
-      console.log(this.files);
     })
   }
 

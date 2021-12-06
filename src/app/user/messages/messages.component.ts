@@ -38,6 +38,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.activateRoute.paramMap.subscribe(paramMap => {
       this.id = +paramMap.get("id");
+      this.getAllChatHistory(this.id, this.size);
     });
     console.log(this.id)
     this.currentUser = JSON.parse(localStorage.getItem('user'));
