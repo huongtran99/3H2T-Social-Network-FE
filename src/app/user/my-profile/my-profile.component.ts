@@ -6,7 +6,6 @@ import {FileService} from "../../service/file.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import { User } from 'src/app/model/user';
 import {UserService} from "../../service/user.service";
-import {ActivatedRoute, ParamMap} from '@angular/router';
 
 @Component({
   selector: 'app-my-profile',
@@ -25,27 +24,13 @@ export class MyProfileComponent implements OnInit, OnChanges {
   page: any = 0;
   files: File[] = [];
   searchForm: FormGroup = new FormGroup({});
-  user: User = {};
-  userForm: FormGroup = new FormGroup({
-    username: new FormControl(),
-    email: new FormControl(),
-    phone: new FormControl(),
-    birthday: new FormControl(),
-    gender: new FormControl(),
-    avatar: new FormControl(),
-    cover: new FormControl()
-  });
+  user: User;
 
   constructor(private postService: PostService,
               private fileService: FileService,
-              private userService: UserService,
-              private activatedRoute: ActivatedRoute) {
+              private userService: UserService) {
     this.getAllPostsByUser();
     this.getFileByPostId();
-    this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
-      this.id = +paramMap.get('id');
-      this.getUserProfile(this.id);
-    });
   }
 
   ngOnChanges() {
@@ -110,21 +95,6 @@ export class MyProfileComponent implements OnInit, OnChanges {
       alert('Successful!');
     }, error => {
       alert('Error!');
-    });
-  }
-
-  getUserProfile(id) {
-    return this.userService.getUserDetail(id).subscribe(user => {
-      this.user = user;
-      this.userForm = new FormGroup({
-        username: new FormControl(user.username),
-        email: new FormControl(user.email),
-        phone: new FormControl(user.phone),
-        birthday: new FormControl(user.birthday),
-        gender: new FormControl(user.gender),
-        avatar: new FormControl(user.avatar),
-        cover: new FormControl(user.cover)
-      });
     });
   }
 

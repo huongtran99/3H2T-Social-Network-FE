@@ -701,12 +701,12 @@
                     <h3>Matthew Turner</h3>
                     <a href="https://templates.envytheme.com/cdn-cgi/l/email-protection#076a6673736f627032373047606a666e6b2964686a"><span
                       class="__cf_email__"
-                      data-cfemail="9bf6faefeff3feecaeabacdbfcf6faf2f7b5f8f4f6">[email&#160;protected]</span></a>
+                      data-cfemail="9bf6faefeff3feecaeabacdbfcf6faf2f7b5f8f4f6">{{user.email}}</span></a>
                   </div>
                   <ul class="profile-body">
-                    <li><i class="flaticon-user"></i> <a href="my-profile.html">My Profile</a>
+                    <li><i class="flaticon-user"></i> <a routerLink="/my-profile">My Profile</a>
                     </li>
-                    <li><i class="flaticon-settings"></i> <a href="setting.html">Setting</a>
+                    <li><i class="flaticon-settings"></i> <a routerLink="/setting-profile/{{user.id}}">Setting</a>
                     </li>
                     <li><i class="flaticon-privacy"></i> <a href="privacy.html">Privacy</a></li>
                     <li><i class="flaticon-information"></i> <a href="help-and-support.html">Help
