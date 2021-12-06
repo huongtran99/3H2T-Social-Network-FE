@@ -33,4 +33,7 @@ export class UserService {
     return this.http.put<User>(`http://localhost:8080/users/update-avatar/${id}`, user);
   }
 
+  getAllUserHasRole(user: string): Observable<User[]> {
+    return this.http.get<User[]>(`http://localhost:8080/users/role`)
+  }
 }

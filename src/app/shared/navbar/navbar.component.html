@@ -240,84 +240,17 @@
                   </form>
                 </div>
                 <div class="messages-body" data-simplebar>
-                  <div class="item d-flex justify-content-between align-items-center">
-                    <div class="figure">
-                      <a href="#"><img src="assets/images/user/user-11.jpg"
-                                       class="rounded-circle" alt="image"></a>
-                    </div>
-                    <div class="text">
-                      <h4><a href="#">James Vanwin</a></h4>
-                      <span>Hello Dear I Want Talk To You</span>
-                    </div>
-                  </div>
-                  <div class="item d-flex justify-content-between align-items-center">
-                    <div class="figure">
-                      <a href="#"><img src="assets/images/user/user-12.jpg"
-                                       class="rounded-circle" alt="image"></a>
-                    </div>
-                    <div class="text">
-                      <h4><a href="#">Harry Lopez</a></h4>
-                      <span>Hi. I Am looking For UI Designer</span>
-                    </div>
-                  </div>
-                  <div class="item d-flex justify-content-between align-items-center">
-                    <div class="figure">
-                      <a href="#"><img src="assets/images/user/user-13.jpg"
-                                       class="rounded-circle" alt="image"></a>
-                    </div>
-                    <div class="text">
-                      <h4><a href="#">Matthew Smith</a></h4>
-                      <span>Thanks For Connecting!</span>
-                    </div>
-                  </div>
-                  <div class="item d-flex justify-content-between align-items-center">
-                    <div class="figure">
-                      <a href="#"><img src="assets/images/user/user-14.jpg"
-                                       class="rounded-circle" alt="image"></a>
-                    </div>
-                    <div class="text">
-                      <h4><a href="#">Russe Smith</a></h4>
-                      <span>Thanks For Connecting!</span>
-                    </div>
-                  </div>
-                  <div class="item d-flex justify-content-between align-items-center">
-                    <div class="figure">
-                      <a href="#"><img src="assets/images/user/user-1.jpg"
-                                       class="rounded-circle" alt="image"></a>
-                    </div>
-                    <div class="text">
-                      <h4><a href="#">James Vanwin</a></h4>
-                      <span>Hello Dear I Want Talk To You</span>
-                    </div>
-                  </div>
-                  <div class="item d-flex justify-content-between align-items-center">
-                    <div class="figure">
-                      <a href="#"><img src="assets/images/user/user-2.jpg"
-                                       class="rounded-circle" alt="image"></a>
-                    </div>
-                    <div class="text">
-                      <h4><a href="#">Harry Lopez</a></h4>
-                      <span>Hi. I Am looking For UI Designer</span>
-                    </div>
-                  </div>
-                  <div class="item d-flex justify-content-between align-items-center">
-                    <div class="figure">
-                      <a href="#"><img src="assets/images/user/user-3.jpg"
-                                       class="rounded-circle" alt="image"></a>
-                    </div>
-                    <div class="text">
-                      <h4><a href="#">Matthew Smith</a></h4>
-                      <span>Thanks For Connecting!</span>
-                    </div>
-                  </div>
-                  <div class="item d-flex justify-content-between align-items-center">
-                    <div class="figure">
-                      <a href="#"><img src="assets/images/user/user-4.jpg"
-                                       class="rounded-circle" alt="image"></a>
-                    </div>
-                    <div class="text">
-                      <h4><a href="#">Russe Smith</a></h4>
-                      <span>Thanks For Connecting!</span>
+                  <div class="item d-flex justify-content-between align-items-center"
+                       *ngFor="let user of listUser;index as i">
+                    <div (click)="openMessage(i)" [class.active_chat]="currentIndex==i"
+                         routerLink="/messages/{{user.id}}">
+                      <div class="figure">
+                        <a><img src="{{user.avatar}}" class="rounded-circle" alt="image"></a>
+                      </div>
+                      <div class="text">
+                        <h4><a>{{user.username}}</a></h4>
+                        <span>{{user.content}}</span>
+                      </div>
                     </div>
                   </div>
                   <div class="view-all-messages-btn">
@@ -342,13 +275,15 @@
                   <i class="flaticon-menu"></i>
                 </div>
                 <div class="notifications-body" data-simplebar>
-                  <div class="item d-flex justify-content-between align-items-center" *ngFor="let notification of notifications">
+                  <div class="item d-flex justify-content-between align-items-center"
+                       *ngFor="let notification of notifications">
                     <div class="figure">
                       <a href="#"><img src="assets/images/user/user-11.jpg"
                                        class="rounded-circle" alt="image"></a>
                     </div>
                     <div class="text">
-                      <h4><a routerLink="/friends/info/{{notification.sender.id}}">{{notification.sender.username}}</a></h4>
+                      <h4><a routerLink="/friends/info/{{notification.sender.id}}">{{notification.sender.username}}</a>
+                      </h4>
                       <span>{{notification.content}}</span>
                       <span class="main-color">Minites Ago</span>
                     </div>
@@ -396,7 +331,8 @@
               <div class="dropdown-menu">
                 <div class="profile-header">
                   <h3>Matthew Turner</h3>
-                  <a href="https://templates.envytheme.com/cdn-cgi/l/email-protection#c7aaa6b3b3afa2b0f2f7f087a0aaa6aeabe9a4a8aa"><span
+                  <a
+                    href="https://templates.envytheme.com/cdn-cgi/l/email-protection#c7aaa6b3b3afa2b0f2f7f087a0aaa6aeabe9a4a8aa"><span
                     class="__cf_email__"
                     data-cfemail="cda0acb9b9a5a8baf8fdfa8daaa0aca4a1e3aea2a0">[email&#160;protected]</span></a>
                 </div>
@@ -699,7 +635,8 @@
                 <div class="dropdown-menu">
                   <div class="profile-header">
                     <h3>Matthew Turner</h3>
-                    <a href="https://templates.envytheme.com/cdn-cgi/l/email-protection#076a6673736f627032373047606a666e6b2964686a"><span
+                    <a
+                      href="https://templates.envytheme.com/cdn-cgi/l/email-protection#076a6673736f627032373047606a666e6b2964686a"><span
                       class="__cf_email__"
                       data-cfemail="9bf6faefeff3feecaeabacdbfcf6faf2f7b5f8f4f6">{{user.email}}</span></a>
                   </div>

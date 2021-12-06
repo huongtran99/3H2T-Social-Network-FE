@@ -1,0 +1,64 @@
+time_date {
+  color: #747474;
+  display: block;
+  font-size: 12px;
+  margin: 8px 0 0;
+}
+
+.me {
+  overflow: hidden;
+  margin: 26px 0 26px;
+}
+
+.chat-history {
+  height: 516px;
+  overflow-y: auto;
+}
+
+.chat-history {
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.chat-history ul li {
+  display: inline-block;
+  clear: both;
+  padding: 5px;
+  border-radius: 30px;
+  margin-bottom: 5px;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.you {
+  background: #eee;
+  float: left;
+}
+
+.me {
+  float: right;
+  background: #7fad39;
+  color: #fff;
+}
+
+.you + .me {
+  border-bottom-right-radius: 5px;
+}
+
+.me + .me {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.me:last-of-type {
+  border-bottom-right-radius: 30px;
+}
+
+#history {
+  width: 100%;
+}

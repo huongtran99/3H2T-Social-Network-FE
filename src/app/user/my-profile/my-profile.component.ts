@@ -4,7 +4,7 @@ import {File} from "../../model/file";
 import {PostService} from "../../service/post.service";
 import {FileService} from "../../service/file.service";
 import {FormControl, FormGroup} from "@angular/forms";
-import { User } from 'src/app/model/user';
+import {User} from 'src/app/model/user';
 import {UserService} from "../../service/user.service";
 
 @Component({
@@ -70,7 +70,7 @@ export class MyProfileComponent implements OnInit, OnChanges {
   }
 
   getPostId(id) {
-    this.id =id;
+    this.id = id;
     this.postService.findById(id).subscribe(post => {
       this.post = post;
       this.postEditForm = new FormGroup({
