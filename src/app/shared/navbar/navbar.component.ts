@@ -3,6 +3,8 @@ import {User} from "../../model/user";
 import {AuthenticationService} from "../../service/authentication.service";
 import {UserService} from "../../service/user.service";
 import {FormGroup} from "@angular/forms";
+import {NotificationService} from "../../service/notification.service";
+import {Notification} from "../../model/Notification";
 import {UserChat} from "../../model/user-chat";
 import {MessageService} from "../../service/message.service";
 import {SocketService} from "../../service/socket.service";
@@ -17,6 +19,8 @@ import {Router} from "@angular/router";
 })
 export class NavbarComponent implements OnInit {
   formSearch: FormGroup = new FormGroup({});
+  // user: User;
+  notifications: Notification[];
   user: User = {};
   @ViewChild('message', {static: false, read: ElementRef}) public message: ElementRef<any>;
   isOpened = false;
@@ -26,17 +30,26 @@ export class NavbarComponent implements OnInit {
   currentIndex = 0
 
   constructor(private auth: AuthenticationService,
+              private userService: UserService,
+              private notificationService: NotificationService,
               private messageService: MessageService,
               private socketService: SocketService,
-              private userService: UserService,
               private dateService: DateService,
               private router: Router) {
   }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
+    console.log(this.user);
     this.getUserDetail();
+    this.getNotificationByUserId();
     this.getAllUser();
+  }
+
+  getNotificationByUserId() {
+    this.notificationService.getNotificationByUserid(this.user.id).subscribe((data: any) => {
+      this.notifications = data;
+    })
   }
 
   logout() {
@@ -48,6 +61,7 @@ export class NavbarComponent implements OnInit {
       this.user = user;
     })
   }
+
   getAllUser() {
     this.userService.getAllUserHasRole('user').subscribe(listUser => {
       this.listUser = listUser;
@@ -55,6 +69,7 @@ export class NavbarComponent implements OnInit {
       console.log()
     });
   }
+
   scrollBottom() {
     setTimeout(() => {
       this.message.nativeElement.scrollTop = this.message.nativeElement.scrollHeight;

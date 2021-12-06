@@ -16,14 +16,20 @@
       <div class="col-lg-6 col-md-12">
         <div class="login-form">
           <h2>Login</h2>
-          <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <form [formGroup]="loginForm" (ngSubmit)="loginForm.valid && login()">
             <div class="form-group">
               <label>Username or email</label>
-              <input type="text" class="form-control" formControlName="username">
+              <ng-container *ngIf="username.invalid && username.touched">
+                <p style="color: red" *ngIf="username.errors?.required">Tên bắt buộc phải nhập</p>
+              </ng-container>
+              <input type="text" class="form-control" formControlName="username" required>
             </div>
             <div class="form-group">
               <label>Password</label>
-              <input type="password" class="form-control" formControlName="password">
+              <ng-container *ngIf="password.invalid && password.dirty">
+                <p style="color: red" *ngIf="password.errors?.minlength">Password ký tự quá ngắn</p>
+              </ng-container>
+              <input type="password" class="form-control" formControlName="password" minlength="6">
             </div>
             <div class="remember-me-wrap d-flex justify-content-between align-items-center">
               <p>
