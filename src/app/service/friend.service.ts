@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {User} from "../model/user";
+import {Friend} from "../model/friend";
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,8 @@ export class FriendService {
 
   confirm(id: number, receiver: any): Observable<any> {
     return this.http.put<any>(`http://localhost:8080/friends/${id}`, receiver);
+  }
+  getAllFriend(id: number): Observable<Friend[]> {
+    return this.http.get<Friend[]>(`http://localhost:8080/friends?userId=${id}`);
   }
 }

@@ -22,4 +22,7 @@ export class UserService {
     return this.http.post<User[]>(`http://localhost:8080/users/get`, user);
   }
 
+  getAllUserHasRole(user: string): Observable<User[]> {
+    return this.http.get<User[]>(`http://localhost:8080/users/role`)
+  }
 }
