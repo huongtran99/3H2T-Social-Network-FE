@@ -14,4 +14,6 @@ export interface User {
   gender?: string,
 
   roles?: any;
+
+  avatar?: any;
 }

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../../service/user.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "../../../model/user";
 import {Notification} from "../../../model/Notification";
 import {FriendService} from "../../../service/friend.service";
@@ -22,10 +22,12 @@ export class FriendInfoComponent implements OnInit {
   statusAddFriend: boolean;
   friend: Friend;
 
+
   constructor(private userService: UserService,
               private activateRoute: ActivatedRoute,
               private friendService: FriendService,
-              private notificationService: NotificationService) {
+              private notificationService: NotificationService,
+              private router: Router) {
     this.activateRoute.paramMap.subscribe(paramMap => {
       this.id = +paramMap.get('id');
       this.userService.getUserDetail(this.id).subscribe(user => {
@@ -72,14 +74,13 @@ export class FriendInfoComponent implements OnInit {
 
   addFriend() {
     this.friendService.addFriend(this.id, this.sender).subscribe(() => {
-      alert("đã gửi lời mời kết bạn");
       this.notification = {
-        content: this.sender.username + " đã gửi cho bạn 1 lời mời kết bạn",
+        content: " đã gửi cho bạn 1 lời mời kết bạn",
         user: this.user,
         sender: this.sender
       };
       this.notificationService.createNotification(this.notification).subscribe(() => {
-        console.log("có thông báo rồi đấy.");
+        this.router.navigateByUrl(`/friends/info/${this.id}`);
       })
     })
   }
