@@ -64,5 +64,6 @@ export class PostComponent implements OnInit {
     }, error => {
       alert('Error!')
     })
+
   }
 }
