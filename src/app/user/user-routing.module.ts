@@ -6,6 +6,8 @@ import {FriendsComponent} from "./friends/friends.component";
 import {FriendInfoComponent} from "./friends/friend-info/friend-info.component";
 import {FriendListComponent} from "./friend-list/friend-list.component";
 import {MessagesComponent} from "./messages/messages.component";
+import {ProfileComponent} from "./setting-information/profile/profile.component";
+import {PasswordComponent} from "./setting-information/password/password.component";
 
 const routes: Routes = [
   {
@@ -31,6 +33,18 @@ const routes: Routes = [
   {
     path: 'messages/:id',
     component: MessagesComponent
+  },
+  {
+    path: 'setting-profile/:id',
+    component: ProfileComponent
+  },
+  {
+    path: 'change-password/:id',
+    component: PasswordComponent
+  },
+  {
+    path: 'my-profile/about',
+    component: MyProfileComponent
   }
 ];
 

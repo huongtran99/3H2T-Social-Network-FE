@@ -9,8 +9,7 @@ import {Friend} from "../model/friend";
 })
 export class FriendService {
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) { }
 
   addFriend(id: number, sender: User): Observable<any> {
     return this.http.post<any>(`http://localhost:8080/friends/${id}`, sender);
