@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit {
   id: number;
   user: User = {};
 
+
   constructor(private userService: UserService,
               private activatedRouter: ActivatedRoute,
               private router: Router) {
@@ -39,6 +40,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
   submitEdit() {

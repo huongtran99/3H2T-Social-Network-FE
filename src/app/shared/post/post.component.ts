@@ -3,6 +3,8 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {User} from "../../model/user";
 import {PostService} from "../../service/post.service";
 import {FileService} from "../../service/file.service";
+import {Post} from "../../model/post";
+import {DataService} from "../../service/data.service";
 
 @Component({
   selector: 'app-post',
@@ -17,12 +19,18 @@ export class PostComponent implements OnInit {
   fileData: File[] = [];
   user: User;
   urlCreatePost: any;
+  posts: any[] = [];
+  page: any = 0;
+  files: any[] = [];
 
   constructor(private postService: PostService,
-              private fileService: FileService) {
+              private fileService: FileService,
+              private data: DataService) {
   }
 
   ngOnInit() {
+    this.data.currentPost.subscribe((data: any) => this.posts = data);
+    /*this.data.currentFile.subscribe((data: any) => this.files = data);*/
   }
 
   addFileCreatePost(event: any) {
@@ -60,9 +68,26 @@ export class PostComponent implements OnInit {
       this.postCreateForm = new FormGroup({
         status: new FormControl("Public"),
       })
+      this.postService.findAll(this.page).subscribe((post: any) => {
+        this.posts = post.content;
+        this.data.changeData(this.posts);
+        this.getFileByPostId();
+        console.log(this.files);
+      })
       alert('Successful!');
     }, error => {
       alert('Error!')
     })
   }
+
+  getFileByPostId() {
+    for (let i = 0; i < this.posts.length; i++) {
+      this.fileService.findFileByPostId(this.posts[i]).subscribe((file: any) => {
+        console.log(file);
+        this.files.push(file[0]);
+        this.data.changeFileData(file);
+      })
+    }
+  }
+
 }

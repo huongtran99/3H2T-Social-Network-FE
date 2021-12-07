@@ -22,6 +22,7 @@ export class FriendInfoComponent implements OnInit {
   statusAddFriend: boolean;
   friend: Friend;
 
+
   constructor(private userService: UserService,
               private activateRoute: ActivatedRoute,
               private friendService: FriendService,
@@ -36,8 +37,12 @@ export class FriendInfoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.checkStatus();
+  }
+
+   checkStatus() {
     this.friendService.getFriendBySenderIdAndReceiverId(this.id, this.sender.id).subscribe(friend => {
-      if(friend == null) {
+      if (friend == null) {
         this.statusAddFriend = true;
         console.log(this.statusFriend)
         this.friendService.getFriendBySenderIdAndReceiverId(this.sender.id, this.id).subscribe(friend => {
@@ -52,34 +57,40 @@ export class FriendInfoComponent implements OnInit {
     })
   }
 
+
   confirm() {
     this.friendService.confirm(this.id, this.sender).subscribe(() => {
-      alert("Kết bạn thành công!");
+      this.checkStatus();
     })
   }
 
   deleteFriend() {
     if (!this.status) {
       this.friendService.deleteFriend(this.id, this.sender.id).subscribe(() => {
-        alert("ok");
+        this.statusAddFriend = true;
+        this.status = false;
+        this.statusFriend = false;
       })
     } else {
       this.friendService.deleteFriend(this.sender.id, this.id).subscribe(() => {
-        alert("ok");
+        this.statusAddFriend = true;
+        this.status = false;
+        this.statusFriend = false;
       })
     }
   }
 
   addFriend() {
+    this.statusAddFriend = false;
+    this.status = false;
+    this.statusFriend = false;
     this.friendService.addFriend(this.id, this.sender).subscribe(() => {
-      alert("đã gửi lời mời kết bạn");
       this.notification = {
-        content: this.sender.username + " đã gửi cho bạn 1 lời mời kết bạn",
+        content: " đã gửi cho bạn 1 lời mời kết bạn",
         user: this.user,
         sender: this.sender
       };
       this.notificationService.createNotification(this.notification).subscribe(() => {
-        console.log("có thông báo rồi đấy.");
       })
     })
   }
