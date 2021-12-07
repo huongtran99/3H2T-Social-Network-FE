@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../../service/user.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {User} from "../../../model/user";
 import {Notification} from "../../../model/Notification";
 import {FriendService} from "../../../service/friend.service";
@@ -26,8 +26,7 @@ export class FriendInfoComponent implements OnInit {
   constructor(private userService: UserService,
               private activateRoute: ActivatedRoute,
               private friendService: FriendService,
-              private notificationService: NotificationService,
-              private router: Router) {
+              private notificationService: NotificationService) {
     this.activateRoute.paramMap.subscribe(paramMap => {
       this.id = +paramMap.get('id');
       this.userService.getUserDetail(this.id).subscribe(user => {
@@ -38,8 +37,12 @@ export class FriendInfoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.checkStatus();
+  }
+
+   checkStatus() {
     this.friendService.getFriendBySenderIdAndReceiverId(this.id, this.sender.id).subscribe(friend => {
-      if(friend == null) {
+      if (friend == null) {
         this.statusAddFriend = true;
         console.log(this.statusFriend)
         this.friendService.getFriendBySenderIdAndReceiverId(this.sender.id, this.id).subscribe(friend => {
@@ -54,25 +57,33 @@ export class FriendInfoComponent implements OnInit {
     })
   }
 
+
   confirm() {
     this.friendService.confirm(this.id, this.sender).subscribe(() => {
-      alert("Kết bạn thành công!");
+      this.checkStatus();
     })
   }
 
   deleteFriend() {
     if (!this.status) {
       this.friendService.deleteFriend(this.id, this.sender.id).subscribe(() => {
-        alert("ok");
+        this.statusAddFriend = true;
+        this.status = false;
+        this.statusFriend = false;
       })
     } else {
       this.friendService.deleteFriend(this.sender.id, this.id).subscribe(() => {
-        alert("ok");
+        this.statusAddFriend = true;
+        this.status = false;
+        this.statusFriend = false;
       })
     }
   }
 
   addFriend() {
+    this.statusAddFriend = false;
+    this.status = false;
+    this.statusFriend = false;
     this.friendService.addFriend(this.id, this.sender).subscribe(() => {
       this.notification = {
         content: " đã gửi cho bạn 1 lời mời kết bạn",
@@ -80,7 +91,6 @@ export class FriendInfoComponent implements OnInit {
         sender: this.sender
       };
       this.notificationService.createNotification(this.notification).subscribe(() => {
-        this.router.navigateByUrl(`/friends/info/${this.id}`);
       })
     })
   }
