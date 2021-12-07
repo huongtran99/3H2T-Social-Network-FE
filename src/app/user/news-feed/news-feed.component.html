@@ -273,36 +273,15 @@
               </div>
               <ul class="post-meta-wrap d-flex justify-content-between align-items-center">
                 <li class="post-react">
-                  <a href="#"><i class="flaticon-like"></i><span>Like</span> <span class="number">1499 </span></a>
-                  <ul class="react-list">
-                    <li>
-                      <a href="#"><img src="assets/images/react/react-1.png" alt="Like"></a>
-                    </li>
-                    <li>
-                      <a href="#"><img src="assets/images/react/react-2.png" alt="Like"></a>
-                    </li>
-                    <li>
-                      <a href="#"><img src="assets/images/react/react-3.png" alt="Like"></a>
-                    </li>
-                    <li>
-                      <a href="#"><img src="assets/images/react/react-4.png" alt="Like"></a>
-                    </li>
-                    <li>
-                      <a href="#"><img src="assets/images/react/react-5.png" alt="Like"></a>
-                    </li>
-                    <li>
-                      <a href="#"><img src="assets/images/react/react-6.png" alt="Like"></a>
-                    </li>
-                    <li>
-                      <a href="#"><img src="assets/images/react/react-7.png" alt="Like"></a>
-                    </li>
-                  </ul>
+                  <button (click)="likes(post)"><i class="flaticon-like"></i>
+                    <span>Like</span>
+                  </button> <span class="number">{{counts[i]}}</span>
                 </li>
                 <li class="post-comment">
-                  <a href="#"><i class="flaticon-comment"></i><span>Comment</span> <span class="number">599 </span></a>
+                  <a><i class="flaticon-comment"></i><span>Comment</span> <span class="number">599</span></a>
                 </li>
                 <li class="post-share">
-                  <a href="#"><i class="flaticon-share"></i><span>Share</span> <span class="number">24 </span></a>
+                  <a><i class="flaticon-share"></i><span>Share</span> <span class="number">24</span></a>
                 </li>
               </ul>
               <div class="post-comment-list">

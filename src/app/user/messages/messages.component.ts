@@ -37,6 +37,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.activateRoute.paramMap.subscribe(paramMap => {
       this.id = +paramMap.get("id");
+      this.getAllChatHistory(this.id, this.size)
     });
     this.currentUser = JSON.parse(localStorage.getItem('user'));
 
@@ -81,7 +82,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
       },
       status: true,
       receiver: {
-        id: user.id
+        id: this.id
       }
     }
     this.socketService.sendMessage(message);

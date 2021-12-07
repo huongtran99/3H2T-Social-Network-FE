@@ -3,7 +3,7 @@
   <form [formGroup]="postCreateForm" (ngSubmit)="submitCreate()">
     <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6" style="margin-left: auto; margin-right: auto"
          *ngIf="urlCreatePost">
-      <img [src]="urlCreatePost" style="border-radius: 3%; display: block; margin-left: auto; margin-right: auto;">
+      <img [src]="urlCreatePost" style="border-radius: 3%; display: block; margin-left: auto; margin-right: auto;" alt="">
     </div>
     <br>
     <div class="form-group">
@@ -15,8 +15,7 @@
         <label for="file-upload" class="custom-file-upload">
           <i class="flaticon-gallery"></i>Photo
         </label>
-        <input type="file" id="file-upload" name="fileName" (change)="fileProgress($event)"
-               (change)="addFileCreatePost($event)" multiple>
+        <input type="file" id="file-upload" name="fileName" (change)="uploadImage($event)" multiple>
       </li>
       <li class="video-btn">
         <label for="file-upload" class="custom-file-upload">

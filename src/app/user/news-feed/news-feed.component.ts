@@ -5,7 +5,7 @@ import {FileService} from "../../service/file.service";
 import {User} from "../../model/user";
 import {UserService} from "../../service/user.service";
 import {DataService} from "../../service/data.service";
-import {File} from "../../model/file";
+import {ReactionService} from "../../service/reaction.service";
 
 @Component({
   selector: 'app-news-feed',
@@ -15,13 +15,16 @@ import {File} from "../../model/file";
 export class NewsFeedComponent implements OnInit {
   posts: Post[] = [];
   page: any = 0;
-  files: File[] = [];
+  files: any[] = [];
   user: User;
+  like: any;
+  counts: any[] = [];
 
   constructor(private postService: PostService,
               private fileService: FileService,
               private userService: UserService,
-              private data: DataService) {
+              private data: DataService,
+              private reaction: ReactionService) {
     this.getAllPosts();
   }
 
@@ -30,7 +33,7 @@ export class NewsFeedComponent implements OnInit {
     console.log(this.user);
     this.getUserDetail();
     this.data.currentPost.subscribe((data: any) => this.posts = data);
-    /*this.data.currentFile.subscribe((data: any) => this.files = data);*/
+    this.data.currentFile.subscribe(data => this.files = data.getValue());
   }
 
   getUserDetail() {
@@ -43,7 +46,7 @@ export class NewsFeedComponent implements OnInit {
     this.postService.findAll(this.page).subscribe((post: any) => {
       this.posts = post.content;
       this.getFileByPostId();
-      console.log(this.files);
+      this.countLike();
     })
   }
 
@@ -52,6 +55,47 @@ export class NewsFeedComponent implements OnInit {
       this.fileService.findFileByPostId(this.posts[i]).subscribe(file => {
           console.log(file);
           this.files.push(file[0]);
+      })
+    }
+  }
+
+  likes(post) {
+    this.like = {
+      post: {
+        id: post.id
+      },
+      user: {
+        id: this.user.id
+      }
+    }
+    this.reaction.checkLike(post.id, this.user.id).subscribe(data => {
+      if(data != 1) {
+        this.reaction.like(this.like).subscribe(() => {
+          this.counts = [];
+          for (let i = 0; i < this.posts.length; i++) {
+            this.reaction.getLike(this.posts[i].id).subscribe((data: any) => {
+              this.counts.push(data);
+            })
+          }
+        })
+      } else {
+        this.reaction.unLike(post.id, this.user.id).subscribe(() => {
+          this.counts = [];
+          for (let i = 0; i < this.posts.length; i++) {
+            this.reaction.getLike(this.posts[i].id).subscribe((data: any) => {
+              this.counts.push(data);
+            })
+          }
+        })
+      }
+    })
+
+  }
+
+  countLike() {
+    for (let i = 0; i < this.posts.length; i++) {
+      this.reaction.getLike(this.posts[i].id).subscribe((data: any) => {
+        this.counts.push(data);
       })
     }
   }

@@ -63,7 +63,7 @@ export class NavbarComponent implements OnInit {
   }
 
   getAllUser() {
-    this.userService.getAllUserHasRole('user').subscribe(listUser => {
+    this.userService.getAllUserHasRole().subscribe(listUser => {
       this.listUser = listUser;
       this.listUser.map(user => user.dateTime = new Date(user.dateTime))
       console.log()

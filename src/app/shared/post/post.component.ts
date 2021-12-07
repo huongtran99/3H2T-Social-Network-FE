@@ -3,7 +3,6 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {User} from "../../model/user";
 import {PostService} from "../../service/post.service";
 import {FileService} from "../../service/file.service";
-import {Post} from "../../model/post";
 import {DataService} from "../../service/data.service";
 
 @Component({
@@ -30,7 +29,7 @@ export class PostComponent implements OnInit {
 
   ngOnInit() {
     this.data.currentPost.subscribe((data: any) => this.posts = data);
-    /*this.data.currentFile.subscribe((data: any) => this.files = data);*/
+    this.data.currentFile.subscribe(data => this.files = data.getValue());
   }
 
   addFileCreatePost(event: any) {
@@ -47,6 +46,11 @@ export class PostComponent implements OnInit {
     for (let i = 0; i < fileInput.target.files.length; i++) {
       this.fileData.push(fileInput.target.files[i]);
     }
+  }
+
+  uploadImage(event: any){
+    this.addFileCreatePost(event);
+    this.fileProgress(event);
   }
 
   submitCreate() {
@@ -66,13 +70,13 @@ export class PostComponent implements OnInit {
       this.postCreateForm.reset();
       this.urlCreatePost = "";
       this.postCreateForm = new FormGroup({
+        content: new FormControl(),
         status: new FormControl("Public"),
       })
       this.postService.findAll(this.page).subscribe((post: any) => {
         this.posts = post.content;
         this.data.changeData(this.posts);
         this.getFileByPostId();
-        console.log(this.files);
       })
       alert('Successful!');
     }, error => {
@@ -82,10 +86,10 @@ export class PostComponent implements OnInit {
 
   getFileByPostId() {
     for (let i = 0; i < this.posts.length; i++) {
-      this.fileService.findFileByPostId(this.posts[i]).subscribe((file: any) => {
+      this.fileService.findFileByPostId(this.posts[i]).subscribe(file => {
         console.log(file);
         this.files.push(file[0]);
-        this.data.changeFileData(file);
+        this.data.changeFileData(this.files);
       })
     }
   }
