@@ -37,7 +37,6 @@ export class NewsFeedComponent implements OnInit {
     console.log(this.user);
     this.getUserDetail();
     this.data.currentPost.subscribe((data: any) => this.posts = data);
-    this.data.currentFile.subscribe((data: any) => this.files = data);
   }
 
   getUserDetail() {
@@ -58,9 +57,6 @@ export class NewsFeedComponent implements OnInit {
     for (let i = 0; i < posts.length; i++) {
       this.fileService.findFileByPostId(posts[i]).subscribe(file => {
         posts[i].file = file[0];
-        console.log(file);
-        this.files.push(file[0]);
-        this.data.changeFileData(this.files);
       })
     }
   }

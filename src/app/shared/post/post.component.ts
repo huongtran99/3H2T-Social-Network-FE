@@ -29,7 +29,6 @@ export class PostComponent implements OnInit {
 
   ngOnInit() {
     this.data.currentPost.subscribe((data: any) => this.posts = data);
-    this.data.currentFile.subscribe((data: any) => this.files = data);
   }
 
   addFileCreatePost(event: any) {
@@ -43,6 +42,7 @@ export class PostComponent implements OnInit {
   }
 
   fileProgress(fileInput: any) {
+    this.fileData = [];
     for (let i = 0; i < fileInput.target.files.length; i++) {
       this.fileData.push(fileInput.target.files[i]);
     }
@@ -68,7 +68,6 @@ export class PostComponent implements OnInit {
       formData.append('post.id', post.id);
       this.fileService.createFile(formData).subscribe();
       this.postCreateForm.reset();
-      this.fileData = [];
       this.urlCreatePost = "";
       this.postCreateForm = new FormGroup({
         content: new FormControl(),
@@ -88,9 +87,6 @@ export class PostComponent implements OnInit {
     for (let i = 0; i < posts.length; i++) {
       this.fileService.findFileByPostId(posts[i]).subscribe(file => {
         posts[i].file = file[0];
-        console.log(file);
-        this.files.push(file[0]);
-        this.data.changeFileData(this.files);
       })
     }
   }
