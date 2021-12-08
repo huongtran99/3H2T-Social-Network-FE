@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit {
     email: new FormControl(),
     phone: new FormControl(),
     birthday: new FormControl(),
-    gender: new FormControl(),
+    gender: new FormControl()
   });
 
   id: number;

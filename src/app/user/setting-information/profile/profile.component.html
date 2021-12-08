@@ -45,7 +45,7 @@
                        pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">
                 <div *ngIf="email.invalid && (email.dirty || email.touched)">
                   <div class="error-message" *ngIf="email.errors?.required">Enter your email!</div>
-                  <div class="error-message" *ngIf="email.errors?.pattern">* invalid email address</div>
+                  <div class="error-message" *ngIf="email.errors?.pattern">Sorry! Only letters (a-z), numbers(0-9) and periods (.) are allowed. Like as "abc@gmail.com"</div>
                 </div>
               </div>
             </div>
@@ -53,10 +53,10 @@
               <div class="form-group">
                 <label>Phone</label>
                 <input type="text" class="form-control" formControlName="phone" required
-                       pattern="\\d{9,11}">
+                       pattern="(84|0)+([0-9]{9})\b">
                 <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
                   <div class="error-message" *ngIf="phone.errors?.required">Enter your phone!</div>
-                  <div class="error-message" *ngIf="phone.errors?.pattern">* invalid phone address</div>
+                  <div class="error-message" *ngIf="phone.errors?.pattern">Please, enter 10 mobile number!</div>
                 </div>
               </div>
             </div>
@@ -66,10 +66,10 @@
               <div class="form-group">
                 <label>Birthday</label>
                 <input type="text" class="form-control" formControlName="birthday" required
-                       pattern="MM/DD/YYYY">
+                       pattern="^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$">
                 <div *ngIf="birthday.invalid && (birthday.dirty || birthday.touched)">
                   <div class="error-message" *ngIf="birthday.errors?.required">Enter your birthday!</div>
-                  <div class="error-message" *ngIf="birthday.errors?.pattern">* invalid birthday address</div>
+                  <div class="error-message" *ngIf="birthday.errors?.pattern">Please enter the date in DD/MM/YYYY format.</div>
                 </div>
               </div>
             </div>
@@ -80,9 +80,6 @@
                 <label>Gender: </label>
                 <input type="radio" value="male" name="gender" formControlName="gender"> Male
                 <input type="radio" value="female" name="gender" formControlName="gender"> Female
-                <div *ngIf="birthday.invalid && (birthday.dirty || birthday.touched)">
-                  <div class="error-message" *ngIf="birthday.errors?.required">Choose your gender!</div>
-                </div>
               </div>
             </div>
           </div>
