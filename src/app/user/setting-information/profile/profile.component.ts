@@ -11,12 +11,13 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class ProfileComponent implements OnInit {
 
-  userForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email, Validators.pattern("^[_A-Za-z0-9-\\\\+]+(\\\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\\\.[A-Za-z0-9]+)*(\\\\.[A-Za-z]{2,})$")]),
-    phone: new FormControl('',[Validators.required, Validators.pattern("\\d{9,11}")]),
-    birthday: new FormControl('', [Validators.required, Validators.pattern("MM/dd/yyyy")]),
-    gender: new FormControl('', [Validators.required])
-  })
+  userForm: FormGroup = new FormGroup({
+    email: new FormControl(),
+    phone: new FormControl(),
+    birthday: new FormControl(),
+    gender: new FormControl(),
+  });
+
   id: number;
   user: User = {};
 
@@ -45,7 +46,7 @@ export class ProfileComponent implements OnInit {
 
   submitEdit() {
     this.userService.editInformation(this.id, this.userForm.value).subscribe(() => {
-      alert('Success!Thank you.');
+      alert('Update success!Thank you.');
     }, error => {
       console.log(error);
     });

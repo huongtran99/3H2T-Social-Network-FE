@@ -37,72 +37,58 @@
       <div class="tab-pane fade show active" id="profile-information" role="tabpanel">
         <form class="account-setting-form" [formGroup]="userForm" (ngSubmit)="userForm.valid && submitEdit()">
           <h3>Profile Information</h3>
-            <div class="row">
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                    <label for="email" class="form-label">Email:</label>
-                    <input type="text" name="email" id="email" name="email" class="form-control" formControlName="email"
-                           placeholder="Enter your email">
-                  <div *ngIf="!email.valid && (email.dirty ||email.touched)">
-                    <p [hidden]="!email.errors.pattern || !email.errors.email" style="color: red">
-                      Email is valid
-                    </p>
-                    <p [hidden]="!email.errors.required" style="color: red">
-                      Please, enter your email!
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label for="phone" class="form-label">Phone:</label>
-                  <input type="text" id="phone" name="phone" class="form-control" formControlName="phone"
-                         placeholder="Enter your phone">
-                  <div *ngIf="!phone.valid && (phone.dirty ||phone.touched)">
-                    <p [hidden]="!phone.errors.pattern" style="color: red">
-                      Phone have from 9 to 11 number!
-                    </p>
-                    <p [hidden]="!phone.errors.required" style="color: red">
-                      Please, enter your phone!
-                    </p>
-                  </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" class="form-control" formControlName="email" required
+                       pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">
+                <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                  <div class="error-message" *ngIf="email.errors?.required">Enter your email!</div>
+                  <div class="error-message" *ngIf="email.errors?.pattern">* invalid email address</div>
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label for="birthday" class="form-label">Birthday:</label>
-                  <input type="text" id="birthday" name="birthday" class="form-control" formControlName="birthday"
-                         placeholder="Enter your birthday">
-                  <div *ngIf="!birthday.valid && (birthday.dirty ||birthday.touched)">
-                    <p [hidden]="!birthday.errors.pattern" style="color: red">
-                      Not valid! Like as MM/dd/yyyy
-                    </p>
-                    <p [hidden]="!birthday.errors.required" style="color: red">
-                      Please, enter your phone!
-                    </p>
-                  </div>
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group">
+                <label>Phone</label>
+                <input type="text" class="form-control" formControlName="phone" required
+                       pattern="\\d{9,11}">
+                <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+                  <div class="error-message" *ngIf="phone.errors?.required">Enter your phone!</div>
+                  <div class="error-message" *ngIf="phone.errors?.pattern">* invalid phone address</div>
                 </div>
               </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group">
+                <label>Birthday</label>
+                <input type="text" class="form-control" formControlName="birthday" required
+                       pattern="MM/DD/YYYY">
+                <div *ngIf="birthday.invalid && (birthday.dirty || birthday.touched)">
+                  <div class="error-message" *ngIf="birthday.errors?.required">Enter your birthday!</div>
+                  <div class="error-message" *ngIf="birthday.errors?.pattern">* invalid birthday address</div>
+                </div>
+              </div>
+            </div>
 
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <br>
-                  <label class="form-label">Gender: </label>
-                  <input type="radio" value="male" name="gender" formControlName="gender"> Male
-                  <input type="radio" value="female" name="gender" formControlName="gender"> Female
-                  <div *ngIf="!gender.valid && (gender.dirty ||gender.touched)">
-                    <div [hidden]="!gender.errors.required">
-                      Gender is required.
-                    </div>
-                  </div>
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group">
+                <br>
+                <label>Gender: </label>
+                <input type="radio" value="male" name="gender" formControlName="gender"> Male
+                <input type="radio" value="female" name="gender" formControlName="gender"> Female
+                <div *ngIf="birthday.invalid && (birthday.dirty || birthday.touched)">
+                  <div class="error-message" *ngIf="birthday.errors?.required">Choose your gender!</div>
                 </div>
               </div>
             </div>
-            <div class="col-lg-12 col-md-12">
-              <button type="submit" class="default-btn">Save</button>
-            </div>
+          </div>
+          <div class="col-lg-12 col-md-12">
+            <button type="submit" class="default-btn">Save</button>
+          </div>
         </form>
       </div>
     </div>

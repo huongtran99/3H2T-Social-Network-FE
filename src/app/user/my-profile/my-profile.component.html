@@ -5,9 +5,8 @@
     <div class="my-profile-inner-box">
       <div class="profile-cover-image">
         <a href="#">
-          <img src="http://localhost:8080/{{user.cover}}" alt="image">
+          <img src="http://localhost:8080/{{user.cover}}" alt="image" style="width:1200px; height:400px">
         </a>
-
         <label for="cover-upload" class="edit-cover-btn cover-btn-custom">Edit Cover</label>
         <input type="file" id="cover-upload" name="coverFile" (change)="fileCoverUpload($event)">
 
@@ -16,7 +15,7 @@
         <div class="inner-info-box d-flex justify-content-between align-items-center">
           <div class="info-image">
             <a href="#">
-              <img src="http://localhost:8080/{{user.avatar}}" alt="image">
+              <img src="http://localhost:8080/{{user.avatar}}" alt="image" style="width:250px; height:250px">
             </a>
             <div class="icon">
               <label for="avatar-upload"><i class="flaticon-photo-camera avatar-btn-custom"></i></label>

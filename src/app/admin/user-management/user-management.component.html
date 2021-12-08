@@ -19,14 +19,11 @@
         <td>{{user.email}}</td>
         <td>{{user.phone}}</td>
         <td class="project-state">
-          <div class="form-check form-switch">
-            <span *ngIf="i">
-              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-            </span>
-            <span *ngIf="i">
-              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
-            </span>
-
+          <div class="form-check form-switch" *ngIf="!user.status">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" (change)="changeStatusUser(user.id)">
+          </div>
+          <div class="form-check form-switch" *ngIf="user.status">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" (change)="changeStatusUser(user.id)" checked>
           </div>
         </td>
         <td class="project-actions text-right">

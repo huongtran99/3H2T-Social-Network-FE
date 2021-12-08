@@ -44,4 +44,8 @@ export class UserService {
   getPasswordTrue(id: number, password :string) : Observable<boolean>{
     return this.http.get<boolean>(`http://localhost:8080/users/getPasswordTrue/${id}?password=${password}`);
   }
+
+  changeStatusUser(id: number): Observable<any> {
+    return this.http.get<any>(`http://localhost:8080/users/update-status/${id}`);
+  }
 }
