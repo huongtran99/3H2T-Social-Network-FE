@@ -5,11 +5,11 @@
     <div class="my-profile-inner-box">
       <div class="profile-cover-image">
         <a href="#">
-          <img src="assets/images/my-profile-bg.jpg" alt="image">
+          <img src="http://localhost:8080/{{user.cover}}" alt="image">
         </a>
 
         <label for="cover-upload" class="edit-cover-btn cover-btn-custom">Edit Cover</label>
-        <input type="file" id="cover-upload" name="coverFile" multiple>
+        <input type="file" id="cover-upload" name="coverFile" (change)="fileCoverUpload($event)">
 
       </div>
       <div class="profile-info-box">
@@ -20,11 +20,8 @@
             </a>
             <div class="icon">
               <label for="avatar-upload"><i class="flaticon-photo-camera avatar-btn-custom"></i></label>
-              <input type="file" id="avatar-upload" name="avatarFile" multiple>
+              <input type="file" id="avatar-upload" name="avatarFile" (change)="fileProgress($event)">
             </div>
-
-
-
           </div>
           <div class="info-text ms-3">
             <h3><a href="#">{{user.username}}</a></h3>

@@ -26,12 +26,12 @@ export class UserService {
     return this.http.put<User>(`http://localhost:8080/users/update-information/${id}`, user);
   }
 
-  editCover(id: number, user: User): Observable<User> {
-    return this.http.put<User>(`http://localhost:8080/users/update-cover/${id}`, user);
+  editCover(id: number, userForm: any): Observable<any> {
+    return this.http.put<any>(`http://localhost:8080/users/update-cover/${id}`, userForm);
   }
 
-  editAvatar(id: number, user: User): Observable<User> {
-    return this.http.put<User>(`http://localhost:8080/users/update-avatar/${id}`, user);
+  editAvatar(id: number, userForm: any): Observable<any> {
+    return this.http.put<any>(`http://localhost:8080/users/update-avatar/${id}`, userForm);
   }
 
   getAllUserHasRole(user: string): Observable<User[]> {

@@ -44,9 +44,6 @@ const routes: Routes = [
     component: PasswordComponent
   },
   {
-    path: 'my-profile/about',
-    component: MyProfileComponent
-  },{
     path: 'setting',
     component: SettingInformationComponent
   }

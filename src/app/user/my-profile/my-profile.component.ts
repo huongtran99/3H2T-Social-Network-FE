@@ -25,6 +25,10 @@ export class MyProfileComponent implements OnInit, OnChanges {
   files: File[] = [];
   searchForm: FormGroup = new FormGroup({});
   user: User;
+  fileImage: any;
+  userForm = new FormGroup({
+    avatar: new FormControl()
+  })
 
   constructor(private postService: PostService,
               private fileService: FileService,
@@ -98,4 +102,35 @@ export class MyProfileComponent implements OnInit, OnChanges {
     });
   }
 
+  fileProgress(fileInput: any) {
+    this.fileImage = fileInput.target.files[0];
+    this.editAvatar();
+  }
+
+  editAvatar() {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    const formData = new FormData();
+    formData.append('avatar', this.fileImage);
+    this.userService.editAvatar(this.user.id, formData).subscribe(() => {
+      this.userService.getUserDetail(this.user.id).subscribe(data => {
+        this.user = data;
+      })
+    })
+  }
+
+  fileCoverUpload(fileInput: any) {
+    this.fileImage = fileInput.target.files[0];
+    this.editCover();
+  }
+
+  editCover(){
+    this.user = JSON.parse(localStorage.getItem('user'));
+    const formData = new FormData();
+    formData.append('cover', this.fileImage);
+    this.userService.editCover(this.user.id, formData).subscribe(() => {
+      this.userService.getUserDetail(this.user.id).subscribe(data => {
+        this.user = data;
+      })
+    })
+  }
 }

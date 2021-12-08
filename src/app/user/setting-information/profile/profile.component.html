@@ -35,34 +35,37 @@
     </div>
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active" id="profile-information" role="tabpanel">
-        <form class="account-setting-form">
+        <form class="account-setting-form" [formGroup]="userForm" (ngSubmit)="userForm.valid && submitEdit()">
           <h3>Profile Information</h3>
-          <form [formGroup]="userForm" (ngSubmit)="userForm.valid && submitEdit()">
             <div class="row">
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label for="email" class="form-label">Email:</label>
-                  <input type="text" name="email" id="email" class="form-control" formControlName="email"
-                         placeholder="Enter your email" email required pattern>
-                  <ng-container *ngIf="email.invalid && email.dirty">
-                    <p style="color: red" *ngIf="email.errors?.email || email.errors?.pattern">Email is valid</p>
-                  </ng-container>
-                  <ng-container *ngIf="email.invalid && email.dirty">
-                    <p style="color: red" *ngIf="email.errors?.required">Enter your email.</p>
-                  </ng-container>
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="text" name="email" id="email" name="email" class="form-control" formControlName="email"
+                           placeholder="Enter your email">
+                  <div *ngIf="!email.valid && (email.dirty ||email.touched)">
+                    <p [hidden]="!email.errors.pattern || !email.errors.email" style="color: red">
+                      Email is valid
+                    </p>
+                    <p [hidden]="!email.errors.required" style="color: red">
+                      Please, enter your email!
+                    </p>
+                  </div>
                 </div>
               </div>
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
                   <label for="phone" class="form-label">Phone:</label>
-                  <input type="text" id="phone" class="form-control" formControlName="phone"
-                         placeholder="Enter your phone" required pattern>
-                  <ng-container *ngIf="phone.invalid && phone.dirty">
-                    <p style="color: red" *ngIf="phone.errors?.pattern || phone.errors?.length">Phone is valid</p>
-                  </ng-container>
-                  <ng-container *ngIf="phone.invalid && phone.dirty">
-                    <p style="color: red" *ngIf="phone.errors?.required">Enter your phone</p>
-                  </ng-container>
+                  <input type="text" id="phone" name="phone" class="form-control" formControlName="phone"
+                         placeholder="Enter your phone">
+                  <div *ngIf="!phone.valid && (phone.dirty ||phone.touched)">
+                    <p [hidden]="!phone.errors.pattern" style="color: red">
+                      Phone have from 9 to 11 number!
+                    </p>
+                    <p [hidden]="!phone.errors.required" style="color: red">
+                      Please, enter your phone!
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -70,14 +73,16 @@
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
                   <label for="birthday" class="form-label">Birthday:</label>
-                  <input type="text" id="birthday" class="form-control" formControlName="birthday"
-                         placeholder="Enter your birthday" required pattern>
-                  <ng-container *ngIf="birthday.invalid && birthday.dirty">
-                    <p style="color: red" *ngIf="birthday.errors?.pattern">Birthday is valid</p>
-                  </ng-container>
-                  <ng-container *ngIf="birthday.invalid && birthday.dirty">
-                    <p style="color: red" *ngIf="birthday.errors?.required">Enter your birthday</p>
-                  </ng-container>
+                  <input type="text" id="birthday" name="birthday" class="form-control" formControlName="birthday"
+                         placeholder="Enter your birthday">
+                  <div *ngIf="!birthday.valid && (birthday.dirty ||birthday.touched)">
+                    <p [hidden]="!birthday.errors.pattern" style="color: red">
+                      Not valid! Like as MM/dd/yyyy
+                    </p>
+                    <p [hidden]="!birthday.errors.required" style="color: red">
+                      Please, enter your phone!
+                    </p>
+                  </div>
                 </div>
               </div>
 
@@ -89,16 +94,15 @@
                   <input type="radio" value="female" name="gender" formControlName="gender"> Female
                   <div *ngIf="!gender.valid && (gender.dirty ||gender.touched)">
                     <div [hidden]="!gender.errors.required">
-                      gender is required
+                      Gender is required.
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-lg-12 col-md-12">
-              <button type="submit" [disabled]="!userForm.valid" class="default-btn">Save</button>
+              <button type="submit" class="default-btn">Save</button>
             </div>
-          </form>
         </form>
       </div>
     </div>
