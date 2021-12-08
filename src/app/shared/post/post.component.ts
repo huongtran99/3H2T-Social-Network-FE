@@ -18,7 +18,7 @@ export class PostComponent implements OnInit {
   fileData: File[] = [];
   user: User;
   urlCreatePost: any;
-  posts: any;
+  posts: any[] = [];
   page: any = 0;
   files: any[] = [];
 
@@ -28,6 +28,7 @@ export class PostComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.data.currentPost.subscribe((data: any) => this.posts = data);
   }
 
   addFileCreatePost(event: any) {
@@ -41,9 +42,15 @@ export class PostComponent implements OnInit {
   }
 
   fileProgress(fileInput: any) {
+    this.fileData = [];
     for (let i = 0; i < fileInput.target.files.length; i++) {
       this.fileData.push(fileInput.target.files[i]);
     }
+  }
+
+  uploadImage(event: any){
+    this.addFileCreatePost(event);
+    this.fileProgress(event);
   }
 
   submitCreate() {
@@ -53,7 +60,6 @@ export class PostComponent implements OnInit {
       id: this.user.id
     };
     this.postService.createNew(post).subscribe((data) => {
-      this.postService.postListMyProfile.unshift(data);
       post.id = data.id;
       const formData = new FormData();
       for (let i = 0; i < this.fileData.length; i++) {
@@ -62,38 +68,27 @@ export class PostComponent implements OnInit {
       formData.append('post.id', post.id);
       this.fileService.createFile(formData).subscribe();
       this.postCreateForm.reset();
-      this.fileData = [];
       this.urlCreatePost = "";
       this.postCreateForm = new FormGroup({
         content: new FormControl(),
         status: new FormControl("Public"),
       })
       this.postService.findAll(this.page).subscribe((post: any) => {
-        this.postService.postListMyProfile = post.content;
-        this.data.changeData(this.postService.postListMyProfile);
-        this.getFileByPostId();
-        console.log(this.files);
+        this.posts = post.content;
+        this.data.changeData(this.posts);
+        this.getFileByPostId(this.posts);
       })
+    }, error => {
+      alert('Error!')
     })
   }
 
-  getFileByPostId() {
-    for (let i = 0; i < this.postService.postListMyProfile.length; i++) {
-      this.fileService.findFileByPostId(this.postService.postListMyProfile[i]).subscribe((file: any) => {
-        console.log(file);
-        this.postService.postListMyProfile[i].file = file[0];
-        this.files.push(file[0]);
-        this.data.changeFileData(file);
+  getFileByPostId(posts: any) {
+    for (let i = 0; i < posts.length; i++) {
+      this.fileService.findFileByPostId(posts[i]).subscribe(file => {
+        posts[i].file = file[0];
       })
     }
   }
 
-  uploadImage($event) {
-    this.fileProgress($event);
-    this.addFileCreatePost($event);
-  }
-
-  deleteImage() {
-    this.urlCreatePost = '';
-  }
 }

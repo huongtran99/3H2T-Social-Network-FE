@@ -295,7 +295,7 @@
                   </div>
                 </div>
               </div>
-              <div class="news-feed news-feed-post" *ngFor="let post of postService.postListMyProfile; index as i">
+              <div class="news-feed news-feed-post" *ngFor="let post of posts; index as i">
                 <div class="post-header d-flex justify-content-between align-items-center">
                   <div class="image">
                     <a href="my-profile.html"><img src="http://localhost:8080/{{user.avatar}}"
@@ -1088,7 +1088,7 @@
           <form [formGroup]="postEditForm" (ngSubmit)="submitEdit()">
             <br>
             <div class="form-group" *ngFor="let post of posts; index as i">
-              <img src="http://localhost:8080/{{files[i]?.fileName}}" alt="image">
+              <img src="http://localhost:8080/{{post.file?.fileName}}" alt="image">
               <textarea name="content" class="form-control" formControlName="content"></textarea>
             </div>
             <ul class="button-group d-flex justify-content-between align-items-center">

@@ -6,6 +6,8 @@ import {FileService} from "../../service/file.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {User} from 'src/app/model/user';
 import {UserService} from "../../service/user.service";
+import {DataService} from "../../service/data.service";
+import {NotificationService} from "../../service/notification.service";
 
 @Component({
   selector: 'app-my-profile',
@@ -15,28 +17,29 @@ import {UserService} from "../../service/user.service";
 export class MyProfileComponent implements OnInit {
   id: number;
   post: Post = {};
-  posts: any;
+  posts: Post[] = [];
+  page: any = 0;
+  files: any[] = [];
   postEditForm: FormGroup = new FormGroup({
     id: new FormControl(),
     content: new FormControl(),
     status: new FormControl("Public"),
   });
-  page: any = 0;
-  files: File[] = [];
   searchForm: FormGroup = new FormGroup({});
   user: User;
 
   constructor(private postService: PostService,
               private fileService: FileService,
-              private userService: UserService) {
+              private userService: UserService,
+              private dataService: DataService) {
     this.getAllPostsByUser();
-    this.getFileByPostId();
+    this.getFileByPostId(this.posts);
   }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
-    console.log(this.user);
     this.getUserDetail();
+    this.dataService.currentPost.subscribe((data: any) => this.posts = data);
   }
 
   getUserDetail() {
@@ -47,18 +50,16 @@ export class MyProfileComponent implements OnInit {
 
   getAllPostsByUser() {
     this.user = JSON.parse(localStorage.getItem('user'));
-    console.log(this.user.id);
     this.postService.findAllByUser(this.user.id, this.page).subscribe((post: any) => {
-      this.postService.postListMyProfile = post.content;
-      this.getFileByPostId();
-      console.log(this.files);
+      this.posts = post.content;
+      this.getFileByPostId(this.posts);
     })
   }
 
-  getFileByPostId() {
-    for (let i = 0; i < this.postService.postListMyProfile.length; i++) {
-      this.fileService.findFileByPostId(this.postService.postListMyProfile[i]).subscribe(file => {
-        this.postService.postListMyProfile[i].file = file[0];
+  getFileByPostId(posts: any) {
+    for (let i = 0; i < posts.length; i++) {
+      this.fileService.findFileByPostId(posts[i]).subscribe(file => {
+        posts[i].file = file[0];
       })
     }
   }
