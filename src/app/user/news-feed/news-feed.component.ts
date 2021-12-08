@@ -6,6 +6,8 @@ import {User} from "../../model/user";
 import {UserService} from "../../service/user.service";
 import {DataService} from "../../service/data.service";
 import {ReactionService} from "../../service/reaction.service";
+import {Notification} from "../../model/Notification";
+import {NotificationService} from "../../service/notification.service";
 
 @Component({
   selector: 'app-news-feed',
@@ -19,12 +21,14 @@ export class NewsFeedComponent implements OnInit {
   user: User;
   like: any;
   counts: any[] = [];
+  notification: Notification = {};
 
   constructor(private postService: PostService,
               private fileService: FileService,
               private userService: UserService,
               private data: DataService,
-              private reaction: ReactionService) {
+              private reaction: ReactionService,
+              private notificationService: NotificationService) {
     this.getAllPosts();
   }
 
@@ -33,7 +37,7 @@ export class NewsFeedComponent implements OnInit {
     console.log(this.user);
     this.getUserDetail();
     this.data.currentPost.subscribe((data: any) => this.posts = data);
-    this.data.currentFile.subscribe(data => this.files = data.getValue());
+    this.data.currentFile.subscribe((data: any) => this.files = data);
   }
 
   getUserDetail() {
@@ -45,16 +49,18 @@ export class NewsFeedComponent implements OnInit {
   getAllPosts() {
     this.postService.findAll(this.page).subscribe((post: any) => {
       this.posts = post.content;
-      this.getFileByPostId();
+      this.getFileByPostId(this.posts);
       this.countLike();
     })
   }
 
-  getFileByPostId() {
-    for (let i = 0; i < this.posts.length; i++) {
-      this.fileService.findFileByPostId(this.posts[i]).subscribe(file => {
-          console.log(file);
-          this.files.push(file[0]);
+  getFileByPostId(posts: any) {
+    for (let i = 0; i < posts.length; i++) {
+      this.fileService.findFileByPostId(posts[i]).subscribe(file => {
+        posts[i].file = file[0];
+        console.log(file);
+        this.files.push(file[0]);
+        this.data.changeFileData(this.files);
       })
     }
   }
@@ -76,6 +82,14 @@ export class NewsFeedComponent implements OnInit {
             this.reaction.getLike(this.posts[i].id).subscribe((data: any) => {
               this.counts.push(data);
             })
+          }
+          this.notification = {
+            content: " đã thích bài viết của bạn",
+            user: post.user,
+            sender: this.user
+          };
+          if(this.user.id != post.user.id) {
+            this.notificationService.createNotification(this.notification).subscribe();
           }
         })
       } else {

@@ -4,4 +4,5 @@ export interface Post {
   content?: string,
   dateTime?: Date,
   status?: string
+  file?: any;
 }

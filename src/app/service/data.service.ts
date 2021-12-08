@@ -10,7 +10,6 @@ export class DataService {
 
   private fileSource = new BehaviorSubject(null);
   currentFile = this.fileSource.asObservable();
-  data: any[] = [];
 
   constructor() {
   }
@@ -20,8 +19,8 @@ export class DataService {
   }
 
   changeFileData(data: any) {
-    this.data.push(data);
-    this.fileSource.next(this.data);
+    this.fileSource.next(data);
+    console.log(this.currentFile);
   }
 
   ngOnDestroy() {

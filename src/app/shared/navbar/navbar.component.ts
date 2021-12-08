@@ -49,6 +49,7 @@ export class NavbarComponent implements OnInit {
   getNotificationByUserId() {
     this.notificationService.getNotificationByUserid(this.user.id).subscribe((data: any) => {
       this.notifications = data;
+      this.notifications.reverse();
     })
   }
 
