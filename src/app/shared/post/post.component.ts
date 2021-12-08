@@ -3,6 +3,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {User} from "../../model/user";
 import {PostService} from "../../service/post.service";
 import {FileService} from "../../service/file.service";
+import {SweetalertService} from "../../service/sweetalert.service";
 
 @Component({
   selector: 'app-post',
@@ -19,7 +20,8 @@ export class PostComponent implements OnInit {
   urlCreatePost: any;
 
   constructor(private postService: PostService,
-              private fileService: FileService) {
+              private fileService: FileService,
+              private sweetalertService: SweetalertService) {
   }
 
   ngOnInit() {
@@ -60,9 +62,9 @@ export class PostComponent implements OnInit {
       this.postCreateForm = new FormGroup({
         status: new FormControl("Public"),
       })
-      alert('Successful!');
+      this.sweetalertService.alertSuccess('Successful!');
     }, error => {
-      alert('Error!')
+      this.sweetalertService.alertError('Error!')
     })
   }
 }

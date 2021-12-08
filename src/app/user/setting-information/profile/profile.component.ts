@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {User} from "../../../model/user";
 import {UserService} from "../../../service/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {SweetalertService} from "../../../service/sweetalert.service";
 
 @Component({
   selector: 'app-profile',
@@ -22,7 +23,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(private userService: UserService,
               private activatedRouter: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private sweetalertService: SweetalertService) {
     this.activatedRouter.paramMap.subscribe(pramMap => {
       this.id = +pramMap.get('id');
       this.userService.getUserDetail(this.id).subscribe(data => {
@@ -43,7 +45,7 @@ export class ProfileComponent implements OnInit {
 
   submitEdit() {
     this.userService.editInformation(this.id, this.userForm.value).subscribe(() => {
-      alert('Success!Thank you.');
+      this.sweetalertService.alertSuccess('Success!Thank you.');
     }, error => {
       console.log(error);
     });

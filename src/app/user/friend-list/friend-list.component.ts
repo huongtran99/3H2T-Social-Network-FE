@@ -22,6 +22,7 @@ export class FriendListComponent implements OnInit {
     this.user = JSON.parse(localStorage.getItem('user'));
     this.friendService.getAllFriend(this.user.id).subscribe(data => {
       this.friends = data;
+      this.getFriend();
     });
   }
 

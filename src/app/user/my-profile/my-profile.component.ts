@@ -6,6 +6,7 @@ import {FileService} from "../../service/file.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {User} from 'src/app/model/user';
 import {UserService} from "../../service/user.service";
+import {SweetalertService} from "../../service/sweetalert.service";
 
 @Component({
   selector: 'app-my-profile',
@@ -28,7 +29,8 @@ export class MyProfileComponent implements OnInit, OnChanges {
 
   constructor(private postService: PostService,
               private fileService: FileService,
-              private userService: UserService) {
+              private userService: UserService,
+              private sweetalertService: SweetalertService) {
     this.getAllPostsByUser();
     this.getFileByPostId();
   }
@@ -84,17 +86,17 @@ export class MyProfileComponent implements OnInit, OnChanges {
   submitEdit() {
     const post = this.postEditForm.value;
     this.postService.editById(this.id, post).subscribe(() => {
-      alert('Successful!');
+      this.sweetalertService.alertSuccess('Successful!');
     }, error => {
-      alert('Error!');
+      this.sweetalertService.alertError('Error!');
     });
   }
 
   submitDelete() {
     this.postService.deleteById(this.id).subscribe(() => {
-      alert('Successful!');
+      this.sweetalertService.alertSuccess('Successful!');
     }, error => {
-      alert('Error!');
+      this.sweetalertService.alertError('Error!');
     });
   }
 

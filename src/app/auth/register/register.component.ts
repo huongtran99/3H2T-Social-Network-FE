@@ -3,6 +3,7 @@ import {Form, FormControl, FormGroup} from "@angular/forms";
 import {AuthenticationService} from "../../service/authentication.service";
 import {Router} from "@angular/router";
 import {User} from "../../model/user";
+import {SweetalertService} from "../../service/sweetalert.service";
 
 @Component({
   selector: 'app-register',
@@ -35,7 +36,8 @@ export class RegisterComponent implements OnInit {
   }
 
   constructor(private auth: AuthenticationService,
-              private router: Router) {
+              private router: Router,
+              private sweetalertService: SweetalertService) {
   }
 
   ngOnInit() {
@@ -43,7 +45,7 @@ export class RegisterComponent implements OnInit {
 
   register() {
     if (this.formRegister.value.password != this.formRegister.value.rePassword) {
-      alert("fail!");
+      this.sweetalertService.alertSuccess("fail!");
       return;
     }
     this.auth.register(this.formRegister.value).subscribe(() => {

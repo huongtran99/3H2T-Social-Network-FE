@@ -24,6 +24,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
   currentIndex = 0;
   id: number = -1;
   listMessage: Message[] = [];
+  user: User;
 
 
   constructor(private messageService: MessageService,
@@ -39,6 +40,9 @@ export class MessagesComponent implements OnInit, OnDestroy {
     this.activateRoute.paramMap.subscribe(paramMap => {
       this.id = +paramMap.get("id");
       this.getAllChatHistory(this.id, this.size);
+      this.userService.getUserDetail(this.id).subscribe(data => {
+        this.user = data;
+      })
     });
     console.log(this.id)
     this.currentUser = JSON.parse(localStorage.getItem('user'));

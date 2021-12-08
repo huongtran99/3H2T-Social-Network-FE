@@ -6,6 +6,7 @@ import {Notification} from "../../../model/Notification";
 import {FriendService} from "../../../service/friend.service";
 import {NotificationService} from "../../../service/notification.service";
 import {Friend} from "../../../model/friend";
+import {SweetalertService} from "../../../service/sweetalert.service";
 
 @Component({
   selector: 'app-friend-info',
@@ -25,7 +26,8 @@ export class FriendInfoComponent implements OnInit {
   constructor(private userService: UserService,
               private activateRoute: ActivatedRoute,
               private friendService: FriendService,
-              private notificationService: NotificationService) {
+              private notificationService: NotificationService,
+              private sweetalertService: SweetalertService) {
     this.activateRoute.paramMap.subscribe(paramMap => {
       this.id = +paramMap.get('id');
       this.userService.getUserDetail(this.id).subscribe(user => {
@@ -54,25 +56,25 @@ export class FriendInfoComponent implements OnInit {
 
   confirm() {
     this.friendService.confirm(this.id, this.sender).subscribe(() => {
-      alert("Kết bạn thành công!");
+      this.sweetalertService.alertSuccess("Kết bạn thành công!");
     })
   }
 
   deleteFriend() {
     if (!this.status) {
       this.friendService.deleteFriend(this.id, this.sender.id).subscribe(() => {
-        alert("ok");
+        this.sweetalertService.alertSuccess("ok");
       })
     } else {
       this.friendService.deleteFriend(this.sender.id, this.id).subscribe(() => {
-        alert("ok");
+        this.sweetalertService.alertSuccess("ok");
       })
     }
   }
 
   addFriend() {
     this.friendService.addFriend(this.id, this.sender).subscribe(() => {
-      alert("đã gửi lời mời kết bạn");
+      this.sweetalertService.alertSuccess("đã gửi lời mời kết bạn");
       this.notification = {
         content: this.sender.username + " đã gửi cho bạn 1 lời mời kết bạn",
         user: this.user,

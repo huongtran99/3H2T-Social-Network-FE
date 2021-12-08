@@ -5,4 +5,5 @@ export interface Message {
   content?: string;
   status?: boolean;
   dateTime?: Date;
+  chatRoom?: any;
 }
