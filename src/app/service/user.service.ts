@@ -27,12 +27,12 @@ export class UserService {
     return this.http.put<User>(`http://localhost:8080/users/update-information/${id}`, user);
   }
 
-  editCover(id: number, user: User): Observable<User> {
-    return this.http.put<User>(`http://localhost:8080/users/update-cover/${id}`, user);
+  editCover(id: number, userForm: any): Observable<any> {
+    return this.http.put<any>(`http://localhost:8080/users/update-cover/${id}`, userForm);
   }
 
-  editAvatar(id: number, user: User): Observable<User> {
-    return this.http.put<User>(`http://localhost:8080/users/update-avatar/${id}`, user);
+  editAvatar(id: number, userForm: any): Observable<any> {
+    return this.http.put<any>(`http://localhost:8080/users/update-avatar/${id}`, userForm);
   }
 
   getAllUserHasRole(): Observable<User[]> {
@@ -45,5 +45,9 @@ export class UserService {
 
   getPasswordTrue(id: number, password :string) : Observable<boolean>{
     return this.http.get<boolean>(`http://localhost:8080/users/getPasswordTrue/${id}?password=${password}`);
+  }
+
+  changeStatusUser(id: number): Observable<any> {
+    return this.http.get<any>(`http://localhost:8080/users/update-status/${id}`);
   }
 }

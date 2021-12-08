@@ -8,6 +8,7 @@ import {FriendListComponent} from "./friend-list/friend-list.component";
 import {MessagesComponent} from "./messages/messages.component";
 import {ProfileComponent} from "./setting-information/profile/profile.component";
 import {PasswordComponent} from "./setting-information/password/password.component";
+import {SettingInformationComponent} from "./setting-information/setting-information.component";
 
 const routes: Routes = [
   {
@@ -43,8 +44,8 @@ const routes: Routes = [
     component: PasswordComponent
   },
   {
-    path: 'my-profile/about',
-    component: MyProfileComponent
+    path: 'setting',
+    component: SettingInformationComponent
   }
 ];
 
