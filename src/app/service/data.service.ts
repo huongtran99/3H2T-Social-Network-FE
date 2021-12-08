@@ -14,5 +14,4 @@ export class DataService {
   changeData(data: any) {
     this.postSource.next(data);
   }
-
 }

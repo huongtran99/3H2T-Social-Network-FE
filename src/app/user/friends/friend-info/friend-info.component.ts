@@ -61,6 +61,13 @@ export class FriendInfoComponent implements OnInit {
   confirm() {
     this.friendService.confirm(this.id, this.sender).subscribe(() => {
       this.checkStatus();
+      this.notification = {
+        content: " đã đồng ý kết bạn",
+        user: this.user,
+        sender: this.sender
+      };
+      this.notificationService.createNotification(this.notification).subscribe(() => {
+      })
     })
   }
 

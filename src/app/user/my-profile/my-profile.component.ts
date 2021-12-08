@@ -1,13 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Post} from "../../model/post";
-import {File} from "../../model/file";
 import {PostService} from "../../service/post.service";
 import {FileService} from "../../service/file.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {User} from 'src/app/model/user';
 import {UserService} from "../../service/user.service";
 import {DataService} from "../../service/data.service";
-import {NotificationService} from "../../service/notification.service";
 
 @Component({
   selector: 'app-my-profile',
@@ -18,22 +16,23 @@ export class MyProfileComponent implements OnInit {
   id: number;
   post: Post = {};
   posts: Post[] = [];
-  page: any = 0;
-  files: any[] = [];
   postEditForm: FormGroup = new FormGroup({
     id: new FormControl(),
     content: new FormControl(),
     status: new FormControl("Public"),
   });
+  page: any = 0;
+  files: any[] = [];
   searchForm: FormGroup = new FormGroup({});
   user: User;
+  urlEditPost: any;
+  fileData: File[] = [];
 
   constructor(private postService: PostService,
               private fileService: FileService,
               private userService: UserService,
               private dataService: DataService) {
     this.getAllPostsByUser();
-    this.getFileByPostId(this.posts);
   }
 
   ngOnInit() {
@@ -65,6 +64,9 @@ export class MyProfileComponent implements OnInit {
   }
 
   getPostId(id) {
+    this.fileService.getFileByPostId(id).subscribe((data: any) => {
+      this.urlEditPost = data[0].fileName;
+    });
     this.id = id;
     this.postService.findById(id).subscribe(post => {
       this.post = post;
@@ -72,14 +74,29 @@ export class MyProfileComponent implements OnInit {
         id: new FormControl(post.id),
         content: new FormControl(post.content),
         status: new FormControl(post.status),
-      })
-    })
+      });
+    });
   }
 
   submitEdit() {
     const post = this.postEditForm.value;
-    this.postService.editById(this.id, post).subscribe(() => {
-      alert('Successful!');
+    post.user = {
+      id: this.user.id
+    };
+    this.postService.editById(this.id, post).subscribe(data => {
+      post.id = data.id;
+      const formData = new FormData();
+      for (let i = 0; i < this.fileData.length; i++) {
+        formData.append('fileNames', this.fileData[i]);
+      }
+      formData.append('post.id', post.id);
+      this.fileService.getFileByPostId(post.id).subscribe((data: any) => {
+        this.fileService.editFile(data[0].id, formData).subscribe(() => {
+          this.postEditForm.reset();
+          this.urlEditPost = "";
+          alert('Successful!');
+        });
+      })
     }, error => {
       alert('Error!');
     });
@@ -91,5 +108,26 @@ export class MyProfileComponent implements OnInit {
     }, error => {
       alert('Error!');
     });
+  }
+
+  addFileEditPost(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      let reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.urlEditPost = event.target.result;
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+
+  fileProgressEdit(fileInput: any) {
+    for (let i = 0; i < fileInput.target.files.length; i++) {
+      this.fileData.push(fileInput.target.files[i]);
+    }
+  }
+
+  uploadImages(event: any){
+    this.addFileEditPost(event);
+    this.fileProgressEdit(event);
   }
 }

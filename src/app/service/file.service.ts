@@ -19,4 +19,12 @@ export class FileService {
   findFileByPostId(post: Post): Observable<File[]> {
     return this.http.post<File[]>('http://localhost:8080/files/postId', post);
   }
+
+  getFileByPostId(id: number): Observable<any[]> {
+    return this.http.get<any[]>(`http://localhost:8080/files/postId/${id}`);
+  }
+
+  editFile(id: number, post: any): Observable<any> {
+    return this.http.put<any>(`http://localhost:8080/files/${id}`, post);
+  }
 }
