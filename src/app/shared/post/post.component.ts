@@ -66,6 +66,7 @@ export class PostComponent implements OnInit {
       this.postCreateForm.reset();
       this.urlCreatePost = "";
       this.postCreateForm = new FormGroup({
+        content: new FormControl(),
         status: new FormControl("Public"),
       })
       this.postService.findAll(this.page).subscribe((post: any) => {

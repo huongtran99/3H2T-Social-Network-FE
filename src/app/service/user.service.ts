@@ -22,6 +22,7 @@ export class UserService {
   getAllUserByUserId(user: User): Observable<User[]> {
     return this.http.post<User[]>(`http://localhost:8080/users/get`, user);
   }
+
   editInformation(id: number, user: User): Observable<User> {
     return this.http.put<User>(`http://localhost:8080/users/update-information/${id}`, user);
   }
@@ -37,6 +38,7 @@ export class UserService {
   getAllUserHasRole(user: string): Observable<User[]> {
     return this.http.get<User[]>(`http://localhost:8080/users/role`)
   }
+
   changePassword(id: number, passWord: string): Observable<string> {
     return this.http.put<string>(`http://localhost:8080/users/${id}?password=${passWord}`, passWord);
   }
