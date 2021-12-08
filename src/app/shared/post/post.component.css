@@ -3,7 +3,16 @@ input[type="file"] {
 }
 
 .custom-file-upload {
-  background-color:transparent;border:none;font-size:15px;font-weight:600;color:var(--paragraph-color);position:relative;padding-left:28px;padding-right:0;-webkit-transition:var(--transition);transition:var(--transition);
+  background-color: transparent;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--paragraph-color);
+  position: relative;
+  padding-left: 28px;
+  padding-right: 0;
+  -webkit-transition: var(--transition);
+  transition: var(--transition);
   cursor: pointer;
 }
 
@@ -15,9 +24,21 @@ input[type="file"] {
 }
 
 .flaticon-gallery {
-  color:#1ccd16;font-size:20px;position:absolute;left:0;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%);
+  color: #1ccd16;
+  font-size: 20px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .flaticon-view {
-  color:#ff3e3e;font-size:20px;position:absolute;left:0;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%)
+  color: #ff3e3e;
+  font-size: 20px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%)
 }

@@ -15,7 +15,7 @@ import {UserService} from "../../service/user.service";
 export class MyProfileComponent implements OnInit {
   id: number;
   post: Post = {};
-  posts: Post[] = [];
+  posts: any;
   postEditForm: FormGroup = new FormGroup({
     id: new FormControl(),
     content: new FormControl(),
@@ -49,17 +49,16 @@ export class MyProfileComponent implements OnInit {
     this.user = JSON.parse(localStorage.getItem('user'));
     console.log(this.user.id);
     this.postService.findAllByUser(this.user.id, this.page).subscribe((post: any) => {
-      this.posts = post.content;
+      this.postService.postListMyProfile = post.content;
       this.getFileByPostId();
       console.log(this.files);
     })
   }
 
   getFileByPostId() {
-    for (let i = 0; i < this.posts.length; i++) {
-      this.fileService.findFileByPostId(this.posts[i]).subscribe(file => {
-        console.log(file);
-        this.files.push(file[0]);
+    for (let i = 0; i < this.postService.postListMyProfile.length; i++) {
+      this.fileService.findFileByPostId(this.postService.postListMyProfile[i]).subscribe(file => {
+        this.postService.postListMyProfile[i].file = file[0];
       })
     }
   }

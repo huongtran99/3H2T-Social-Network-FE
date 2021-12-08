@@ -295,19 +295,16 @@
                   </div>
                 </div>
               </div>
-              <div class="news-feed news-feed-post" *ngFor="let post of posts; index as i">
+              <div class="news-feed news-feed-post" *ngFor="let post of postService.postListMyProfile; index as i">
                 <div class="post-header d-flex justify-content-between align-items-center">
                   <div class="image">
-                    <a href="my-profile.html"><img src="http://localhost:8080/{{post.user.avatar}}"
+                    <a href="my-profile.html"><img src="http://localhost:8080/{{user.avatar}}"
                                                    class="rounded-circle" alt="image"></a>
                   </div>
                   <div class="info ms-3">
-                    <span class="name"><a href="my-profile.html">{{post.user.username}}</a></span>
+                    <span class="name"><a href="my-profile.html">{{user.username}}</a></span>
                     <span class="small-text"><a href="#">{{post.dateTime | date:'medium'}}</a></span>
                   </div>
-
-
-                  <!--              <app-post-setting></app-post-setting>-->
                   <div class="dropdown">
                     <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false"><i class="flaticon-menu"></i></button>
@@ -330,13 +327,11 @@
                       </li>
                     </ul>
                   </div>
-
-
                 </div>
                 <div class="post-body">
                   <p>{{post.content}}</p>
-                  <div class="post-image">
-                    <img src="http://localhost:8080/{{files[i]?.fileName}}" alt="image">
+                  <div class="post-image" *ngIf="post.file?.fileName">
+                    <img src="http://localhost:8080/{{post.file?.fileName}}" alt="image">
                   </div>
                   <ul class="post-meta-wrap d-flex justify-content-between align-items-center">
                     <li class="post-react">
@@ -1092,7 +1087,8 @@
           <h3 class="news-feed-title">Edit This Post</h3>
           <form [formGroup]="postEditForm" (ngSubmit)="submitEdit()">
             <br>
-            <div class="form-group">
+            <div class="form-group" *ngFor="let post of posts; index as i">
+              <img src="http://localhost:8080/{{files[i]?.fileName}}" alt="image">
               <textarea name="content" class="form-control" formControlName="content"></textarea>
             </div>
             <ul class="button-group d-flex justify-content-between align-items-center">
