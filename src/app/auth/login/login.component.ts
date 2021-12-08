@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from "../../service/authentication.service";
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 
 @Component({
@@ -14,18 +14,16 @@ export class LoginComponent implements OnInit {
     password: new FormControl()
   })
 
-  get username(){
+  get username() {
     return this.loginForm.get('username');
   }
 
-  get password(){
+  get password() {
     return this.loginForm.get('password');
   }
 
   constructor(private auth: AuthenticationService,
-              private router: Router,
-              private formBuilder: FormBuilder) {
-
+              private router: Router) {
   }
 
   ngOnInit() {

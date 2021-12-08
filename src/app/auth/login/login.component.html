@@ -21,18 +21,18 @@
               <div id="login-error-box"></div>
               <label>Username</label>
               <input type="text" class="form-control" formControlName="username" required  minlength="2">
-              <div *ngIf="username.invalid && (username.dirty || username.touched)">
-                <div class="error-message" *ngIf="username.errors?.required">* must be filled</div>
-                <div class="error-message" *ngIf="username.errors?.minlength">* must be at least 2 characters long</div>
-              </div>
+<!--              <div *ngIf="username.invalid && (username.dirty || username.touched)">-->
+<!--                <div class="error-message" *ngIf="username.errors?.required">* must be filled</div>-->
+<!--                <div class="error-message" *ngIf="username.errors?.minlength">* must be at least 2 characters long</div>-->
+<!--              </div>-->
             </div>
             <div class="form-group">
               <label>Password</label>
               <input type="password" class="form-control" formControlName="password" required minlength="6">
-              <div *ngIf="password.invalid && (password.dirty || password.touched)">
-                <div class="error-message" *ngIf="password.errors?.required">* must be filled</div>
-                <div class="error-message" *ngIf="password.errors?.minlength">* must be at least 6 characters long</div>
-              </div>
+<!--              <div *ngIf="password.invalid && (password.dirty || password.touched)">-->
+<!--                <div class="error-message" *ngIf="password.errors?.required">* must be filled</div>-->
+<!--                <div class="error-message" *ngIf="password.errors?.minlength">* must be at least 6 characters long</div>-->
+<!--              </div>-->
             </div>
             <button type="submit" class="default-btn">Login</button>
             <div class="or-text"><span>Or</span></div>

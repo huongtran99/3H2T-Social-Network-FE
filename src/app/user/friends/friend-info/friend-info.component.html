@@ -20,30 +20,40 @@
           </div>
           <div class="info-text ms-3">
             <h3><a href="#">{{user?.username}}</a></h3>
-            <span><a href="https://templates.envytheme.com/cdn-cgi/l/email-protection#dbb6baafafb3beac9bbcb6bab2b7f5b8b4b6"><span class="__cf_email__" data-cfemail="cea3afbabaa6abb98ea9a3afa7a2e0ada1a3">[email&#160;protected]</span></a></span>
+            <span><a
+              href="https://templates.envytheme.com/cdn-cgi/l/email-protection#dbb6baafafb3beac9bbcb6bab2b7f5b8b4b6"><span
+              class="__cf_email__" data-cfemail="cea3afbabaa6abb98ea9a3afa7a2e0ada1a3">[email&#160;protected]</span></a></span>
           </div>
-          <div class="statistics" >
-            <div class="profile-btn">
-              <button *ngIf="statusAddFriend && !status" class="default-btn" (click)="addFriend()">Add Friend</button>
-              <button *ngIf="statusFriend" class="default-btn" (click)="deleteFriend()">Delete Friend</button>
-              <button *ngIf="!statusFriend && !status && !statusAddFriend" class="default-btn" (click)="deleteFriend()">Cancel Invitation</button>
+          <div class="statistics">
+            <div class="profile-btn" style="width: max-content">
+              <button class="btn btn-primary btn-sm" *ngIf="statusAddFriend && !status" (click)="addFriend()">
+                Add friend
+              </button>
+              <button class="btn btn-secondary btn-sm" *ngIf="statusFriend" (click)="deleteFriend()">
+                Delete friend
+              </button>
+              <button class="btn btn-secondary btn-sm" *ngIf="!statusFriend && !status && !statusAddFriend" (click)="deleteFriend()">
+                Cancel request
+              </button>
             </div>
-            <div class="profile-btn" *ngIf="status && !statusFriend">
-              <button class="default-btn" (click)="confirm()">Đồng ý</button>
-              <button class="default-btn" (click)="deleteFriend()">không đồng ý</button>
+            <div class="profile-btn" style="width: max-content" *ngIf="status && !statusFriend">
+              <button class="btn btn-primary btn-sm" style="width: max-content; padding: 4px 11.66px; margin: 0 2px" (click)="confirm()">Accept</button>
+              <button class="btn btn-secondary btn-sm" style="width: max-content; margin: 0 2px" (click)="deleteFriend()">Remove</button>
             </div>
           </div>
         </div>
         <div class="profile-list-tabs">
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active" id="timeline-tab" data-bs-toggle="tab" href="#timeline" role="tab" aria-controls="timeline">Timeline</a>
+              <a class="nav-link active" id="timeline-tab" data-bs-toggle="tab" href="#timeline" role="tab"
+                 aria-controls="timeline">Timeline</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" id="about-tab" data-bs-toggle="tab" href="#about" role="tab" aria-controls="about">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="friends-tab" data-bs-toggle="tab" href="#friends" role="tab" aria-controls="friends">Friends</a>
+              <a class="nav-link" id="friends-tab" data-bs-toggle="tab" href="#friends" role="tab"
+                 aria-controls="friends">Friends</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" id="photos-tab" data-bs-toggle="tab" href="#photos" role="tab" aria-controls="photos">Photos</a>
@@ -214,28 +224,6 @@
           </div>
           <div class="col-lg-6 col-md-12">
             <div class="news-feed-area">
-              <div class="news-feed news-feed-form">
-                <h3 class="news-feed-title">Create New Post</h3>
-                <div>
-                  <div class="form-group">
-                    <textarea name="message" class="form-control" placeholder="Write something here..."></textarea>
-                  </div>
-                  <ul class="button-group d-flex justify-content-between align-items-center">
-                    <li class="photo-btn">
-                      <button type="submit"><i class="flaticon-gallery"></i> Photo</button>
-                    </li>
-                    <li class="video-btn">
-                      <button type="submit"><i class="flaticon-video"></i> Video</button>
-                    </li>
-                    <li class="tag-btn">
-                      <button type="submit"><i class="flaticon-tag"></i> Tag Friends</button>
-                    </li>
-                    <li class="post-btn">
-                      <button type="submit">Post</button>
-                    </li>
-                  </ul>
-                </div>
-              </div>
               <div class="news-feed news-feed-stories">
                 <div class="stories-title d-flex justify-content-between align-items-center">
                   <h3>Stories</h3>
@@ -300,23 +288,30 @@
               <div class="news-feed news-feed-post">
                 <div class="post-header d-flex justify-content-between align-items-center">
                   <div class="image">
-                    <a href="my-profile.html"><img src="assets/images/user/user-32.jpg" class="rounded-circle" alt="image"></a>
+                    <a href="my-profile.html"><img src="assets/images/user/user-32.jpg" class="rounded-circle"
+                                                   alt="image"></a>
                   </div>
                   <div class="info ms-3">
                     <span class="name"><a href="my-profile.html">Julie R. Morleyv</a></span>
                     <span class="small-text"><a href="#">10 Mins Ago</a></span>
                   </div>
                   <div class="dropdown">
-                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flaticon-menu"></i></button>
+                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"><i class="flaticon-menu"></i></button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit Post</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i> Hide Post</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i> Delete Post</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit
+                        Post</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i>
+                        Hide Post</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i>
+                        Delete Post</a></li>
                     </ul>
                   </div>
                 </div>
                 <div class="post-body">
-                  <p>Donec rutrum congue leo eget malesuada. Nulla quis lorem ut libero malesuada feugiat. Donec rutrum congue leo eget malesuada. Donec rutrum congue leo eget malesuada. Praesent sapien massa convallis a pellentesque nec egestas non nisi. Curabitur non nulla sit amet nisl tempus convallis quis.</p>
+                  <p>Donec rutrum congue leo eget malesuada. Nulla quis lorem ut libero malesuada feugiat. Donec rutrum
+                    congue leo eget malesuada. Donec rutrum congue leo eget malesuada. Praesent sapien massa convallis a
+                    pellentesque nec egestas non nisi. Curabitur non nulla sit amet nisl tempus convallis quis.</p>
                   <div class="post-image">
                     <img src="assets/images/news-feed-post/post-1.jpg" alt="image">
                   </div>
@@ -357,14 +352,18 @@
                   <div class="post-comment-list">
                     <div class="comment-list">
                       <div class="comment-image">
-                        <a href="my-profile.html"><img src="assets/images/user/user-14.jpg" class="rounded-circle" alt="image"></a>
+                        <a href="my-profile.html"><img src="assets/images/user/user-14.jpg" class="rounded-circle"
+                                                       alt="image"></a>
                       </div>
                       <div class="comment-info">
                         <h3>
                           <a href="my-profile.html">David Moore</a>
                         </h3>
                         <span>5 Mins Ago</span>
-                        <p>Donec rutrum congue leo eget malesuada nulla quis lorem ut libero malesuada feugiat donec rutrum congue leo eget malesuada donec rutrum congue leo eget malesuada. Praesent sapien massa convallis a pellentesque non nisi curabitur non nulla sit amet nisl tempus convallis lectus.</p>
+                        <p>Donec rutrum congue leo eget malesuada nulla quis lorem ut libero malesuada feugiat donec
+                          rutrum congue leo eget malesuada donec rutrum congue leo eget malesuada. Praesent sapien massa
+                          convallis a pellentesque non nisi curabitur non nulla sit amet nisl tempus convallis
+                          lectus.</p>
                         <ul class="comment-react">
                           <li><a href="#" class="like">Like(2)</a></li>
                           <li><a href="#">Reply</a></li>
@@ -373,14 +372,16 @@
                     </div>
                     <div class="comment-list">
                       <div class="comment-image">
-                        <a href="my-profile.html"><img src="assets/images/user/user-15.jpg" class="rounded-circle" alt="image"></a>
+                        <a href="my-profile.html"><img src="assets/images/user/user-15.jpg" class="rounded-circle"
+                                                       alt="image"></a>
                       </div>
                       <div class="comment-info">
                         <h3>
                           <a href="my-profile.html">Claire P. Toy</a>
                         </h3>
                         <span>45 Mins Ago</span>
-                        <p>Donec rutrum congue leo eget malesuada praesent sapien massa convallis a pellentesque nec egestas non nisi curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
+                        <p>Donec rutrum congue leo eget malesuada praesent sapien massa convallis a pellentesque nec
+                          egestas non nisi curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
                         <ul class="comment-react">
                           <li><a href="#" class="like">Like(12)</a></li>
                           <li><a href="#">Reply</a></li>
@@ -389,14 +390,16 @@
                     </div>
                     <div class="comment-list">
                       <div class="comment-image">
-                        <a href="my-profile.html"><img src="assets/images/user/user-16.jpg" class="rounded-circle" alt="image"></a>
+                        <a href="my-profile.html"><img src="assets/images/user/user-16.jpg" class="rounded-circle"
+                                                       alt="image"></a>
                       </div>
                       <div class="comment-info">
                         <h3>
                           <a href="my-profile.html">Karen Williams</a>
                         </h3>
                         <span>5 Mins Ago</span>
-                        <p>Donec rutrum congue leo eget malesuada nulla quis lorem ut libero malesuada feugiat donec rutrum congue leo eget.</p>
+                        <p>Donec rutrum congue leo eget malesuada nulla quis lorem ut libero malesuada feugiat donec
+                          rutrum congue leo eget.</p>
                         <ul class="comment-react">
                           <li><a href="#" class="like">Like(2)</a></li>
                           <li><a href="#">Reply</a></li>
@@ -421,18 +424,23 @@
               <div class="news-feed news-feed-post">
                 <div class="post-header d-flex justify-content-between align-items-center">
                   <div class="image">
-                    <a href="my-profile.html"><img src="assets/images/user/user-35.jpg" class="rounded-circle" alt="image"></a>
+                    <a href="my-profile.html"><img src="assets/images/user/user-35.jpg" class="rounded-circle"
+                                                   alt="image"></a>
                   </div>
                   <div class="info ms-3">
                     <span class="name"><a href="my-profile.html">William Fenton</a></span>
                     <span class="small-text"><a href="#">50 Mins Ago</a></span>
                   </div>
                   <div class="dropdown">
-                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flaticon-menu"></i></button>
+                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"><i class="flaticon-menu"></i></button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit Post</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i> Hide Post</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i> Delete Post</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit
+                        Post</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i>
+                        Hide Post</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i>
+                        Delete Post</a></li>
                     </ul>
                   </div>
                 </div>
@@ -469,7 +477,8 @@
                       </ul>
                     </li>
                     <li class="post-comment">
-                      <a href="#"><i class="flaticon-comment"></i><span>Comment</span> <span class="number">0 </span></a>
+                      <a href="#"><i class="flaticon-comment"></i><span>Comment</span> <span
+                        class="number">0 </span></a>
                     </li>
                     <li class="post-share">
                       <a href="#"><i class="flaticon-share"></i><span>Share</span> <span class="number">0 </span></a>
@@ -489,18 +498,23 @@
               <div class="news-feed news-feed-post">
                 <div class="post-header d-flex justify-content-between align-items-center">
                   <div class="image">
-                    <a href="my-profile.html"><img src="assets/images/user/user-36.jpg" class="rounded-circle" alt="image"></a>
+                    <a href="my-profile.html"><img src="assets/images/user/user-36.jpg" class="rounded-circle"
+                                                   alt="image"></a>
                   </div>
                   <div class="info ms-3">
                     <span class="name"><a href="my-profile.html">Maria Dodson</a></span>
                     <span class="small-text"><a href="#">2 Hours Ago</a></span>
                   </div>
                   <div class="dropdown">
-                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flaticon-menu"></i></button>
+                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"><i class="flaticon-menu"></i></button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit Post</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i> Hide Post</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i> Delete Post</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit
+                        Post</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i>
+                        Hide Post</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i>
+                        Delete Post</a></li>
                     </ul>
                   </div>
                 </div>
@@ -537,7 +551,8 @@
                       </ul>
                     </li>
                     <li class="post-comment">
-                      <a href="#"><i class="flaticon-comment"></i><span>Comment</span> <span class="number">0 </span></a>
+                      <a href="#"><i class="flaticon-comment"></i><span>Comment</span> <span
+                        class="number">0 </span></a>
                     </li>
                     <li class="post-share">
                       <a href="#"><i class="flaticon-share"></i><span>Share</span> <span class="number">5 </span></a>
@@ -557,23 +572,29 @@
               <div class="news-feed news-feed-post">
                 <div class="post-header d-flex justify-content-between align-items-center">
                   <div class="image">
-                    <a href="my-profile.html"><img src="assets/images/user/user-5.jpg" class="rounded-circle" alt="image"></a>
+                    <a href="my-profile.html"><img src="assets/images/user/user-5.jpg" class="rounded-circle"
+                                                   alt="image"></a>
                   </div>
                   <div class="info ms-3">
                     <span class="name"><a href="my-profile.html">Karen Williams</a></span>
                     <span class="small-text"><a href="#">10 Mins Ago</a></span>
                   </div>
                   <div class="dropdown">
-                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flaticon-menu"></i></button>
+                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"><i class="flaticon-menu"></i></button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit Post</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i> Hide Post</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i> Delete Post</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit
+                        Post</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i>
+                        Hide Post</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i>
+                        Delete Post</a></li>
                     </ul>
                   </div>
                 </div>
                 <div class="post-body">
-                  <p>Donec rutrum congue leo eget malesuada. Nulla quis lorem ut libero malesuada feugiat. Donec rutrum congue leo eget malesuada.</p>
+                  <p>Donec rutrum congue leo eget malesuada. Nulla quis lorem ut libero malesuada feugiat. Donec rutrum
+                    congue leo eget malesuada.</p>
                   <div class="post-image">
                     <img src="assets/images/news-feed-post/post-4.jpg" alt="image">
                   </div>
@@ -614,14 +635,18 @@
                   <div class="post-comment-list">
                     <div class="comment-list">
                       <div class="comment-image">
-                        <a href="my-profile.html"><img src="assets/images/user/user-21.jpg" class="rounded-circle" alt="image"></a>
+                        <a href="my-profile.html"><img src="assets/images/user/user-21.jpg" class="rounded-circle"
+                                                       alt="image"></a>
                       </div>
                       <div class="comment-info">
                         <h3>
                           <a href="my-profile.html">David Moore</a>
                         </h3>
                         <span>5 Mins Ago</span>
-                        <p>Donec rutrum congue leo eget malesuada nulla quis lorem ut libero malesuada feugiat donec rutrum congue leo eget malesuada donec rutrum congue leo eget malesuada. Praesent sapien massa convallis a pellentesque non nisi curabitur non nulla sit amet nisl tempus convallis lectus.</p>
+                        <p>Donec rutrum congue leo eget malesuada nulla quis lorem ut libero malesuada feugiat donec
+                          rutrum congue leo eget malesuada donec rutrum congue leo eget malesuada. Praesent sapien massa
+                          convallis a pellentesque non nisi curabitur non nulla sit amet nisl tempus convallis
+                          lectus.</p>
                         <ul class="comment-react">
                           <li><a href="#" class="like">Like(2)</a></li>
                           <li><a href="#">Reply</a></li>
@@ -630,14 +655,16 @@
                     </div>
                     <div class="comment-list">
                       <div class="comment-image">
-                        <a href="my-profile.html"><img src="assets/images/user/user-22.jpg" class="rounded-circle" alt="image"></a>
+                        <a href="my-profile.html"><img src="assets/images/user/user-22.jpg" class="rounded-circle"
+                                                       alt="image"></a>
                       </div>
                       <div class="comment-info">
                         <h3>
                           <a href="my-profile.html">Claire P. Toy</a>
                         </h3>
                         <span>45 Mins Ago</span>
-                        <p>Donec rutrum congue leo eget malesuada praesent sapien massa convallis a pellentesque nec egestas non nisi curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
+                        <p>Donec rutrum congue leo eget malesuada praesent sapien massa convallis a pellentesque nec
+                          egestas non nisi curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
                         <ul class="comment-react">
                           <li><a href="#" class="like">Like(12)</a></li>
                           <li><a href="#">Reply</a></li>
@@ -646,14 +673,16 @@
                     </div>
                     <div class="comment-list">
                       <div class="comment-image">
-                        <a href="my-profile.html"><img src="assets/images/user/user-24.jpg" class="rounded-circle" alt="image"></a>
+                        <a href="my-profile.html"><img src="assets/images/user/user-24.jpg" class="rounded-circle"
+                                                       alt="image"></a>
                       </div>
                       <div class="comment-info">
                         <h3>
                           <a href="my-profile.html">Karen Williams</a>
                         </h3>
                         <span>5 Mins Ago</span>
-                        <p>Donec rutrum congue leo eget malesuada nulla quis lorem ut libero malesuada feugiat donec rutrum congue leo eget.</p>
+                        <p>Donec rutrum congue leo eget malesuada nulla quis lorem ut libero malesuada feugiat donec
+                          rutrum congue leo eget.</p>
                         <ul class="comment-react">
                           <li><a href="#" class="like">Like(2)</a></li>
                           <li><a href="#">Reply</a></li>
@@ -678,23 +707,29 @@
               <div class="news-feed news-feed-post">
                 <div class="post-header d-flex justify-content-between align-items-center">
                   <div class="image">
-                    <a href="my-profile.html"><img src="assets/images/user/user-18.jpg" class="rounded-circle" alt="image"></a>
+                    <a href="my-profile.html"><img src="assets/images/user/user-18.jpg" class="rounded-circle"
+                                                   alt="image"></a>
                   </div>
                   <div class="info ms-3">
                     <span class="name"><a href="my-profile.html">Maria Dodson</a></span>
                     <span class="small-text"><a href="#">2 Hours Ago</a></span>
                   </div>
                   <div class="dropdown">
-                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flaticon-menu"></i></button>
+                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"><i class="flaticon-menu"></i></button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit Post</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i> Hide Post</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i> Delete Post</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit
+                        Post</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i>
+                        Hide Post</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i>
+                        Delete Post</a></li>
                     </ul>
                   </div>
                 </div>
                 <div class="post-body">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua.</p>
                   <div class="post-image">
                     <img src="assets/images/news-feed-post/post-5.jpg" alt="image">
                   </div>
@@ -726,7 +761,8 @@
                       </ul>
                     </li>
                     <li class="post-comment">
-                      <a href="#"><i class="flaticon-comment"></i><span>Comment</span> <span class="number">0 </span></a>
+                      <a href="#"><i class="flaticon-comment"></i><span>Comment</span> <span
+                        class="number">0 </span></a>
                     </li>
                     <li class="post-share">
                       <a href="#"><i class="flaticon-share"></i><span>Share</span> <span class="number">5 </span></a>
@@ -889,17 +925,23 @@
               <div class="about-header d-flex justify-content-between align-items-center">
                 <div class="title">Personal Information</div>
                 <div class="dropdown">
-                  <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flaticon-menu"></i></button>
+                  <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                          aria-expanded="false"><i class="flaticon-menu"></i></button>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit Information</a></li>
-                    <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i> Hide Information</a></li>
-                    <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i> Delete Information</a></li>
+                    <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit
+                      Information</a></li>
+                    <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i>
+                      Hide Information</a></li>
+                    <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i>
+                      Delete Information</a></li>
                   </ul>
                 </div>
               </div>
               <ul class="information-list">
                 <li>
-                  <span>Email:</span> <a href="https://templates.envytheme.com/cdn-cgi/l/email-protection#20494e464f605a5553540e434f4d"><span class="__cf_email__" data-cfemail="b7ded9d1d8f7cdc2c4c399d4d8da">[email&#160;protected]</span></a>
+                  <span>Email:</span> <a
+                  href="https://templates.envytheme.com/cdn-cgi/l/email-protection#20494e464f605a5553540e434f4d"><span
+                  class="__cf_email__" data-cfemail="b7ded9d1d8f7cdc2c4c399d4d8da">[email&#160;protected]</span></a>
                 </li>
                 <li>
                   <span>Birthday:</span> May 07, 1984
@@ -940,75 +982,113 @@
                 <div class="information-header d-flex justify-content-between align-items-center">
                   <div class="title">About Me!</div>
                   <div class="dropdown">
-                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flaticon-menu"></i></button>
+                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"><i class="flaticon-menu"></i></button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit Information</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i> Hide Information</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i> Delete Information</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit
+                        Information</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i>
+                        Hide Information</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i>
+                        Delete Information</a></li>
                     </ul>
                   </div>
                 </div>
                 <div class="content">
-                  <p>Curabitur aliquet quam id dui posuere blandit. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque auctor sit amet aliquam vel ullamcorper sit amet ligula. Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed porttitor lectus nibh.</p>
-                  <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia eget consectetur sed convallis at tellus.</p>
+                  <p>Curabitur aliquet quam id dui posuere blandit. Curabitur non nulla sit amet nisl tempus convallis
+                    quis ac lectus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum
+                    ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque
+                    auctor sit amet aliquam vel ullamcorper sit amet ligula. Lorem ipsum dolor sit amet consectetur
+                    adipiscing elit. Sed porttitor lectus nibh.</p>
+                  <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan
+                    tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget
+                    malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia
+                    eget consectetur sed convallis at tellus.</p>
                 </div>
               </div>
               <div class="information-box-content">
                 <div class="information-header d-flex justify-content-between align-items-center">
                   <div class="title">Education & Work</div>
                   <div class="dropdown">
-                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flaticon-menu"></i></button>
+                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"><i class="flaticon-menu"></i></button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit Information</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i> Hide Information</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i> Delete Information</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit
+                        Information</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i>
+                        Hide Information</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i>
+                        Delete Information</a></li>
                     </ul>
                   </div>
                 </div>
                 <div class="box-content">
                   <p class="designation">Master of Computer Science <span>(2018 - 2020)</span></p>
                   <span class="title">University of Stanford</span>
-                  <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia eget consectetur sed convallis at tellus.</p>
+                  <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan
+                    tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget
+                    malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia
+                    eget consectetur sed convallis at tellus.</p>
                 </div>
                 <div class="box-content">
                   <p class="designation">Bachelor of Computer Science <span>(2014 - 2018)</span></p>
                   <span class="title">Massachusetts Institute of Technology</span>
-                  <p>Donec rutrum congue leo eget malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia eget consectetur sed convallis at tellus.</p>
+                  <p>Donec rutrum congue leo eget malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim.
+                    Vivamus magna justo lacinia eget consectetur sed convallis at tellus.</p>
                 </div>
                 <div class="box-content">
                   <p class="designation">Senior UX/UI Designer <span>(Jun 2020 - Present)</span></p>
                   <span class="title">Themeforest</span>
-                  <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia eget consectetur sed convallis at tellus.</p>
+                  <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan
+                    tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget
+                    malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia
+                    eget consectetur sed convallis at tellus.</p>
                 </div>
                 <div class="box-content">
                   <p class="designation">Product Designer <span>(Jan 2018 - May 2019)</span></p>
                   <span class="title">Themeforest</span>
-                  <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia eget consectetur sed convallis at tellus.</p>
+                  <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan
+                    tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget
+                    malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia
+                    eget consectetur sed convallis at tellus.</p>
                 </div>
               </div>
               <div class="information-box-content">
                 <div class="information-header d-flex justify-content-between align-items-center">
                   <div class="title">Interests</div>
                   <div class="dropdown">
-                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flaticon-menu"></i></button>
+                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"><i class="flaticon-menu"></i></button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit Information</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i> Hide Information</a></li>
-                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i> Delete Information</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit
+                        Information</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i>
+                        Hide Information</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i>
+                        Delete Information</a></li>
                     </ul>
                   </div>
                 </div>
                 <div class="box-content">
                   <p class="designation">Hobbies:</p>
-                  <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia eget consectetur sed convallis at tellus.</p>
+                  <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan
+                    tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget
+                    malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia
+                    eget consectetur sed convallis at tellus.</p>
                 </div>
                 <div class="box-content">
                   <p class="designation">Favourite Books:</p>
-                  <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia eget consectetur sed convallis at tellus.</p>
+                  <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan
+                    tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget
+                    malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia
+                    eget consectetur sed convallis at tellus.</p>
                 </div>
                 <div class="box-content">
                   <p class="designation">Others Interests:</p>
-                  <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia eget consectetur sed convallis at tellus.</p>
+                  <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan
+                    tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget
+                    malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia
+                    eget consectetur sed convallis at tellus.</p>
                 </div>
               </div>
             </div>
@@ -1023,10 +1103,12 @@
           </div>
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active" id="all-friends-tab" data-bs-toggle="tab" href="#all-friends" role="tab" aria-controls="all-friends">All Friends</a>
+              <a class="nav-link active" id="all-friends-tab" data-bs-toggle="tab" href="#all-friends" role="tab"
+                 aria-controls="all-friends">All Friends</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="recently-added-tab" data-bs-toggle="tab" href="#recently-added" role="tab" aria-controls="recently-added">Recently Added</a>
+              <a class="nav-link" id="recently-added-tab" data-bs-toggle="tab" href="#recently-added" role="tab"
+                 aria-controls="recently-added">Recently Added</a>
             </li>
           </ul>
           <div class="friends-search-box">
@@ -1050,15 +1132,6 @@
                     </div>
                   </div>
                   <div class="friends-content">
-                    <div class="friends-info d-flex justify-content-between align-items-center">
-                      <a href="#">
-                        <img src="assets/images/friends/friends-1.jpg" alt="image">
-                      </a>
-                      <div class="text ms-3">
-                        <h3><a href="#">Jose Marroquin</a></h3>
-                        <span>10 Mutual Friends</span>
-                      </div>
-                    </div>
                     <ul class="statistics">
                       <li>
                         <a href="#">
@@ -1079,6 +1152,15 @@
                         </a>
                       </li>
                     </ul>
+                    <div class="friends-info d-flex justify-content-between align-items-center">
+                      <a href="#">
+                        <img src="assets/images/friends/friends-1.jpg" alt="image">
+                      </a>
+                      <div class="text ms-3">
+                        <h3><a href="#">Jose Marroquin</a></h3>
+                        <span>10 Mutual Friends</span>
+                      </div>
+                    </div>
                     <div class="button-group d-flex justify-content-between align-items-center">
                       <div class="add-friend-btn">
                         <button type="submit">Add Friend</button>
@@ -2693,10 +2775,12 @@
           </div>
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active" id="all-photos-tab" data-bs-toggle="tab" href="#all-photos" role="tab" aria-controls="all-photos">All Photos</a>
+              <a class="nav-link active" id="all-photos-tab" data-bs-toggle="tab" href="#all-photos" role="tab"
+                 aria-controls="all-photos">All Photos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="photos-albums-tab" data-bs-toggle="tab" href="#photos-albums" role="tab" aria-controls="photos-albums">Photos Albums</a>
+              <a class="nav-link" id="photos-albums-tab" data-bs-toggle="tab" href="#photos-albums" role="tab"
+                 aria-controls="photos-albums">Photos Albums</a>
             </li>
           </ul>
           <div class="photos-search-box">
