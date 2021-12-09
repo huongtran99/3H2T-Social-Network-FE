@@ -22,7 +22,7 @@ export class MyProfileComponent implements OnInit {
     content: new FormControl(),
     status: new FormControl("Public"),
   });
-  page: any = 0;
+  page: any = 3;
   files: any[] = [];
   searchForm: FormGroup = new FormGroup({});
   user: User;
@@ -32,6 +32,7 @@ export class MyProfileComponent implements OnInit {
   userForm = new FormGroup({
     avatar: new FormControl()
   })
+  totalPage: number;
 
   constructor(private postService: PostService,
               private fileService: FileService,
@@ -57,6 +58,7 @@ export class MyProfileComponent implements OnInit {
     this.user = JSON.parse(localStorage.getItem('user'));
     this.postService.findAllByUser(this.user.id, this.page).subscribe((post: any) => {
       this.posts = post.content;
+      this.totalPage = post.totalElements;
       this.getFileByPostId(this.posts);
     })
   }
@@ -167,5 +169,10 @@ export class MyProfileComponent implements OnInit {
         this.user = data;
       })
     })
+  }
+
+  loadMorePage() {
+    this.page += 5;
+    this.getAllPostsByUser();
   }
 }

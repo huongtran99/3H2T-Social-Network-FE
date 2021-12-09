@@ -13,8 +13,8 @@ export class PostService {
   constructor(private http: HttpClient) {
   }
 
-  findAll(page: number): Observable<Post[]> {
-    return this.http.get<Post[]>(`http://localhost:8080/posts/`)
+  findAll(size: number): Observable<Post[]> {
+    return this.http.get<Post[]>(`http://localhost:8080/posts?size=${size}`)
   }
 
   findAllByUser(id:number, page: number): Observable<Post[]> {

@@ -436,7 +436,7 @@
                 </div>
               </div>
               <div class="load-more-posts-btn">
-                <a href="#"><i class="flaticon-loading"></i> Load More Posts</a>
+                <a (click)="loadMorePage()" *ngIf="totalPage > page"><i class="flaticon-loading"></i> Load More Posts</a>
               </div>
             </div>
           </div>

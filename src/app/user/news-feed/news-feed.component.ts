@@ -16,12 +16,13 @@ import {NotificationService} from "../../service/notification.service";
 })
 export class NewsFeedComponent implements OnInit {
   posts: Post[] = [];
-  page: any = 0;
+  page: any = 3;
   files: any[] = [];
   user: User;
   like: any;
   counts: any[] = [];
   notification: Notification = {};
+  totalPage: number;
 
   constructor(private postService: PostService,
               private fileService: FileService,
@@ -47,6 +48,7 @@ export class NewsFeedComponent implements OnInit {
   getAllPosts() {
     this.postService.findAll(this.page).subscribe((post: any) => {
       this.posts = post.content;
+      this.totalPage = post.totalElements;
       this.getFileByPostId(this.posts);
       this.countLike();
     })
@@ -106,5 +108,10 @@ export class NewsFeedComponent implements OnInit {
         this.counts.push(data);
       })
     }
+  }
+
+  loadMorePage() {
+    this.page += 5;
+    this.getAllPosts()
   }
 }
