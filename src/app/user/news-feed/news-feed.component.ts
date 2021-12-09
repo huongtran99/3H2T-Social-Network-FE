@@ -103,7 +103,7 @@ export class NewsFeedComponent implements OnInit {
   countLike() {
     for (let i = 0; i < this.posts.length; i++) {
       this.reaction.getLike(this.posts[i].id).subscribe((data: any) => {
-        this.counts.push(data);
+        this.counts.push(data)
       })
     }
   }
