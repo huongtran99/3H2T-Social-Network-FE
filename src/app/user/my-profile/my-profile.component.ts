@@ -95,10 +95,14 @@ export class MyProfileComponent implements OnInit {
       }
       formData.append('post.id', post.id);
       this.fileService.getFileByPostId(post.id).subscribe((data: any) => {
-        this.fileService.editFile(data[0].id, formData).subscribe(() => {
-          this.postEditForm.reset();
-          this.urlEditPost = "";
-        });
+        if (data != '') {
+          this.fileService.editFile(data[0].id, formData).subscribe(() => {
+            this.postEditForm.reset();
+            this.urlEditPost = "";
+          });
+        } else {
+          this.fileService.createFile(formData).subscribe();
+        }
       })
       this.postService.findAll(this.page).subscribe((post: any) => {
         this.posts = post.content;
