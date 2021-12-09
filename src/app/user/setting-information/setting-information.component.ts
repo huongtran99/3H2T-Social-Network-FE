@@ -12,11 +12,4 @@ export class SettingInformationComponent implements OnInit {
   ngOnInit() {
   }
 
-  toggleMenu() {
-      let navigation = document.querySelector('.navigation');
-      let toggle = document.querySelector('.toggle');
-      navigation.classList.toggle('active');
-      toggle.classList.toggle('active');
-    }
-
 }
