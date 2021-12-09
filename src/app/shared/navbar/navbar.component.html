@@ -10,7 +10,7 @@
   </div>
   <div class="main-navbar">
     <nav class="navbar navbar-expand-lg navbar-light">
-      <a href="index.html" class="navbar-brand d-flex align-items-center">
+      <a routerLink="/news-feed" class="navbar-brand d-flex align-items-center">
         <img src="assets/images/logo.png" alt="image">
       </a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -27,7 +27,7 @@
         </div>
         <div class="others-options d-flex align-items-center">
           <div class="option-item">
-            <a href="index.html" class="home-btn"><i class="flaticon-home"></i></a>
+            <a href="" routerLink="/news-feed" class="home-btn"><i class="flaticon-home"></i></a>
           </div>
           <div class="option-item">
             <div class="dropdown friend-requests-nav-item">
@@ -213,7 +213,7 @@
                     </div>
                   </div>
                   <div class="view-all-requests-btn">
-                    <a href="friends.html" class="default-btn">View All Requests</a>
+                    <a href="" class="default-btn">View All Requests</a>
                   </div>
                 </div>
               </div>
@@ -254,7 +254,7 @@
                     </div>
                   </div>
                   <div class="view-all-messages-btn">
-                    <a href="messages.html" class="default-btn">View All Messages</a>
+                    <a href="" class="default-btn">View All Messages</a>
                   </div>
                 </div>
               </div>
@@ -278,8 +278,7 @@
                   <div class="item d-flex justify-content-between align-items-center"
                        *ngFor="let notification of notifications">
                     <div class="figure">
-                      <a href="#"><img src="assets/images/user/user-11.jpg"
-                                       class="rounded-circle" alt="image"></a>
+                      <a href="" routerLink="/friends/info/{{notification.sender.id}}"><img height="50px" width="50px" src="http://localhost:8080/{{notification.sender.avatar}}" alt="image"></a>
                     </div>
                     <div class="text">
                       <h4><a routerLink="/friends/info/{{notification.sender.id}}">{{notification.sender.username}}</a>
@@ -289,7 +288,7 @@
                     </div>
                   </div>
                   <div class="view-all-notifications-btn">
-                    <a href="notifications.html" class="default-btn">View All Notifications</a>
+                    <a href="" class="default-btn">View All Notifications</a>
                   </div>
                 </div>
               </div>
@@ -303,17 +302,17 @@
                 <span class="lang-name"></span>
               </button>
               <div class="dropdown-menu language-dropdown-menu">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="">
                   <img src="assets/images/uk.png" alt="flag">
-                  Eng
+                  English
                 </a>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="">
                   <img src="assets/images/china.png" alt="flag">
-                  简体中文
+                  China
                 </a>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="">
                   <img src="assets/images/uae.png" alt="flag">
-                  العربيّة
+                  Arabic
                 </a>
               </div>
             </div>
@@ -330,11 +329,10 @@
               </a>
               <div class="dropdown-menu">
                 <div class="profile-header">
-                  <h3>Matthew Turner</h3>
-                  <a
-                    href="https://templates.envytheme.com/cdn-cgi/l/email-protection#c7aaa6b3b3afa2b0f2f7f087a0aaa6aeabe9a4a8aa"><span
+                  <h3>{{user.username}}</h3>
+                  <span
                     class="__cf_email__"
-                    data-cfemail="cda0acb9b9a5a8baf8fdfa8daaa0aca4a1e3aea2a0">[email&#160;protected]</span></a>
+                    data-cfemail="cda0acb9b9a5a8baf8fdfa8daaa0aca4a1e3aea2a0">{{user.email}}</span>
                 </div>
                 <ul class="profile-body">
                   <li><i class="flaticon-user"></i> <a routerLink="/my-profile">My Profile</a></li>

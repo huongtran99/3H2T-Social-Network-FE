@@ -6,7 +6,6 @@ import {Notification} from "../../../model/Notification";
 import {FriendService} from "../../../service/friend.service";
 import {NotificationService} from "../../../service/notification.service";
 import {Friend} from "../../../model/friend";
-import {SweetalertService} from "../../../service/sweetalert.service";
 
 @Component({
   selector: 'app-friend-info',
@@ -26,8 +25,7 @@ export class FriendInfoComponent implements OnInit {
   constructor(private userService: UserService,
               private activateRoute: ActivatedRoute,
               private friendService: FriendService,
-              private notificationService: NotificationService,
-              private sweetalertService: SweetalertService) {
+              private notificationService: NotificationService) {
     this.activateRoute.paramMap.subscribe(paramMap => {
       this.id = +paramMap.get('id');
       this.userService.getUserDetail(this.id).subscribe(user => {
@@ -38,8 +36,12 @@ export class FriendInfoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.checkStatus();
+  }
+
+   checkStatus() {
     this.friendService.getFriendBySenderIdAndReceiverId(this.id, this.sender.id).subscribe(friend => {
-      if(friend == null) {
+      if (friend == null) {
         this.statusAddFriend = true;
         console.log(this.statusFriend)
         this.friendService.getFriendBySenderIdAndReceiverId(this.sender.id, this.id).subscribe(friend => {
@@ -54,34 +56,47 @@ export class FriendInfoComponent implements OnInit {
     })
   }
 
+
   confirm() {
     this.friendService.confirm(this.id, this.sender).subscribe(() => {
-      this.sweetalertService.alertSuccess("Kết bạn thành công!");
+      this.checkStatus();
+      this.notification = {
+        content: " đã đồng ý kết bạn",
+        user: this.user,
+        sender: this.sender
+      };
+      this.notificationService.createNotification(this.notification).subscribe(() => {
+      })
     })
   }
 
   deleteFriend() {
     if (!this.status) {
       this.friendService.deleteFriend(this.id, this.sender.id).subscribe(() => {
-        this.sweetalertService.alertSuccess("ok");
+        this.statusAddFriend = true;
+        this.status = false;
+        this.statusFriend = false;
       })
     } else {
       this.friendService.deleteFriend(this.sender.id, this.id).subscribe(() => {
-        this.sweetalertService.alertSuccess("ok");
+        this.statusAddFriend = true;
+        this.status = false;
+        this.statusFriend = false;
       })
     }
   }
 
   addFriend() {
+    this.statusAddFriend = false;
+    this.status = false;
+    this.statusFriend = false;
     this.friendService.addFriend(this.id, this.sender).subscribe(() => {
-      this.sweetalertService.alertSuccess("đã gửi lời mời kết bạn");
       this.notification = {
-        content: this.sender.username + " đã gửi cho bạn 1 lời mời kết bạn",
+        content: " đã gửi cho bạn 1 lời mời kết bạn",
         user: this.user,
         sender: this.sender
       };
       this.notificationService.createNotification(this.notification).subscribe(() => {
-        console.log("có thông báo rồi đấy.");
       })
     })
   }

@@ -3,5 +3,6 @@ export interface Post {
   user?: any,
   content?: string,
   dateTime?: Date,
-  status?: string
+  status?: string,
+  file?: any
 }

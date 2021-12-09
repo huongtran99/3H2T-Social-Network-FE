@@ -7,6 +7,8 @@ import {Post} from "../model/post";
   providedIn: 'root'
 })
 export class PostService {
+  postListMyProfile: Post[] = [];
+  postListNewFeed: Post[] = [];
 
   constructor(private http: HttpClient) {
   }

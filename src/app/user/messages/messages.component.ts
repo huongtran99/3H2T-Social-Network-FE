@@ -26,14 +26,12 @@ export class MessagesComponent implements OnInit, OnDestroy {
   listMessage: Message[] = [];
   user: User;
 
-
   constructor(private messageService: MessageService,
               private authenticationService: AuthenticationService,
               private socketService: SocketService,
               private userService: UserService,
               private dateService: DateService,
               private activateRoute: ActivatedRoute) {
-
   }
 
   ngOnInit() {
@@ -44,10 +42,9 @@ export class MessagesComponent implements OnInit, OnDestroy {
         this.user = data;
       })
     });
-    console.log(this.id)
     this.currentUser = JSON.parse(localStorage.getItem('user'));
-    this.getAllUser();
     this.getAllChatHistory(this.id, this.size);
+    this.getAllUser();
   }
 
   ngOnDestroy() {

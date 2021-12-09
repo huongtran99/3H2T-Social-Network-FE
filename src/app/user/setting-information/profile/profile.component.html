@@ -35,70 +35,53 @@
     </div>
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active" id="profile-information" role="tabpanel">
-        <form class="account-setting-form">
+        <form class="account-setting-form" [formGroup]="userForm" (ngSubmit)="userForm.valid && submitEdit()">
           <h3>Profile Information</h3>
-          <form [formGroup]="userForm" (ngSubmit)="userForm.valid && submitEdit()">
-            <div class="row">
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label for="email" class="form-label">Email:</label>
-                  <input type="text" name="email" id="email" class="form-control" formControlName="email"
-                         placeholder="Enter your email" email required pattern>
-                  <ng-container *ngIf="email.invalid && email.dirty">
-                    <p style="color: red" *ngIf="email.errors?.email || email.errors?.pattern">Email is valid</p>
-                  </ng-container>
-                  <ng-container *ngIf="email.invalid && email.dirty">
-                    <p style="color: red" *ngIf="email.errors?.required">Enter your email.</p>
-                  </ng-container>
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label for="phone" class="form-label">Phone:</label>
-                  <input type="text" id="phone" class="form-control" formControlName="phone"
-                         placeholder="Enter your phone" required pattern>
-                  <ng-container *ngIf="phone.invalid && phone.dirty">
-                    <p style="color: red" *ngIf="phone.errors?.pattern || phone.errors?.length">Phone is valid</p>
-                  </ng-container>
-                  <ng-container *ngIf="phone.invalid && phone.dirty">
-                    <p style="color: red" *ngIf="phone.errors?.required">Enter your phone</p>
-                  </ng-container>
+          <div class="row">
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" class="form-control" formControlName="email" required
+                       pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">
+                <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                  <div class="error-message" *ngIf="email.errors?.required">* must be filled</div>
+                  <div class="error-message" *ngIf="email.errors?.pattern">* invalid email address</div>
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label for="birthday" class="form-label">Birthday:</label>
-                  <input type="text" id="birthday" class="form-control" formControlName="birthday"
-                         placeholder="Enter your birthday" required pattern>
-                  <ng-container *ngIf="birthday.invalid && birthday.dirty">
-                    <p style="color: red" *ngIf="birthday.errors?.pattern">Birthday is valid</p>
-                  </ng-container>
-                  <ng-container *ngIf="birthday.invalid && birthday.dirty">
-                    <p style="color: red" *ngIf="birthday.errors?.required">Enter your birthday</p>
-                  </ng-container>
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group">
+                <label>Phone</label>
+                <input type="text" class="form-control" formControlName="phone" pattern="(84|0)+([0-9]{9})\b">
+                <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+                  <div class="error-message" *ngIf="phone.errors?.pattern">* 10 digit mobile number required</div>
                 </div>
               </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group">
+                <label>Birthday</label>
+                <input type="text" class="form-control" formControlName="birthday" pattern="^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$">
+                <div *ngIf="birthday.invalid && (birthday.dirty || birthday.touched)">
+                  <div class="error-message" *ngIf="birthday.errors?.pattern">* dd/mm/yyyy format required</div>
+                </div>
+              </div>
+            </div>
 
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <br>
-                  <label class="form-label">Gender: </label>
-                  <input type="radio" value="male" name="gender" formControlName="gender"> Male
-                  <input type="radio" value="female" name="gender" formControlName="gender"> Female
-                  <div *ngIf="!gender.valid && (gender.dirty ||gender.touched)">
-                    <div [hidden]="!gender.errors.required">
-                      gender is required
-                    </div>
-                  </div>
-                </div>
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group">
+                <br>
+                <label>Gender: </label>
+                <input type="radio" value="male" name="gender" formControlName="gender"> Male
+                <input type="radio" value="female" name="gender" formControlName="gender"> Female
               </div>
             </div>
-            <div class="col-lg-12 col-md-12">
-              <button type="submit" [disabled]="!userForm.valid" class="default-btn">Save</button>
-            </div>
-          </form>
+          </div>
+          <div class="col-lg-12 col-md-12">
+            <button type="submit" class="default-btn">Save</button>
+          </div>
         </form>
       </div>
     </div>

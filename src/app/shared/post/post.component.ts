@@ -4,6 +4,7 @@ import {User} from "../../model/user";
 import {PostService} from "../../service/post.service";
 import {FileService} from "../../service/file.service";
 import {SweetalertService} from "../../service/sweetalert.service";
+import {DataService} from "../../service/data.service";
 
 @Component({
   selector: 'app-post',
@@ -18,13 +19,18 @@ export class PostComponent implements OnInit {
   fileData: File[] = [];
   user: User;
   urlCreatePost: any;
+  posts: any[] = [];
+  page: any = 0;
+  files: any[] = [];
 
   constructor(private postService: PostService,
               private fileService: FileService,
+              private data: DataService,
               private sweetalertService: SweetalertService) {
   }
 
   ngOnInit() {
+    this.data.currentPost.subscribe((data: any) => this.posts = data);
   }
 
   addFileCreatePost(event: any) {
@@ -38,9 +44,15 @@ export class PostComponent implements OnInit {
   }
 
   fileProgress(fileInput: any) {
+    this.fileData = [];
     for (let i = 0; i < fileInput.target.files.length; i++) {
       this.fileData.push(fileInput.target.files[i]);
     }
+  }
+
+  uploadImage(event: any){
+    this.addFileCreatePost(event);
+    this.fileProgress(event);
   }
 
   submitCreate() {
@@ -60,11 +72,25 @@ export class PostComponent implements OnInit {
       this.postCreateForm.reset();
       this.urlCreatePost = "";
       this.postCreateForm = new FormGroup({
+        content: new FormControl(),
         status: new FormControl("Public"),
       })
-      this.sweetalertService.alertSuccess('Successful!');
+      this.postService.findAll(this.page).subscribe((post: any) => {
+        this.posts = post.content;
+        this.data.changeData(this.posts);
+        this.getFileByPostId(this.posts);
+      })
     }, error => {
       this.sweetalertService.alertError('Error!')
     })
   }
+
+  getFileByPostId(posts: any) {
+    for (let i = 0; i < posts.length; i++) {
+      this.fileService.findFileByPostId(posts[i]).subscribe(file => {
+        posts[i].file = file[0];
+      })
+    }
+  }
+
 }

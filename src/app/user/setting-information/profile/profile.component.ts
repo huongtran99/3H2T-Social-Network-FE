@@ -12,14 +12,16 @@ import {SweetalertService} from "../../../service/sweetalert.service";
 })
 export class ProfileComponent implements OnInit {
 
-  userForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    phone: new FormControl('',[Validators.required, Validators.pattern("[0-9]{10}")]),
-    birthday: new FormControl('', [Validators.required, Validators.pattern("MM/dd/yyyy")]),
-    gender: new FormControl('', [Validators.required])
-  })
+  userForm: FormGroup = new FormGroup({
+    email: new FormControl(),
+    phone: new FormControl(),
+    birthday: new FormControl(),
+    gender: new FormControl()
+  });
+
   id: number;
   user: User = {};
+
 
   constructor(private userService: UserService,
               private activatedRouter: ActivatedRoute,
@@ -41,11 +43,12 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
   submitEdit() {
     this.userService.editInformation(this.id, this.userForm.value).subscribe(() => {
-      this.sweetalertService.alertSuccess('Success!Thank you.');
+      this.sweetalertService.alertSuccess('Update success!Thank you.');
     }, error => {
       console.log(error);
     });

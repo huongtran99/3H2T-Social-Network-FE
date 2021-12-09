@@ -1,14 +1,3 @@
-
-<div class="preloader-area">
-  <div class="spinner">
-    <div class="inner">
-      <div class="disc"></div>
-      <div class="disc"></div>
-      <div class="disc"></div>
-    </div>
-  </div>
-</div>
-
 <div class="profile-authentication-area">
   <div class="container">
     <div class="row">
@@ -33,48 +22,62 @@
           <h2>Register</h2>
           <form [formGroup]="formRegister" (ngSubmit)="formRegister.valid && register()">
             <div class="form-group">
-              <label>Name</label>
-              <ng-container *ngIf="username.invalid && username.touched">
-                <p style="color: red" *ngIf="username.errors?.required">Tên bắt buộc phải nhập</p>
-              </ng-container>
-              <input type="text" class="form-control" formControlName="username" required>
+              <div id="register-error-box"></div>
+              <label>Username</label>
+              <input type="text" class="form-control" formControlName="username" required minlength="2">
+              <div *ngIf="username.invalid && (username.dirty || username.touched)">
+                <div class="error-message" *ngIf="username.errors?.required">* must be filled</div>
+                <div class="error-message" *ngIf="username.errors?.minlength">* must have at least 2 characters long
+                </div>
+              </div>
             </div>
             <div class="form-group">
               <label>Email</label>
-              <ng-container *ngIf="email.invalid && email.dirty">
-                <p style="color: red" *ngIf="email.errors?.email">Email không đúng định dạng</p>
-              </ng-container>
-              <input type="email" class="form-control" formControlName="email" email>
+              <input type="email" class="form-control" formControlName="email" required
+                     pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">
+              <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                <div class="error-message" *ngIf="email.errors?.required">* must be filled</div>
+                <div class="error-message" *ngIf="email.errors?.pattern">* invalid email address</div>
+              </div>
             </div>
             <div class="form-group">
               <label>Password</label>
-              <ng-container *ngIf="password.invalid && password.dirty">
-                <p style="color: red" *ngIf="password.errors?.minlength">Password ký tự quá ngắn</p>
-              </ng-container>
-              <input type="password" class="form-control" formControlName="password" minlength="6">
+              <input type="password" class="form-control" formControlName="password" required minlength="6"
+                     pattern="^(?:(?=.*\d)(?=.*[A-Z])(?=.*[!@#$%^&*()_+]).*)[^\s]{3,}$">
+              <div *ngIf="password.invalid && (password.dirty || password.touched)">
+                <div class="error-message" *ngIf="password.errors?.required">* must be filled</div>
+                <div class="error-message" *ngIf="password.errors?.minlength">* must have at least 6 characters long
+                </div>
+                <div class="error-message" *ngIf="password.errors?.pattern">* must have at least 1 special character
+                  and 1 number and 1 upper case
+                </div>
+              </div>
             </div>
             <div class="form-group">
               <label>Confirm Password</label>
-              <ng-container *ngIf="rePassword.invalid && rePassword.dirty">
-                <p style="color: red" *ngIf="rePassword.errors?.minlength">rePassword ký tự quá ngắn</p>
-              </ng-container>
-              <input type="password" class="form-control" formControlName="rePassword" minlength="6">
-            </div>
-            <div class="remember-me-wrap">
-              <p>
-                <input type="checkbox" id="test1">
-                <label for="test1">I Accept The <a href="">Privacy</a></label>
-              </p>
+              <input type="password" class="form-control" formControlName="rePassword" required minlength="6"
+                     pattern="^(?:(?=.*\d)(?=.*[A-Z])(?=.*[!@#$%^&*()_+]).*)[^\s]{3,}$">
+              <div *ngIf="rePassword.invalid && (rePassword.dirty || rePassword.touched)">
+                <div class="error-message" *ngIf="rePassword.errors?.required">* must be filled</div>
+                <div class="error-message" *ngIf="rePassword.errors?.minlength">* must have at least 6 characters long
+                </div>
+                <div class="error-message" *ngIf="rePassword.errors?.pattern">* must have at least 1 special character
+                  and 1 number and 1 upper case
+                </div>
+                <div class="error-message" *ngIf="rePassword.errors.confirmedValidator">* password does not match</div>
+              </div>
             </div>
             <button type="submit" class="default-btn">Register</button>
             <div class="or-text"><span>Or</span></div>
-            <button type="submit" class="google-btn">Log In with Google</button>
+            <a routerLink="/auth/login" style="width: 100%">
+              <button class="google-btn">Login</button>
+            </a>
           </form>
         </div>
       </div>
     </div>
   </div>
   <div class="home-btn-icon">
-    <a href="index.html"><i class="flaticon-home"></i></a>
+    <a routerLink="/auth/login"><i class="flaticon-home"></i></a>
   </div>
 </div>

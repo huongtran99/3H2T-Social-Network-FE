@@ -1,6 +1,7 @@
 input[type="file"] {
   display: none;
 }
+
 .custom-file-upload {
   background-color:transparent;border:none;font-size:15px;font-weight:600;color:var(--paragraph-color);position:relative;padding-left:28px;padding-right:0;-webkit-transition:var(--transition);transition:var(--transition);
   cursor: pointer;
@@ -18,5 +19,18 @@ input[type="file"] {
 }
 
 .flaticon-view {
-  color:#ff3e3e;font-size:20px;position:absolute;left:0;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%)
+  color:#ff3e3e;font-size:20px;position:absolute;left:0;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%);
+}
+
+.cover-btn-custom {
+  cursor: pointer;
+}
+
+.avatar-btn-custom {
+  display:inline-block;height:35px;width:35px;line-height:38px;text-align:center;background-color:var(--white-color);color:var(--black-color);border-radius:50px;font-size:var(--font-size);-webkit-transition:var(--transition);transition:var(--transition);
+  cursor: pointer;
+}
+
+.avatar-btn-custom:hover {
+  background-color:var(--main-color);color:var(--white-color);
 }

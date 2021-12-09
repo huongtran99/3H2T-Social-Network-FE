@@ -5,18 +5,21 @@
     <div class="my-profile-inner-box">
       <div class="profile-cover-image">
         <a href="#">
-          <img src="assets/images/my-profile-bg.jpg" alt="image">
+          <img src="http://localhost:8080/{{user.cover}}" alt="image" style="width:1600px; height:400px">
         </a>
-        <a href="#" class="edit-cover-btn">Edit Cover</a>
+        <label for="cover-upload" class="edit-cover-btn cover-btn-custom">Edit Cover</label>
+        <input type="file" id="cover-upload" name="coverFile" (change)="fileCoverUpload($event)">
+
       </div>
       <div class="profile-info-box">
         <div class="inner-info-box d-flex justify-content-between align-items-center">
           <div class="info-image">
             <a href="#">
-              <img src="http://localhost:8080/{{user.avatar}}" alt="image">
+              <img src="http://localhost:8080/{{user.avatar}}" alt="image" style="width:250px; height:250px">
             </a>
             <div class="icon">
-              <a href="#"><i class="flaticon-photo-camera"></i></a>
+              <label for="avatar-upload"><i class="flaticon-photo-camera avatar-btn-custom"></i></label>
+              <input type="file" id="avatar-upload" name="avatarFile" (change)="fileAvatarUpload($event)">
             </div>
           </div>
           <div class="info-text ms-3">
@@ -291,16 +294,13 @@
               <div class="news-feed news-feed-post" *ngFor="let post of posts; index as i">
                 <div class="post-header d-flex justify-content-between align-items-center">
                   <div class="image">
-                    <a href="my-profile.html"><img src="http://localhost:8080/{{post.user.avatar}}"
+                    <a href="my-profile.html"><img src="http://localhost:8080/{{user.avatar}}"
                                                    class="rounded-circle" alt="image"></a>
                   </div>
                   <div class="info ms-3">
-                    <span class="name"><a href="my-profile.html">{{post.user.username}}</a></span>
+                    <span class="name"><a href="my-profile.html">{{user.username}}</a></span>
                     <span class="small-text"><a href="#">{{post.dateTime | date:'medium'}}</a></span>
                   </div>
-
-
-                  <!--              <app-post-setting></app-post-setting>-->
                   <div class="dropdown">
                     <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false"><i class="flaticon-menu"></i></button>
@@ -312,8 +312,8 @@
                           Edit
                         </a>
                       </li>
-<!--                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-view"></i>-->
-<!--                        Privacy</a></li>-->
+                      <!--                      <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-view"></i>-->
+                      <!--                        Privacy</a></li>-->
                       <li>
                         <a class="dropdown-item d-flex align-items-center" data-bs-toggle="modal"
                            data-bs-target="#deletePost" (click)="getPostId(post.id)">
@@ -323,13 +323,11 @@
                       </li>
                     </ul>
                   </div>
-
-
                 </div>
                 <div class="post-body">
                   <p>{{post.content}}</p>
-                  <div class="post-image">
-                    <img src="http://localhost:8080/{{files[i]?.fileName}}" alt="image">
+                  <div class="post-image" *ngIf="post.file?.fileName">
+                    <img src="http://localhost:8080/{{post.file?.fileName}}" alt="image">
                   </div>
                   <ul class="post-meta-wrap d-flex justify-content-between align-items-center">
                     <li class="post-react">
@@ -1084,19 +1082,25 @@
         <div class="news-feed news-feed-form">
           <h3 class="news-feed-title">Edit This Post</h3>
           <form [formGroup]="postEditForm" (ngSubmit)="submitEdit()">
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6" style="position: relative; margin-left: auto; margin-right: auto"
+                 *ngIf="urlEditPost">
+              <img [src]="urlEditPost" style="border-radius: 3%; display: block; margin-left: auto; margin-right: auto;" alt="">
+              <img [src]="urlEditPost" src="http://localhost:8080/{{urlEditPost}}"  style="border-radius: 3%; display: block; margin-left: auto; margin-right: auto;" alt="">
+              <button type="button" class="btn-close" style="position: absolute; top: -20px; right: -10px" aria-label="Close"></button>
+            </div>
             <br>
             <div class="form-group">
               <textarea name="content" class="form-control" formControlName="content"></textarea>
             </div>
             <ul class="button-group d-flex justify-content-between align-items-center">
               <li class="photo-btn">
-                <label for="file-upload" class="custom-file-upload">
+                <label for="file-uploads" class="custom-file-upload">
                   <i class="flaticon-gallery"></i>Photo
                 </label>
-                <input type="file" id="file-upload" name="fileName" multiple>
+                <input type="file" id="file-uploads" name="fileName" (change)="uploadImages($event)">
               </li>
               <li class="video-btn">
-                <label for="file-upload" class="custom-file-upload">
+                <label for="file-uploads" class="custom-file-upload">
                   <i class="flaticon-view"></i>
                   <select class="custom-select" formControlName="status">
                     <option>Public</option>

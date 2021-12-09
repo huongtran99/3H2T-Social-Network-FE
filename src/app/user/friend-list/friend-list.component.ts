@@ -13,7 +13,9 @@ export class FriendListComponent implements OnInit {
   users: User[] = [];
   friends: Friend[] = [];
   user: User;
-  constructor(private friendService: FriendService) { }
+  constructor(private friendService: FriendService) {
+
+  }
 
   ngOnInit() {
     this.getAllFriend();
