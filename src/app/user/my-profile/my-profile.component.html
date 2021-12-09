@@ -1086,7 +1086,7 @@
                  *ngIf="urlEditPost">
               <img [src]="urlEditPost" style="border-radius: 3%; display: block; margin-left: auto; margin-right: auto;" alt="">
               <img [src]="urlEditPost" src="http://localhost:8080/{{urlEditPost}}"  style="border-radius: 3%; display: block; margin-left: auto; margin-right: auto;" alt="">
-              <button type="button" class="btn-close" style="position: absolute; top: -20px; right: -10px" aria-label="Close"></button>
+              <button type="button" class="btn-close" style="position: absolute; top: -20px; right: -10px" aria-label="Close" (click)="deleteImage()"></button>
             </div>
             <br>
             <div class="form-group">
@@ -1138,7 +1138,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="submitDelete()">Yes</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="background: #3644d9" (click)="submitDelete()">Yes</button>
           </div>
         </div>
       </div>

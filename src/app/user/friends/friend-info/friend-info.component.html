@@ -26,7 +26,7 @@
           </div>
           <div class="statistics">
             <div class="profile-btn" style="width: max-content">
-              <button class="btn btn-primary btn-sm" *ngIf="statusAddFriend && !status" (click)="addFriend()">
+              <button class="btn btn-primary btn-sm" style="background: #3644d9" ngIf="statusAddFriend && !status" (click)="addFriend()">
                 Add friend
               </button>
               <button class="btn btn-secondary btn-sm" *ngIf="statusFriend" (click)="deleteFriend()">
@@ -37,7 +37,7 @@
               </button>
             </div>
             <div class="profile-btn" style="width: max-content" *ngIf="status && !statusFriend">
-              <button class="btn btn-primary btn-sm" style="width: max-content; padding: 4px 11.66px; margin: 0 2px" (click)="confirm()">Accept</button>
+              <button class="btn btn-primary btn-sm" style="width: max-content; padding: 4px 11.66px; margin: 0 2px; background: #3644d9" (click)="confirm()">Accept</button>
               <button class="btn btn-secondary btn-sm" style="width: max-content; margin: 0 2px" (click)="deleteFriend()">Remove</button>
             </div>
           </div>

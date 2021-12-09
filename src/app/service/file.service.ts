@@ -27,4 +27,8 @@ export class FileService {
   editFile(id: number, post: any): Observable<any> {
     return this.http.put<any>(`http://localhost:8080/files/${id}`, post);
   }
+
+  deleteFile(id: number): Observable<File> {
+    return this.http.delete<File>(`http://localhost:8080/files/${id}`)
+  }
 }

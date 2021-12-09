@@ -48,7 +48,7 @@ export class PostComponent implements OnInit {
     }
   }
 
-  uploadImage(event: any){
+  uploadImage(event: any) {
     this.addFileCreatePost(event);
     this.fileProgress(event);
   }
@@ -88,6 +88,14 @@ export class PostComponent implements OnInit {
       this.fileService.findFileByPostId(posts[i]).subscribe(file => {
         posts[i].file = file[0];
       })
+    }
+  }
+
+  deleteImage(fileInput: any) {
+    this.urlCreatePost = '';
+    this.fileData = [];
+    for (let i = 0; i < fileInput.target.files.length; i++) {
+      this.fileData.splice(fileInput.target.files[i]);
     }
   }
 

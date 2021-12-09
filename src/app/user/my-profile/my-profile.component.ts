@@ -98,8 +98,12 @@ export class MyProfileComponent implements OnInit {
         this.fileService.editFile(data[0].id, formData).subscribe(() => {
           this.postEditForm.reset();
           this.urlEditPost = "";
-          alert('Successful!');
         });
+      })
+      this.postService.findAll(this.page).subscribe((post: any) => {
+        this.posts = post.content;
+        this.dataService.changeData(this.posts);
+        this.getFileByPostId(this.posts);
       })
     }, error => {
       alert('Error!');
@@ -108,7 +112,11 @@ export class MyProfileComponent implements OnInit {
 
   submitDelete() {
     this.postService.deleteById(this.id).subscribe(() => {
-      alert('Successful!');
+      this.postService.findAll(this.page).subscribe((post: any) => {
+        this.posts = post.content;
+        this.dataService.changeData(this.posts);
+        this.getFileByPostId(this.posts);
+      })
     }, error => {
       alert('Error!');
     });
@@ -130,7 +138,7 @@ export class MyProfileComponent implements OnInit {
     }
   }
 
-  uploadImages(event: any){
+  uploadImages(event: any) {
     this.addFileEditPost(event);
     this.fileProgressEdit(event);
   }
@@ -156,7 +164,7 @@ export class MyProfileComponent implements OnInit {
     this.editCover();
   }
 
-  editCover(){
+  editCover() {
     this.user = JSON.parse(localStorage.getItem('user'));
     const formData = new FormData();
     formData.append('cover', this.fileImage);
@@ -166,4 +174,27 @@ export class MyProfileComponent implements OnInit {
       })
     })
   }
+
+  deleteImage() {
+    const post = this.postEditForm.value;
+    post.user = {
+      id: this.user.id
+    };
+    this.postService.editById(this.id, post).subscribe(data => {
+      post.id = data.id;
+      const formData = new FormData();
+      for (let i = 0; i < this.fileData.length; i++) {
+        formData.append('fileNames', this.fileData[i]);
+      }
+      formData.append('post.id', post.id);
+      this.fileService.getFileByPostId(post.id).subscribe((data: any) => {
+        this.fileService.deleteFile(data[0].id).subscribe(() => {
+          this.urlEditPost = '';
+        }, error => {
+          alert('Error!');
+        });
+      });
+    });
+  }
+
 }
