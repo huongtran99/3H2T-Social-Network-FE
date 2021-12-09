@@ -20,8 +20,8 @@
           <span class="bottom-bar"></span>
         </div>
         <div class="search-box m-auto">
-          <form [formGroup]="formSearch">
-            <input type="text" class="input-search" placeholder="Search...">
+          <form [formGroup]="formSearch" (ngSubmit)="search()">
+            <input type="text" class="input-search" placeholder="Search..." formControlName="q">
             <button type="submit"><i class="ri-search-line"></i></button>
           </form>
         </div>

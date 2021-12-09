@@ -50,4 +50,9 @@ export class UserService {
   changeStatusUser(id: number): Observable<any> {
     return this.http.get<any>(`http://localhost:8080/users/update-status/${id}`);
   }
+
+  searchUser(username: string, page: number): Observable<any[]> {
+    return this.http.get<any[]>(`http://localhost:8080/users/search?q=${username}&page=${page}`);
+  }
+
 }

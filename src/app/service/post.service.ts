@@ -14,7 +14,7 @@ export class PostService {
   }
 
   findAll(page: number): Observable<Post[]> {
-    return this.http.get<Post[]>(`http://localhost:8080/posts/`)
+    return this.http.get<Post[]>(`http://localhost:8080/posts?page=${page}`)
   }
 
   findAllByUser(id:number, page: number): Observable<Post[]> {

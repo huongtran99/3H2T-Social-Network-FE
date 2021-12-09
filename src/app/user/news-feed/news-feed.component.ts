@@ -38,6 +38,17 @@ export class NewsFeedComponent implements OnInit {
     this.data.currentPost.subscribe((data: any) => this.posts = data);
   }
 
+  loadMore() {
+    this.page++;
+    this.postService.findAll(this.page).subscribe(async (post: any) => {
+      for (let i = 0; i < post.content.length; i++) {
+        this.posts.push(post.content[i]);
+      }
+      await this.getFileByPostId(this.posts);
+      this.countLike();
+    })
+  }
+
   getUserDetail() {
     this.userService.getUserDetail(this.user.id).subscribe(user => {
       this.user = user;
@@ -45,19 +56,22 @@ export class NewsFeedComponent implements OnInit {
   }
 
   getAllPosts() {
-    this.postService.findAll(this.page).subscribe((post: any) => {
+    this.postService.findAll(this.page).subscribe(async (post: any) => {
       this.posts = post.content;
-      this.getFileByPostId(this.posts);
+      await this.getFileByPostId(this.posts);
       this.countLike();
     })
   }
 
-  getFileByPostId(posts: any) {
+  async getFileByPostId(posts: any) {
     for (let i = 0; i < posts.length; i++) {
-      this.fileService.findFileByPostId(posts[i]).subscribe(file => {
-        posts[i].file = file[0];
-      })
+      let files = await this.getFileByPostIdPromise(posts[i]);
+      posts[i].file = files[0];
     }
+  }
+
+  getFileByPostIdPromise(post) {
+    return this.fileService.findFileByPostId(post).toPromise();
   }
 
   likes(post) {
@@ -70,7 +84,7 @@ export class NewsFeedComponent implements OnInit {
       }
     }
     this.reaction.checkLike(post.id, this.user.id).subscribe(data => {
-      if(data != 1) {
+      if (data != 1) {
         this.reaction.like(this.like).subscribe(() => {
           this.counts = [];
           for (let i = 0; i < this.posts.length; i++) {
@@ -83,7 +97,7 @@ export class NewsFeedComponent implements OnInit {
             user: post.user,
             sender: this.user
           };
-          if(this.user.id != post.user.id) {
+          if (this.user.id != post.user.id) {
             this.notificationService.createNotification(this.notification).subscribe();
           }
         })
