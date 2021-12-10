@@ -48,7 +48,7 @@ const routes: Routes = [
     component: SettingInformationComponent
   },
   {
-    path: '**',
+    path: '',
     redirectTo: 'news-feed'
   },
 ];

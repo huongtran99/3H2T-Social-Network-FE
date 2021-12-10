@@ -38,6 +38,12 @@ export class MyProfileComponent implements OnInit {
   like: any;
   counts: any[] = [];
   notification: Notification = {};
+  postCreateForm: FormGroup = new FormGroup({
+    content: new FormControl(),
+    status: new FormControl("Public"),
+  })
+  urlCreatePost: any;
+  fileData1: File[] = [];
 
   constructor(private postService: PostService,
               private fileService: FileService,
@@ -55,6 +61,58 @@ export class MyProfileComponent implements OnInit {
     this.dataService.currentPost.subscribe((data: any) => this.posts = data);
   }
 
+  submitCreate() {
+    const post = this.postCreateForm.value;
+    this.user = JSON.parse(localStorage.getItem('user'));
+    post.user = {
+      id: this.user.id
+    };
+    this.postService.createNew(post).subscribe((data) => {
+      post.id = data.id;
+      const formData = new FormData();
+      for (let i = 0; i < this.fileData1.length; i++) {
+        formData.append('fileNames', this.fileData1[i]);
+      }
+      formData.append('post.id', post.id);
+      this.fileService.createFile(formData).subscribe(() => {
+        this.postCreateForm.reset();
+        this.urlCreatePost = "";
+        this.postCreateForm = new FormGroup({
+          content: new FormControl(),
+          status: new FormControl("Public"),
+        })
+        this.postService.findAll(this.page).subscribe(async (post: any) => {
+          this.posts = post.content;
+          await this.getFileByPostId(this.posts);
+        })
+      });
+    }, error => {
+      alert('Error!')
+    })
+  }
+
+  addFileCreatePost(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      let reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.urlCreatePost = event.target.result;
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+
+  fileProgress(fileInput: any) {
+    this.fileData1 = [];
+    for (let i = 0; i < fileInput.target.files.length; i++) {
+      this.fileData1.push(fileInput.target.files[i]);
+    }
+  }
+
+  uploadImage(event: any){
+    this.addFileCreatePost(event);
+    this.fileProgress(event);
+  }
+
   getUserDetail() {
     this.userService.getUserDetail(this.user.id).subscribe(user => {
       this.user = user;
@@ -70,12 +128,13 @@ export class MyProfileComponent implements OnInit {
     })
   }
 
-  getFileByPostId(posts: any) {
+  async getFileByPostId(posts: any) {
     for (let i = 0; i < posts.length; i++) {
-      this.fileService.findFileByPostId(posts[i]).subscribe(file => {
-        posts[i].file = file[0];
+      await this.fileService.findFileByPostId(posts[i]).subscribe((file: any) => {
+          posts[i].file = file[0];
       })
     }
+    this.getUserDetail();
   }
 
   getPostId(id) {
@@ -272,4 +331,5 @@ export class MyProfileComponent implements OnInit {
       })
     }
   }
+
 }
