@@ -229,7 +229,49 @@
           </div>
           <div class="col-lg-6 col-md-12">
             <div class="news-feed-area">
-              <app-post></app-post>
+              <!--<app-post></app-post>-->
+              <div class="news-feed news-feed-form">
+                <h3 class="news-feed-title">Create New Post</h3>
+                <form [formGroup]="postCreateForm" (ngSubmit)="submitCreate()">
+                  <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6" style="margin-left: auto; margin-right: auto"
+                       *ngIf="urlCreatePost">
+                    <div style="position: relative">
+                      <img [src]="urlCreatePost" style="border-radius: 3%; display: block; margin-left: auto; margin-right: auto;" alt="">
+                      <button type="button" class="btn-close" style="position: absolute; top: -20px; right: -25px" aria-label="Close"></button>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="form-group">
+      <textarea name="content" class="form-control" formControlName="content"
+                placeholder="Write something here..."></textarea>
+                  </div>
+                  <ul class="button-group d-flex justify-content-between align-items-center">
+                    <li class="photo-btn">
+                      <label for="file-upload" class="custom-file-upload">
+                        <i class="flaticon-gallery"></i>Photo
+                      </label>
+                      <input type="file" id="file-upload" name="fileName" (change)="uploadImage($event)">
+                    </li>
+                    <li class="video-btn">
+                      <label for="file-upload" class="custom-file-upload">
+                        <i class="flaticon-view"></i>
+                        <select class="custom-select" formControlName="status">
+                          <option>Public</option>
+                          <option>Friends</option>
+                          <option>Private</option>
+                        </select>
+                      </label>
+                    </li>
+                    <li class="tag-btn">
+                      <button><i class="flaticon-tag"></i> Tag Friends</button>
+                    </li>
+                    <li class="post-btn">
+                      <button>Post</button>
+                    </li>
+                  </ul>
+                </form>
+              </div>
+
               <div class="news-feed news-feed-stories">
                 <div class="stories-title d-flex justify-content-between align-items-center">
                   <h3>Stories</h3>
@@ -1065,7 +1107,7 @@
                  *ngIf="urlEditPost">
               <img [src]="urlEditPost" style="border-radius: 3%; display: block; margin-left: auto; margin-right: auto;" alt="">
               <img [src]="urlEditPost" src="http://localhost:8080/{{urlEditPost}}"  style="border-radius: 3%; display: block; margin-left: auto; margin-right: auto;" alt="">
-              <button type="button" class="btn-close" style="position: absolute; top: -20px; right: -10px" aria-label="Close"></button>
+              <button type="button" (click)="deleteImage()" class="btn-close" style="position: absolute; top: -20px; right: -10px" aria-label="Close"></button>
             </div>
             <br>
             <div class="form-group">

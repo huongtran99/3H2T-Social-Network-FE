@@ -22,6 +22,7 @@ export class PostComponent implements OnInit {
   page: any = 0;
   files: any[] = [];
 
+
   constructor(private postService: PostService,
               private fileService: FileService,
               private data: DataService) {
