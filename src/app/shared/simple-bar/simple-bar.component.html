@@ -5,7 +5,7 @@
     </div>
     <div class="chat-body" data-simplebar>
       <div class="chat-item" *ngFor="let user of listUser,index as i">
-        <a href="#"><img src="{{user.avatar}}" class="rounded-circle" alt="image"></a>
+        <a href="#"><img src="http://localhost:8080/{{user.avatar}}" class="rounded-circle" alt="image"></a>
         <span class="name"><a routerLink="/messages/{{user.id}}">{{user.username}}</a></span>
         <span class="status-online"></span>
       </div>
@@ -23,7 +23,7 @@
     </div>
     <div class="contact-body" data-simplebar>
       <div class="contact-item" *ngFor="let user of listUser, index as i">
-        <a href="#"><img src="{{user.avatar}}" class="rounded-circle" alt="image"></a>
+        <a href="#"><img src="http://localhost:8080/{{user.avatar}}" class="rounded-circle" alt="image"></a>
         <span class="name"><a href="#">{{user.username}}</a></span>
         <span class="status-online"></span>
       </div>

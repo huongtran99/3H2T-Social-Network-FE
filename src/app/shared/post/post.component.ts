@@ -50,7 +50,7 @@ export class PostComponent implements OnInit {
     }
   }
 
-  uploadImage(event: any){
+  uploadImage(event: any) {
     this.addFileCreatePost(event);
     this.fileProgress(event);
   }
@@ -68,28 +68,42 @@ export class PostComponent implements OnInit {
         formData.append('fileNames', this.fileData[i]);
       }
       formData.append('post.id', post.id);
-      this.fileService.createFile(formData).subscribe();
+      this.fileService.createFile(formData).subscribe(() => {
+
+      });
       this.postCreateForm.reset();
+      this.fileData = [];
       this.urlCreatePost = "";
       this.postCreateForm = new FormGroup({
         content: new FormControl(),
         status: new FormControl("Public"),
       })
-      this.postService.findAll(this.page).subscribe((post: any) => {
+      this.postService.findAll(this.page).subscribe(async (post: any) => {
         this.posts = post.content;
-        this.data.changeData(this.posts);
-        this.getFileByPostId(this.posts);
+        await this.getFileByPostId(this.posts);
       })
     }, error => {
       this.sweetalertService.alertError('Error!')
     })
   }
 
-  getFileByPostId(posts: any) {
+  async getFileByPostId(posts: any) {
     for (let i = 0; i < posts.length; i++) {
-      this.fileService.findFileByPostId(posts[i]).subscribe(file => {
-        posts[i].file = file[0];
-      })
+      let files =  await this.getFileByPostIdPromise(posts[i]);
+      posts[i].file = files[0];
+    }
+    this.data.changeData(this.posts);
+  }
+
+  getFileByPostIdPromise(post){
+    return this.fileService.findFileByPostId(post).toPromise();
+  }
+
+  deleteImage(fileInput: any) {
+    this.urlCreatePost = '';
+    this.fileData = [];
+    for (let i = 0; i < fileInput.target.files.length; i++) {
+      this.fileData.splice(fileInput.target.files[i]);
     }
   }
 

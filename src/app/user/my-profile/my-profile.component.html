@@ -331,30 +331,9 @@
                   </div>
                   <ul class="post-meta-wrap d-flex justify-content-between align-items-center">
                     <li class="post-react">
-                      <a href="#"><i class="flaticon-like"></i><span>Like</span> <span class="number">1499 </span></a>
-                      <ul class="react-list">
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-1.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-2.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-3.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-4.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-5.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-6.png" alt="Like"></a>
-                        </li>
-                        <li>
-                          <a href="#"><img src="assets/images/react/react-7.png" alt="Like"></a>
-                        </li>
-                      </ul>
+                      <button style="all: unset" (click)="likes(post)"><i class="flaticon-like"></i>
+                        <span>Like</span>
+                      </button> <span class="number">{{counts[i]}}</span>
                     </li>
                     <li class="post-comment">
                       <a href="#"><i class="flaticon-comment"></i><span>Comment</span> <span class="number">599 </span></a>
@@ -584,7 +563,7 @@
                   <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true"
                           aria-expanded="false"><i class="flaticon-menu"></i></button>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit
+                    <li><a class="dropdown-item d-flex align-items-center" routerLink="/setting-profile/{{user.id}}"><i class="flaticon-edit"></i> Edit
                       Information</a></li>
                     <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i>
                       Hide Information</a></li>
@@ -1086,7 +1065,7 @@
                  *ngIf="urlEditPost">
               <img [src]="urlEditPost" style="border-radius: 3%; display: block; margin-left: auto; margin-right: auto;" alt="">
               <img [src]="urlEditPost" src="http://localhost:8080/{{urlEditPost}}"  style="border-radius: 3%; display: block; margin-left: auto; margin-right: auto;" alt="">
-              <button type="button" class="btn-close" style="position: absolute; top: -20px; right: -10px" aria-label="Close"></button>
+              <button type="button" class="btn-close" style="position: absolute; top: -20px; right: -10px" aria-label="Close" (click)="deleteImage()"></button>
             </div>
             <br>
             <div class="form-group">
@@ -1138,7 +1117,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="submitDelete()">Yes</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="background: #3644d9" (click)="submitDelete()">Yes</button>
           </div>
         </div>
       </div>

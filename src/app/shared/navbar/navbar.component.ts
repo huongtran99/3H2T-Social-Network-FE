@@ -2,7 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {User} from "../../model/user";
 import {AuthenticationService} from "../../service/authentication.service";
 import {UserService} from "../../service/user.service";
-import {FormGroup} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
 import {NotificationService} from "../../service/notification.service";
 import {Notification} from "../../model/Notification";
 import {UserChat} from "../../model/user-chat";
@@ -11,6 +11,7 @@ import {SocketService} from "../../service/socket.service";
 import {DateService} from "../../service/date.service";
 import {Message} from "../../model/message";
 import {Router} from "@angular/router";
+import {DataService} from "../../service/data.service";
 
 @Component({
   selector: 'app-navbar',
@@ -18,8 +19,10 @@ import {Router} from "@angular/router";
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  formSearch: FormGroup = new FormGroup({});
-  // user: User;
+  formSearch: FormGroup = new FormGroup({
+    q : new FormControl()
+  });
+  usersSearch: User[] = [];
   notifications: Notification[];
   user: User = {};
   @ViewChild('message', {static: false, read: ElementRef}) public message: ElementRef<any>;
@@ -28,6 +31,8 @@ export class NavbarComponent implements OnInit {
   size = 10;
   listUser: UserChat[] = [];
   currentIndex = 0
+  searchValue: any;
+  page: any;
 
   constructor(private auth: AuthenticationService,
               private userService: UserService,
@@ -35,7 +40,8 @@ export class NavbarComponent implements OnInit {
               private messageService: MessageService,
               private socketService: SocketService,
               private dateService: DateService,
-              private router: Router) {
+              private router: Router,
+              private dataService: DataService) {
   }
 
   ngOnInit() {
@@ -44,6 +50,22 @@ export class NavbarComponent implements OnInit {
     this.getUserDetail();
     this.getNotificationByUserId();
     this.getAllUser();
+    this.dataService.currentUsers.subscribe((data: any) => this.usersSearch = data);
+    this.dataService.currentSearch.subscribe((data: any) => this.searchValue = data);
+    this.dataService.currentPage.subscribe((data: any) => this.page = data);
+  }
+
+  search() {
+    this.dataService.changeDataSearch(this.formSearch.value.q);
+    this.page = 0;
+    this.dataService.changeDatePage(this.page);
+    if(this.formSearch.value.q != null) {
+      this.userService.searchUser(this.formSearch.value.q, 0).subscribe((data: any) => {
+        this.usersSearch = data.content;
+        this.dataService.changeDataUser(this.usersSearch);
+        this.router.navigateByUrl("/friends");
+      })
+    }
   }
 
   getNotificationByUserId() {

@@ -46,7 +46,11 @@ const routes: Routes = [
   {
     path: 'setting',
     component: SettingInformationComponent
-  }
+  },
+  {
+    path: '**',
+    redirectTo: 'news-feed'
+  },
 ];
 
 @NgModule({

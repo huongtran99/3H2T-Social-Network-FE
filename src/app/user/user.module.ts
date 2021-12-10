@@ -13,6 +13,7 @@ import {MessagesComponent} from './messages/messages.component';
 import {SettingInformationComponent } from './setting-information/setting-information.component';
 import {ProfileComponent } from './setting-information/profile/profile.component';
 import {PasswordComponent } from './setting-information/password/password.component';
+import {InfiniteScrollModule} from "ngx-infinite-scroll";
 
 @NgModule({
   declarations: [
@@ -26,13 +27,14 @@ import {PasswordComponent } from './setting-information/password/password.compon
     FriendListComponent,
     MessagesComponent
   ],
-  imports: [
-    CommonModule,
-    UserRoutingModule,
-    SharedModule,
-    ReactiveFormsModule,
-    FormsModule
-  ]
+    imports: [
+        CommonModule,
+        UserRoutingModule,
+        SharedModule,
+        ReactiveFormsModule,
+        FormsModule,
+        InfiniteScrollModule
+    ]
 })
 export class UserModule {
 }

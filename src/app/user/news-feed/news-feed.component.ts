@@ -38,6 +38,17 @@ export class NewsFeedComponent implements OnInit {
     this.data.currentPost.subscribe((data: any) => this.posts = data);
   }
 
+  loadMore() {
+    this.page++;
+    this.postService.findAll(this.page).subscribe(async (post: any) => {
+      for (let i = 0; i < post.content.length; i++) {
+        this.posts.push(post.content[i]);
+      }
+      await this.getFileByPostId(this.posts);
+      this.countLike();
+    })
+  }
+
   getUserDetail() {
     this.userService.getUserDetail(this.user.id).subscribe(user => {
       this.user = user;
@@ -45,19 +56,23 @@ export class NewsFeedComponent implements OnInit {
   }
 
   getAllPosts() {
-    this.postService.findAll(this.page).subscribe((post: any) => {
+    this.postService.findAll(this.page).subscribe(async (post: any) => {
       this.posts = post.content;
-      this.getFileByPostId(this.posts);
-      this.countLike();
+      await this.getFileByPostId(this.posts);
+      await this.countLike();
     })
   }
 
-  getFileByPostId(posts: any) {
+  async getFileByPostId(posts: any) {
     for (let i = 0; i < posts.length; i++) {
-      this.fileService.findFileByPostId(posts[i]).subscribe(file => {
-        posts[i].file = file[0];
-      })
+      let files = await this.getFileByPostIdPromise(posts[i]);
+      posts[i].file = files[0];0.
+
     }
+  }
+
+  getFileByPostIdPromise(post) {
+    return this.fileService.findFileByPostId(post).toPromise();
   }
 
   likes(post) {
@@ -69,13 +84,13 @@ export class NewsFeedComponent implements OnInit {
         id: this.user.id
       }
     }
-    this.reaction.checkLike(post.id, this.user.id).subscribe(data => {
-      if(data != 1) {
-        this.reaction.like(this.like).subscribe(() => {
+    this.reaction.checkLike(post.id, this.user.id).subscribe(async (data: any) => {
+      if (data != 1) {
+        await this.reaction.like(this.like).subscribe(async () => {
           this.counts = [];
           for (let i = 0; i < this.posts.length; i++) {
-            this.reaction.getLike(this.posts[i].id).subscribe((data: any) => {
-              this.counts.push(data);
+            await this.reaction.getLike(this.posts[i].id).subscribe(async (data: any) => {
+              await this.counts.push(data);
             })
           }
           this.notification = {
@@ -83,16 +98,16 @@ export class NewsFeedComponent implements OnInit {
             user: post.user,
             sender: this.user
           };
-          if(this.user.id != post.user.id) {
+          if (this.user.id != post.user.id) {
             this.notificationService.createNotification(this.notification).subscribe();
           }
         })
       } else {
-        this.reaction.unLike(post.id, this.user.id).subscribe(() => {
+        await this.reaction.unLike(post.id, this.user.id).subscribe(async () => {
           this.counts = [];
           for (let i = 0; i < this.posts.length; i++) {
-            this.reaction.getLike(this.posts[i].id).subscribe((data: any) => {
-              this.counts.push(data);
+            await this.reaction.getLike(this.posts[i].id).subscribe(async (data: any) => {
+              await this.counts.push(data);
             })
           }
         })
@@ -102,8 +117,8 @@ export class NewsFeedComponent implements OnInit {
 
   countLike() {
     for (let i = 0; i < this.posts.length; i++) {
-      this.reaction.getLike(this.posts[i].id).subscribe((data: any) => {
-        this.counts.push(data);
+      this.reaction.getLike(this.posts[i].id).subscribe(async (data: any) => {
+        await this.counts.push(data);
       })
     }
   }
