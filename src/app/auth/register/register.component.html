@@ -24,10 +24,10 @@
             <div class="form-group">
               <div id="register-error-box"></div>
               <label>Username</label>
-              <input type="text" class="form-control" formControlName="username" required minlength="2">
+              <input type="text" class="form-control" formControlName="username" required minlength="4">
               <div *ngIf="username.invalid && (username.dirty || username.touched)">
                 <div class="error-message" *ngIf="username.errors?.required">* must be filled</div>
-                <div class="error-message" *ngIf="username.errors?.minlength">* must have at least 2 characters long
+                <div class="error-message" *ngIf="username.errors?.minlength">* must have at least 4 characters long
                 </div>
               </div>
             </div>
