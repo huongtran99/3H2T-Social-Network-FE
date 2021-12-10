@@ -252,30 +252,31 @@
               </div>
             </div>
           </div>
-          <div class="news-feed news-feed-post" *ngFor="let post of posts; index as i">
+          <div class="news-feed news-feed-post" *ngFor="let post of comments; index as i">
             <div class="post-header d-flex justify-content-between align-items-center">
               <div class="image">
-                <a href=""><img src="http://localhost:8080/{{post.user.avatar}}" class="rounded-circle"
-                                               alt="image"></a>
+                <a href=""><img src="http://localhost:8080/{{post[0].post.user.avatar}}" class="rounded-circle"
+                                alt="image"></a>
               </div>
               <div class="info ms-3">
-                <span class="name"><a href="">{{post.user.username}}</a></span>
-                <span class="small-text"><a href="#">{{post.dateTime | date:'medium'}}</a></span>
+                <span class="name"><a href="">{{post[0].post.user.username}}</a></span>
+                <span class="small-text"><a href="#">{{post[0].post.dateTime | date:'medium'}}</a></span>
               </div>
 
               <!--              <app-post-setting></app-post-setting>-->
 
             </div>
             <div class="post-body">
-              <p>{{post.content}}</p>
-              <div class="post-image" *ngIf="post.file?.fileName">
-                <img src="http://localhost:8080/{{post.file?.fileName}}" alt="image">
+              <p>{{post[0].post.content}}</p>
+              <div class="post-image" *ngIf="post[0].post.file?.fileName">
+                <img src="http://localhost:8080/{{post[0].post.file?.fileName}}" alt="image">
               </div>
               <ul class="post-meta-wrap d-flex justify-content-between align-items-center">
                 <li class="post-react">
                   <button style="all: unset" (click)="likes(post)"><i class="flaticon-like"></i>
                     <span>Like</span>
-                  </button> <span class="number">{{counts[i]}}</span>
+                  </button>
+                  <span class="number">{{counts[i]}}</span>
                 </li>
                 <li class="post-comment">
                   <a><i class="flaticon-comment"></i><span>Comment</span> <span class="number">599</span></a>
@@ -285,73 +286,41 @@
                 </li>
               </ul>
               <div class="post-comment-list">
-                <div class="comment-list">
-                  <div class="comment-image">
-                    <a href="my-profile.html"><img src="assets/images/user/user-33.jpg" class="rounded-circle"
-                                                   alt="image"></a>
-                  </div>
-                  <div class="comment-info">
-                    <h3>
-                      <a href="my-profile.html">David Moore</a>
-                    </h3>
-                    <span>5 Mins Ago</span>
-                    <p>Donec rutrum congue leo eget malesuada nulla quis lorem ut libero malesuada feugiat donec rutrum
-                      congue leo eget malesuada donec rutrum congue leo eget malesuada. Praesent sapien massa convallis
-                      a pellentesque non nisi curabitur non nulla sit amet nisl tempus convallis lectus.</p>
-                    <ul class="comment-react">
-                      <li><a href="#" class="like">Like(2)</a></li>
-                      <li><a href="#">Reply</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="comment-list">
-                  <div class="comment-image">
-                    <a href=""><img src="assets/images/user/user-34.jpg" class="rounded-circle"
-                                                   alt="image"></a>
-                  </div>
-                  <div class="comment-info">
-                    <h3>
-                      <a href="">Claire P. Toy</a>
-                    </h3>
-                    <span>45 Mins Ago</span>
-                    <p>Donec rutrum congue leo eget malesuada praesent sapien massa convallis a pellentesque nec egestas
-                      non nisi curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
-                    <ul class="comment-react">
-                      <li><a href="#" class="like">Like(12)</a></li>
-                      <li><a href="#">Reply</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="comment-list">
-                  <div class="comment-image">
-                    <a href="my-profile.html"><img src="assets/images/user/user-8.jpg" class="rounded-circle"
-                                                   alt="image"></a>
-                  </div>
-                  <div class="comment-info">
-                    <h3>
-                      <a href="my-profile.html">Karen Williams</a>
-                    </h3>
-                    <span>5 Mins Ago</span>
-                    <p>Donec rutrum congue leo eget malesuada nulla quis lorem ut libero malesuada feugiat donec rutrum
-                      congue leo eget.</p>
-                    <ul class="comment-react">
-                      <li><a href="#" class="like">Like(2)</a></li>
-                      <li><a href="#">Reply</a></li>
-                    </ul>
+                <div class="comment-list" *ngFor="let comment of post">
+                  <div *ngIf="comment.user && comment.content && comment.dateTime">
+                    <div class="comment-image">
+                      <a href="my-profile.html"><img src="http://localhost:8080/{{comment.user.avatar}}"
+                                                     class="rounded-circle"
+                                                     alt="image"></a>
+                    </div>
+                    <div class="comment-info">
+                      <h3>
+                        <a href="my-profile.html">{{comment.user.username}}</a>
+                      </h3>
+                      <span>{{comment.dateTime}}</span>
+                      <p>{{comment.content}}</p>
+                      <ul class="comment-react">
+                        <li><a href="#" class="like">Like(2)</a></li>
+                        <li><a href="#">Reply</a></li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
                 <div class="more-comments">
-                  <a href="#">More Comments+</a>
+                  <a (click)="loadMore(post[0].post.id)">More Comments+</a>
                 </div>
               </div>
               <div class="post-footer">
                 <div class="footer-image">
                   <a href="#"><img src="assets/images/user/user-1.jpg" class="rounded-circle" alt="image"></a>
                 </div>
-                <div class="form-group">
-                  <textarea name="message" class="form-control" placeholder="Write a comment..."></textarea>
-                  <label><a href="#"><i class="flaticon-photo-camera"></i></a></label>
-                </div>
+                <form [formGroup]="commentForm" (ngSubmit)="createComment(post[0].post)">
+                  <div class="form-group" >
+                    <textarea formControlName="content" name="message" class="form-control" placeholder="Write a comment..."></textarea>
+                   <br>
+                    <button>Comment</button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
