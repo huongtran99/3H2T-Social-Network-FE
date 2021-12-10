@@ -68,6 +68,7 @@ export class PostComponent implements OnInit {
       formData.append('post.id', post.id);
       this.fileService.createFile(formData).subscribe();
       this.postCreateForm.reset();
+      this.fileData = [];
       this.urlCreatePost = "";
       this.postCreateForm = new FormGroup({
         content: new FormControl(),
