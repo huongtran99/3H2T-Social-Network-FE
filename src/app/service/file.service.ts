@@ -8,6 +8,8 @@ import {Post} from "../model/post";
   providedIn: 'root'
 })
 export class FileService {
+  filesFromService: any[] = [];
+  fileDataFromService: any[] = [];
 
   constructor(private http: HttpClient) {
   }

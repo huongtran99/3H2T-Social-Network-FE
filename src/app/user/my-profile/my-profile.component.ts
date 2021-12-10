@@ -18,18 +18,18 @@ import {NotificationService} from "../../service/notification.service";
 export class MyProfileComponent implements OnInit {
   id: number;
   post: Post = {};
-  posts: Post[] = [];
+  posts = this.postService.postListMyProfile;
   postEditForm: FormGroup = new FormGroup({
     id: new FormControl(),
     content: new FormControl(),
     status: new FormControl("Public"),
   });
   page: any = 0;
-  files: any[] = [];
+  files = this.fileService.filesFromService;
   searchForm: FormGroup = new FormGroup({});
   user: User;
   urlEditPost: any;
-  fileData: File[] = [];
+  fileData = this.fileService.fileDataFromService;
   fileImage: any;
   userForm = new FormGroup({
     avatar: new FormControl()
@@ -112,20 +112,23 @@ export class MyProfileComponent implements OnInit {
           this.fileService.editFile(data[0].id, formData).subscribe(() => {
             this.postEditForm.reset();
             this.urlEditPost = "";
-            alert('Successful!');
+            this.postService.findAll(this.page).subscribe((post: any) => {
+              this.posts = post.content;
+              this.dataService.changeData(this.posts);
+              this.getFileByPostId(this.posts);
+            })
           });
         } else {
           this.fileService.createFile(formData).subscribe(() => {
             this.postEditForm.reset();
             this.urlEditPost = "";
-            alert("ok");
           })
         }
-      })
-      this.postService.findAll(this.page).subscribe((post: any) => {
-        this.posts = post.content;
-        this.dataService.changeData(this.posts);
-        this.getFileByPostId(this.posts);
+        this.postService.findAll(this.page).subscribe((post: any) => {
+          this.posts = post.content;
+          this.dataService.changeData(this.posts);
+          this.getFileByPostId(this.posts);
+        })
       })
     }, error => {
       alert('Error!');
