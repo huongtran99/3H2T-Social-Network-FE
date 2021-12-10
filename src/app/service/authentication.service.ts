@@ -16,7 +16,6 @@ export class AuthenticationService {
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<UserToken>(JSON.parse(localStorage.getItem('user')));
     this.currenUser = this.currentUserSubject.asObservable();
-    console.log(this.currenUser);
   }
 
   login(username: string, password: string) {

@@ -59,14 +59,15 @@ export class NewsFeedComponent implements OnInit {
     this.postService.findAll(this.page).subscribe(async (post: any) => {
       this.posts = post.content;
       await this.getFileByPostId(this.posts);
-      this.countLike();
+      await this.countLike();
     })
   }
 
   async getFileByPostId(posts: any) {
     for (let i = 0; i < posts.length; i++) {
       let files = await this.getFileByPostIdPromise(posts[i]);
-      posts[i].file = files[0];
+      posts[i].file = files[0];0.
+
     }
   }
 
@@ -83,13 +84,13 @@ export class NewsFeedComponent implements OnInit {
         id: this.user.id
       }
     }
-    this.reaction.checkLike(post.id, this.user.id).subscribe(data => {
+    this.reaction.checkLike(post.id, this.user.id).subscribe(async (data: any) => {
       if (data != 1) {
-        this.reaction.like(this.like).subscribe(() => {
+        await this.reaction.like(this.like).subscribe(async () => {
           this.counts = [];
           for (let i = 0; i < this.posts.length; i++) {
-            this.reaction.getLike(this.posts[i].id).subscribe((data: any) => {
-              this.counts.push(data);
+            await this.reaction.getLike(this.posts[i].id).subscribe(async (data: any) => {
+              await this.counts.push(data);
             })
           }
           this.notification = {
@@ -102,11 +103,11 @@ export class NewsFeedComponent implements OnInit {
           }
         })
       } else {
-        this.reaction.unLike(post.id, this.user.id).subscribe(() => {
+        await this.reaction.unLike(post.id, this.user.id).subscribe(async () => {
           this.counts = [];
           for (let i = 0; i < this.posts.length; i++) {
-            this.reaction.getLike(this.posts[i].id).subscribe((data: any) => {
-              this.counts.push(data);
+            await this.reaction.getLike(this.posts[i].id).subscribe(async (data: any) => {
+              await this.counts.push(data);
             })
           }
         })
@@ -116,8 +117,8 @@ export class NewsFeedComponent implements OnInit {
 
   countLike() {
     for (let i = 0; i < this.posts.length; i++) {
-      this.reaction.getLike(this.posts[i].id).subscribe((data: any) => {
-        this.counts.push(data);
+      this.reaction.getLike(this.posts[i].id).subscribe(async (data: any) => {
+        await this.counts.push(data);
       })
     }
   }
