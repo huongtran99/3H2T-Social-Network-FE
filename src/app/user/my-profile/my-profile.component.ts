@@ -6,6 +6,9 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {User} from 'src/app/model/user';
 import {UserService} from "../../service/user.service";
 import {DataService} from "../../service/data.service";
+import {Notification} from "../../model/Notification";
+import {ReactionService} from "../../service/reaction.service";
+import {NotificationService} from "../../service/notification.service";
 
 @Component({
   selector: 'app-my-profile',
@@ -31,11 +34,16 @@ export class MyProfileComponent implements OnInit {
   userForm = new FormGroup({
     avatar: new FormControl()
   })
+  like: any;
+  counts: any[] = [];
+  notification: Notification = {};
 
   constructor(private postService: PostService,
               private fileService: FileService,
               private userService: UserService,
-              private dataService: DataService) {
+              private dataService: DataService,
+              private reaction: ReactionService,
+              private notificationService: NotificationService) {
     this.getAllPostsByUser();
   }
 
@@ -56,6 +64,7 @@ export class MyProfileComponent implements OnInit {
     this.postService.findAllByUser(this.user.id, this.page).subscribe((post: any) => {
       this.posts = post.content;
       this.getFileByPostId(this.posts);
+      this.countLike();
     })
   }
 
@@ -69,15 +78,19 @@ export class MyProfileComponent implements OnInit {
 
   getPostId(id) {
     this.fileService.getFileByPostId(id).subscribe((data: any) => {
-      this.urlEditPost = data[0].fileName;
-    });
-    this.id = id;
-    this.postService.findById(id).subscribe(post => {
-      this.post = post;
-      this.postEditForm = new FormGroup({
-        id: new FormControl(post.id),
-        content: new FormControl(post.content),
-        status: new FormControl(post.status),
+      if(data == '') {
+        this.urlEditPost = '';
+      } else {
+        this.urlEditPost = data[0].fileName;
+      }
+      this.id = id;
+      this.postService.findById(id).subscribe(post => {
+        this.post = post;
+        this.postEditForm = new FormGroup({
+          id: new FormControl(post.id),
+          content: new FormControl(post.content),
+          status: new FormControl(post.status),
+        });
       });
     });
   }
@@ -95,13 +108,18 @@ export class MyProfileComponent implements OnInit {
       }
       formData.append('post.id', post.id);
       this.fileService.getFileByPostId(post.id).subscribe((data: any) => {
-        if (data != '') {
+        if(data != '') {
           this.fileService.editFile(data[0].id, formData).subscribe(() => {
             this.postEditForm.reset();
             this.urlEditPost = "";
+            alert('Successful!');
           });
         } else {
-          this.fileService.createFile(formData).subscribe();
+          this.fileService.createFile(formData).subscribe(() => {
+            this.postEditForm.reset();
+            this.urlEditPost = "";
+            alert("ok");
+          })
         }
       })
       this.postService.findAll(this.page).subscribe((post: any) => {
@@ -201,4 +219,52 @@ export class MyProfileComponent implements OnInit {
     });
   }
 
+
+  likes(post) {
+    this.like = {
+      post: {
+        id: post.id
+      },
+      user: {
+        id: this.user.id
+      }
+    }
+    this.reaction.checkLike(post.id, this.user.id).subscribe(data => {
+      if (data != 1) {
+        this.reaction.like(this.like).subscribe(() => {
+          this.counts = [];
+          for (let i = 0; i < this.posts.length; i++) {
+            this.reaction.getLike(this.posts[i].id).subscribe((data: any) => {
+              this.counts.push(data);
+            })
+          }
+          this.notification = {
+            content: " liked your post.",
+            user: post.user,
+            sender: this.user
+          };
+          if (this.user.id != post.user.id) {
+            this.notificationService.createNotification(this.notification).subscribe();
+          }
+        })
+      } else {
+        this.reaction.unLike(post.id, this.user.id).subscribe(() => {
+          this.counts = [];
+          for (let i = 0; i < this.posts.length; i++) {
+            this.reaction.getLike(this.posts[i].id).subscribe((data: any) => {
+              this.counts.push(data);
+            })
+          }
+        })
+      }
+    })
+  }
+
+  countLike() {
+    for (let i = 0; i < this.posts.length; i++) {
+      this.reaction.getLike(this.posts[i].id).subscribe((data: any) => {
+        this.counts.push(data);
+      })
+    }
+  }
 }

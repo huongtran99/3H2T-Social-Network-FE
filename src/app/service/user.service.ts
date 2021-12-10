@@ -54,4 +54,9 @@ export class UserService {
   getStatusByUsername(username: string): Observable<any> {
     return this.http.get<any>(`http://localhost:8080/users/get-status?username=${username}`);
   }
+
+  searchUser(username: string, page: number): Observable<any[]> {
+    return this.http.get<any[]>(`http://localhost:8080/users/search?q=${username}&page=${page}`);
+  }
+
 }

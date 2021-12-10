@@ -6,6 +6,10 @@ import {Notification} from "../../../model/Notification";
 import {FriendService} from "../../../service/friend.service";
 import {NotificationService} from "../../../service/notification.service";
 import {Friend} from "../../../model/friend";
+import {PostService} from "../../../service/post.service";
+import {FileService} from "../../../service/file.service";
+import {Post} from "../../../model/post";
+import {ReactionService} from "../../../service/reaction.service";
 
 @Component({
   selector: 'app-friend-info',
@@ -21,12 +25,20 @@ export class FriendInfoComponent implements OnInit {
   status: any;
   statusAddFriend: boolean;
   friend: Friend;
+  posts: Post[] = [];
+  page: any = 0;
+  like: any;
+  counts: any[] = [];
+  notification1: Notification = {};
 
 
   constructor(private userService: UserService,
               private activateRoute: ActivatedRoute,
               private friendService: FriendService,
-              private notificationService: NotificationService) {
+              private notificationService: NotificationService,
+              private postService: PostService,
+              private fileService: FileService,
+              private reaction: ReactionService) {
     this.activateRoute.paramMap.subscribe(paramMap => {
       this.id = +paramMap.get('id');
       this.userService.getUserDetail(this.id).subscribe(user => {
@@ -38,6 +50,23 @@ export class FriendInfoComponent implements OnInit {
 
   ngOnInit() {
     this.checkStatus();
+    this.getAllPostsByUser();
+  }
+
+  getAllPostsByUser() {
+    this.postService.findAllByUser(this.id, this.page).subscribe((post: any) => {
+      this.posts = post.content;
+      this.getFileByPostId(this.posts);
+      this.countLike();
+    })
+  }
+
+  getFileByPostId(posts: any) {
+    for (let i = 0; i < posts.length; i++) {
+      this.fileService.findFileByPostId(posts[i]).subscribe(file => {
+        posts[i].file = file[0];
+      })
+    }
   }
 
    checkStatus() {
@@ -100,6 +129,54 @@ export class FriendInfoComponent implements OnInit {
       this.notificationService.createNotification(this.notification).subscribe(() => {
       })
     })
+  }
+
+  likes(post) {
+    this.like = {
+      post: {
+        id: post.id
+      },
+      user: {
+        id: this.user.id
+      }
+    }
+    this.reaction.checkLike(post.id, this.user.id).subscribe(data => {
+      if(data != 1) {
+        this.reaction.like(this.like).subscribe(() => {
+          this.counts = [];
+          for (let i = 0; i < this.posts.length; i++) {
+            this.reaction.getLike(this.posts[i].id).subscribe((data: any) => {
+              this.counts.push(data);
+            })
+          }
+          this.notification1 = {
+            content: " liked your post.",
+            user: post.user,
+            sender: this.user
+          };
+          if(this.user.id != post.user.id) {
+            this.notificationService.createNotification(this.notification1).subscribe();
+          }
+        })
+      } else {
+        this.reaction.unLike(post.id, this.user.id).subscribe(() => {
+          this.counts = [];
+          for (let i = 0; i < this.posts.length; i++) {
+            this.reaction.getLike(this.posts[i].id).subscribe((data: any) => {
+              this.counts.push(data);
+            })
+          }
+        })
+      }
+    })
+  }
+
+  countLike() {
+    for (let i = 0; i < this.posts.length; i++) {
+      this.reaction.getLike(this.posts[i].id).subscribe((data: any) => {
+        this.counts.push(data);
+      })
+    }
   }
 
 }
