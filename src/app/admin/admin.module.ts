@@ -5,7 +5,6 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { UserManagementComponent } from './user-management/user-management.component';
 import {SharedModule} from "../shared/shared.module";
 
-
 @NgModule({
   declarations: [UserManagementComponent],
   imports: [
